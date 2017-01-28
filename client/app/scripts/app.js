@@ -10,6 +10,7 @@
  */
 angular
   .module('FamilySleep', [
+    'ngVega',
     'ngAnimate',
     'ngAria',
     'ngCookies',

@@ -7,16 +7,18 @@
  * # FamilydailyviewCtrl
  * Controller of the FamilySleep
  */
+ /*
 angular.module('FamilySleep')
-  .controller('FamilydailyviewCtrl', function () {
+  .controller('FamilydailyviewCtrl', ['ngVega', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-  });
-/*
-angular.module('FamilySleep', ['ngVega'])
+  }]);
+  */
+
+angular.module('FamilySleep')
   .controller('FamilydailyviewCtrl', function($scope){
      $scope.renderer = 'canvas';
       $scope.spec = {
@@ -100,4 +102,4 @@ angular.module('FamilySleep', ['ngVega'])
   $scope.testData = data1;
   $scope.data1 = data1;
   $scope.data2 = data2;
-  });*/
+  });
