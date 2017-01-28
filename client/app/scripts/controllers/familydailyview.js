@@ -7,7 +7,7 @@
  * # FamilydailyviewCtrl
  * Controller of the FamilySleep
  */
-angular.module('FamilySleep', ['ngVega'])
+angular.module('FamilySleep')
   .controller('FamilydailyviewCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',
