@@ -17,7 +17,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ngVega',
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -35,6 +36,11 @@ angular
         templateUrl: 'views/signup.html',
         controller: 'SignupCtrl',
         controllerAs: 'signup'
+      })
+      .when('/familydailyview', {
+        templateUrl: 'views/familydailyview.html',
+        controller: 'FamilydailyviewCtrl',
+        controllerAs: 'familydailyview'
       })
       .otherwise({
         redirectTo: '/'

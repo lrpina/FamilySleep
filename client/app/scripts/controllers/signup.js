@@ -1,7 +1,5 @@
 'use strict';
 
-'use strict';
-
 angular.module('FamilySleep') // make sure this is set to whatever it is in your client/scripts/app.js
 	.controller('SignupCtrl', function ($scope, $http) { // note the added $http depedency
 		
