@@ -17,89 +17,62 @@ angular.module('FamilySleep')
     ];
   }]);
   */
-
 angular.module('FamilySleep')
   .controller('FamilydailyviewCtrl', function($scope){
      $scope.renderer = 'canvas';
       $scope.spec = {
-    "width": 300,
-    "height": 200,
-    "padding": {"top": 10, "left": 30, "bottom": 30, "right": 10},
-    "data": [
-      // only describe a name for dataset here and load data dynamically
-      {"name": "table"}
-    ],
-    "scales": [
-      {
-        "name": "x",
-        "type": "ordinal",
-        "range": "width",
-        "domain": {"data": "table", "field": "x"}
-      },
-      {
-        "name": "y",
-        "range": "height",
-        "nice": true,
-        "domain": {"data": "table", "field": "y"}
-      }
-    ],
-    "axes": [
-      {"type": "x", "scale": "x"},
-      {"type": "y", "scale": "y"}
-    ],
-    "marks": [
-      {
-        "type": "rect",
-        "from": {"data": "table"},
-        "key": "x",
-        "properties": {
-          "enter": {
-            "x": {"scale": "x", "field": "x"},
-            "width": {"scale": "x", "band": true, "offset": -1},
-            "y": {"scale": "y", "field": "y"},
-            "y2": {"scale": "y", "value": 0}
-          },
-          "update": {
-            "x": {"scale": "x", "field": "x"},
-            "width": {"scale": "x", "band": true, "offset": -1},
-            "y": {"scale": "y", "field": "y"},
-            "y2": {"scale": "y", "value": 0},
-            "fill": {"value": "steelblue"}
-          },
-          "hover": {
-            "fill": {"value": "red"}
-          }
+  "width": 400,
+  "height": 400,
+  "data": [
+    {
+      "name": "table",
+      "values": [12],
+      "transform": [{"type": "pie", "field": "data"}]
+    }
+  ],
+  "scales": [
+    {
+      "name": "r",
+      "type": "sqrt",
+      "domain": {"data": "table", "field": "data"},
+      "range": [20, 100]
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {"data": "table"},
+      "properties": {
+        "enter": {
+          "x": {"field": {"group": "width"}, "mult": 0.5},
+          "y": {"field": {"group": "height"}, "mult": 0.5},
+          "startAngle": {"value": 0},
+          "endAngle": {"value": 5.5},
+          "innerRadius": {"value": 75},
+          "outerRadius": {"scale": "r", "field": "data"},
+          "stroke": {"value": "#fff"}
+        },
+        "update": {
+          "fill": {"value": "green"}
         }
       }
-    ]
-  };
-  var data1 = {
-    table: [
-      {"x": 1,  "y": 280}, {"x": 2,  "y": 55},
-      {"x": 3,  "y": 43}, {"x": 4,  "y": 91},
-      {"x": 5,  "y": 81}, {"x": 6,  "y": 53},
-      {"x": 7,  "y": 19}, {"x": 8,  "y": 87},
-      {"x": 9,  "y": 52}, {"x": 10, "y": 48},
-      {"x": 11, "y": 24}, {"x": 12, "y": 49},
-      {"x": 13, "y": 87}, {"x": 14, "y": 66},
-      {"x": 15, "y": 17}, {"x": 16, "y": 27},
-      {"x": 17, "y": 68}, {"x": 18, "y": 16},
-      {"x": 19, "y": 49}, {"x": 20, "y": 15}
-    ]
-  };
-  var data2 = {
-    table: [
-      {"x": 1,  "y": 2}, {"x": 2,  "y": 55},
-      {"x": 3,  "y": 1}, {"x": 4,  "y": 91},
-      {"x": 5,  "y": 81}, {"x": 6,  "y": 53},
-      {"x": 7,  "y": 19}, {"x": 8,  "y": 87},
-      {"x": 9,  "y": 52}, {"x": 10, "y": 48},
-      {"x": 11, "y": 24}, {"x": 12, "y": 49},
-      {"x": 13, "y": 87}, {"x": 14, "y": 66},
-      {"x": 15, "y": 17}, {"x": 16, "y": 27}
-    ]
-  };
-  $scope.testData = data1;
-  $scope.data1 = data1;
-  $scope.data2 = data2;
-  });
+    },
+    {
+      "type": "text",
+      "from": {"data": "table"},
+      "properties": {
+        "enter": {
+          "x": {"field": {"group": "width"}, "mult": 0.5},
+          "y": {"field": {"group": "height"}, "mult": 0.5},
+          "radius": {"scale": "r", "field": "data", "offset": 8},
+          "theta": {"field": "layout_top"},
+          "fill": {"value": "#000"},
+          "align": {"value": "center"},
+          "baseline": {"value": "middle"},
+          "text": {"value": "testing"}
+        }
+      }
+    }
+  ]
+}
+});
