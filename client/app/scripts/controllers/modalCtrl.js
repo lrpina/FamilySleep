@@ -1,7 +1,31 @@
 'use strict';
 angular.module('FamilySleep').controller('ModalCrtl', function($uibModal, $log, $document){
 	var $ctrl = this;
-	$ctrl.items = ['item1', 'item2', 'item3']; 
+	//might need to go into apps.js need to figure how to moveit around
+	var mood_images = [
+		{ 	name:'good',
+			image:"images/good.PNG"
+		}, 
+		{	name:'happy',
+			image:"images/happy.PNG"
+		},
+		{	name:'nightmare',
+			image: "images/nightmare.PNG"
+		},
+		{	name:'sneaky',
+			image: "images/sneaky.PNG"
+		},
+		{	name:'tired',
+		 	image:"images/tired.PNG"
+		},
+		{	name:'tired_more',
+		 	image:"images/tired_more.PNG"
+		},
+		{	name:'tired',
+		 	image:"images/tired.PNG"
+		}];
+	//$ctrl.items = ['item1', 'item2', 'item3']; 
+	$ctrl.items = mood_images;
 	//the above is where I would put the images which I believe are buttons
 	$ctrl.animationsEnabled = true;
 	$ctrl.open = function (size, parentSelector) {
@@ -120,3 +144,14 @@ angular.module('FamilySleep').component('modalComponent', {
     };
   }
 });
+
+//<img ng-src={{ path }}/>
+/*
+to create a ist of images  but I need to use ng-repeat to create a list of buttons that are images
+ <ul class="img-thumbnails clearfix">
+          <li class="small-image pull-left thumbnail" ng-repeat="image in product.images">
+            <img ng-src="{{image}}" />
+          </li>
+        </ul>
+*/
+//inheritance between controllers for the images
