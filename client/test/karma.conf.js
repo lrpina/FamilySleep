@@ -34,6 +34,7 @@ module.exports = function(config) {
       'bower_components/d3/d3.js',
       'bower_components/vega/vega.js',
       'bower_components/ng-vega/dist/ng-vega.min.js',
+      'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',
