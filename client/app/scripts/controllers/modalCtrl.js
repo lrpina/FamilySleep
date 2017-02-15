@@ -28,7 +28,10 @@ angular.module('FamilySleep').controller('ModalCrtl', function($uibModal, $log, 
 	$ctrl.items = mood_images;
 	//the above is where I would put the images which I believe are buttons
 	$ctrl.animationsEnabled = true;
+	$ctrl.changeToImage = false;
+
 	$ctrl.open = function (size, parentSelector) {
+		$log.info("in open of ModalCrtl"); //added this might need to pass log
     var parentElem = parentSelector ? 
       angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
     var modalInstance = $uibModal.open({
@@ -69,7 +72,7 @@ angular.module('FamilySleep').controller('ModalCrtl', function($uibModal, $log, 
       $log.info('modal-component dismissed at: ' + new Date());
     });
   };
-  $ctrl.openMultipleModals = function () {
+  /**$ctrl.openMultipleModals = function () { //don't need this function
     $uibModal.open({
       animation: $ctrl.animationsEnabled,
       ariaLabelledBy: 'modal-title-bottom',
@@ -91,7 +94,7 @@ angular.module('FamilySleep').controller('ModalCrtl', function($uibModal, $log, 
         $scope.name = 'top';  
       }
     });
-  };
+  };*/
    $ctrl.toggleAnimation = function () {
     $ctrl.animationsEnabled = !$ctrl.animationsEnabled;
   };
@@ -100,7 +103,7 @@ angular.module('FamilySleep').controller('ModalCrtl', function($uibModal, $log, 
 // Please note that $uibModalInstance represents a modal window (instance) dependency.
 // It is not the same as the $uibModal service used above.
 
-angular.module('FamilySleep').controller('ModalInstanceCtrl', function ($uibModalInstance, items) {
+angular.module('FamilySleep').controller('ModalInstanceCtrl', function ($uibModalInstance, items, $log) {
   var $ctrl = this;
   $ctrl.items = items;
   $ctrl.selected = {
@@ -109,6 +112,7 @@ angular.module('FamilySleep').controller('ModalInstanceCtrl', function ($uibModa
 
   $ctrl.ok = function () {
     $uibModalInstance.close($ctrl.selected.item);
+    $log.info("inside ModalInstanceCtrl");
   };
 
   $ctrl.cancel = function () {
@@ -137,6 +141,7 @@ angular.module('FamilySleep').component('modalComponent', {
 
     $ctrl.ok = function () {
       $ctrl.close({$value: $ctrl.selected.item});
+      $log.info("inside modalComponent does not seem to get here?");
     };
 
     $ctrl.cancel = function () {
