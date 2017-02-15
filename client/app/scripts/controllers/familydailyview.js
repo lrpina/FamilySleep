@@ -33,8 +33,8 @@ angular.module('FamilySleep')
     }
      //need to figure out how to make this a string with variables to replace info
       $scope.spec = {
-        "width": 400,
-        "height": 400,
+        "width": 200,
+        "height": 200,
     "data": [
       {
         "name": "table",
