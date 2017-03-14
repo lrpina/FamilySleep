@@ -5,34 +5,21 @@
 <!-- lots of repetition here, need to figure out how to call a function that just does this 4 times different parameters-->
 <div class="col-xs-4">
 <div class="row">
+    <!--hard coding profile but can import it from the controller as well-->
+    <img src="images/avatars/momcircle.PNG" alt="momcircle" style="position: relative; top: 0px; left: 10px; width:60px; height:60px">
 	<div vega spec="spec" style="position: relative; z-index: 2">
-	<!--<button class="btn btn-primary" type="button" style="position: absolute; top: 100px; left: 80px">Testing</button>-->
-	<div ng-controller="ModalCrtl as $ctrl" class="modal-demo">
-    <script type="text/ng-template" id="myModalContent.html">
-        <div class="modal-header">
-            <h3 class="modal-title" id="modal-title">Tell how you woke up?</h3>
-        </div>
-        <div class="modal-body" id="modal-body">
-            <ul class="list-unstyled">
-                <li ng-repeat="item in $ctrl.items">
-                	<img ng-src="{{item.image}}"/>
-                    <a href="#" ng-click="$event.preventDefault(); $ctrl.selected.item = item">{{ item.name }}</a>
-                </li>
-            </ul>
-            Selected: <b>{{ $ctrl.selected.item.name }}</b>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
-            <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
-        </div>
-    </script> <!--code for the modal popup window-->
+	<div ng-controller="ModalCrtl as $ctrl" class="mom">
+    <!--code for the modal popup window-->
     <button type="button" class="btn btn-default" ng-click="$ctrl.open()" ng-hide="$ctrl.selected" style="position: absolute; top: 100px; left: 30px; z-index: 1">How did you sleep?</button>
     <!--if I have the below it messes with position of the button, will need to figure out how to make all this relative-->
-     <img ng-src={{$ctrl.selected.image}} ng-show="$ctrl.selected" ng-click="$ctrl.open()" style="position: absolute; top: 70px; left: 30px; z-index: 1"/> <!--need to turn this into a button-->
-
+     <img ng-src={{$ctrl.selected.image}} ng-show="$ctrl.selected" ng-click="$ctrl.open()" style="position: absolute; top: 70px; left: 30px; z-index: 1"> 
+     <!--this is where the profile pic is coming from the controller of the modal-->
+     <!--<img ng-src={{$ctrl.profile}} style="position: absolute; top: 30px; left: 0px; height: 60px; width: 60px">-->
 	</div>
 	</div>
+    <!-- ideally this is where I have the same directive for the avatar-->
 </div>
+
 <!--
 <div class="row">
 	<div vega spec="spec" style="position: relative">

@@ -1,44 +1,50 @@
 'use strict';
 angular.module('FamilySleep').controller('ModalCrtl', function($uibModal, $log, $document){
-	var $ctrl = this;
-	//might need to go into apps.js need to figure how to moveit around
-	var mood_images = [
+  var templateDir = 'views/templates/';
+	var $ctrl = this;	 
+	var moodImages = [
 		{ 	name:'good',
-			image:"images/good.PNG"
+			image:'images/faces/good.PNG'
 		}, 
 		{	name:'happy',
-			image:"images/happy.PNG"
+			image:'images/faces/happy.PNG'
 		},
 		{	name:'nightmare',
-			image: "images/nightmare.PNG"
+			image: 'images/faces/nightmare.PNG'
 		},
 		{	name:'sneaky',
-			image: "images/sneaky.PNG"
+			image: 'images/faces/sneaky.PNG'
 		},
 		{	name:'tired',
-		 	image:"images/tired.PNG"
+		 	image:'images/faces/tired.PNG'
 		},
 		{	name:'tired_more',
-		 	image:"images/tired_more.PNG"
+		 	image:'images/faces/tired_more.PNG'
 		},
 		{	name:'tired',
-		 	image:"images/tired.PNG"
+		 	image:'images/faces/tired.PNG'
 		}];
-	//$ctrl.items = ['item1', 'item2', 'item3']; 
-	$ctrl.items = mood_images;
-	//the above is where I would put the images which I believe are buttons
+  $ctrl.items = moodImages;
+	//var avatars = [];
+  var avatar = 'images/avatars/momcircle.PNG';
+	$ctrl.profile = avatar;
+  //family members
+  /****IMPORTANT I don't know how to add members dynamically**/
+  $ctrl.famMems = ['mom', 'dad', 'child1', 'child2'];
 	$ctrl.animationsEnabled = true;
-	$ctrl.changeToImage = false;
 
+  //could make an arg for fcn where we take the template that we want to use.
+  //this could be that now we can use 
 	$ctrl.open = function (size, parentSelector) {
 		$log.info("in open of ModalCrtl"); //added this might need to pass log
     var parentElem = parentSelector ? 
       angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+    //using
     var modalInstance = $uibModal.open({
       animation: $ctrl.animationsEnabled,
       ariaLabelledBy: 'modal-title',
       ariaDescribedBy: 'modal-body',
-      templateUrl: 'myModalContent.html',
+      templateUrl: templateDir+'myModalContent.html',
       controller: 'ModalInstanceCtrl',
       controllerAs: '$ctrl',
       size: size,
@@ -46,72 +52,41 @@ angular.module('FamilySleep').controller('ModalCrtl', function($uibModal, $log, 
       resolve: {
         items: function () {
           return $ctrl.items;
+        },
+        famMems: function(){ //I don't understand what this does
+          return $ctrl.famMems;
         }
       }
     });
-    modalInstance.result.then(function (selectedItem) {
-      $ctrl.selected = selectedItem;
+    modalInstance.result.then(function (selectedItem1, selectedFam) {
+    	$log.info("in modalInstant result");
+      $ctrl.selected = selectedItem1;
+      $ctrl.selectedFam = selectedFam;
     }, function () {
       $log.info('Modal dismissed at: ' + new Date());
     });
-  };
-
-  $ctrl.openComponentModal = function () {
-    var modalInstance = $uibModal.open({
-      animation: $ctrl.animationsEnabled,
-      component: 'modalComponent',
-      resolve: {
-        items: function () {
-          return $ctrl.items;
-        }
-      }
-    });
-    modalInstance.result.then(function (selectedItem) {
-      $ctrl.selected = selectedItem;
-    }, function () {
-      $log.info('modal-component dismissed at: ' + new Date());
-    });
-  };
-  /**$ctrl.openMultipleModals = function () { //don't need this function
-    $uibModal.open({
-      animation: $ctrl.animationsEnabled,
-      ariaLabelledBy: 'modal-title-bottom',
-      ariaDescribedBy: 'modal-body-bottom',
-      templateUrl: 'stackedModal.html',
-      size: 'sm',
-      controller: function($scope) {
-        $scope.name = 'bottom';  
-      }
-    });
-
-    $uibModal.open({
-      animation: $ctrl.animationsEnabled,
-      ariaLabelledBy: 'modal-title-top',
-      ariaDescribedBy: 'modal-body-top',
-      templateUrl: 'stackedModal.html',
-      size: 'sm',
-      controller: function($scope) {
-        $scope.name = 'top';  
-      }
-    });
-  };*/
-   $ctrl.toggleAnimation = function () {
-    $ctrl.animationsEnabled = !$ctrl.animationsEnabled;
   };
 });
 
 // Please note that $uibModalInstance represents a modal window (instance) dependency.
 // It is not the same as the $uibModal service used above.
 
-angular.module('FamilySleep').controller('ModalInstanceCtrl', function ($uibModalInstance, items, $log) {
+angular.module('FamilySleep').controller('ModalInstanceCtrl', function ($uibModalInstance, items, famMems, $log) {
   var $ctrl = this;
   $ctrl.items = items;
+  //creating an object
   $ctrl.selected = {
     item: $ctrl.items[0]
   };
 
+  $ctrl.famMems = famMems;
+  //creating an object
+  $ctrl.selectedFam = {
+    item: $ctrl.famMems[0]
+  };
+
   $ctrl.ok = function () {
-    $uibModalInstance.close($ctrl.selected.item);
+    $uibModalInstance.close($ctrl.selected.item, $ctrl.selectedFam.item);
     $log.info("inside ModalInstanceCtrl");
   };
 
@@ -119,44 +94,3 @@ angular.module('FamilySleep').controller('ModalInstanceCtrl', function ($uibModa
     $uibModalInstance.dismiss('cancel');
   };
 });
-
-// Please note that the close and dismiss bindings are from $uibModalInstance.
-
-angular.module('FamilySleep').component('modalComponent', {
-  templateUrl: 'myModalContent.html',
-  bindings: {
-    resolve: '<',
-    close: '&',
-    dismiss: '&'
-  },
-  controller: function () {
-    var $ctrl = this;
-
-    $ctrl.$onInit = function () {
-      $ctrl.items = $ctrl.resolve.items;
-      $ctrl.selected = {
-        item: $ctrl.items[0]
-      };
-    };
-
-    $ctrl.ok = function () {
-      $ctrl.close({$value: $ctrl.selected.item});
-      $log.info("inside modalComponent does not seem to get here?");
-    };
-
-    $ctrl.cancel = function () {
-      $ctrl.dismiss({$value: 'cancel'});
-    };
-  }
-});
-
-//<img ng-src={{ path }}/>
-/*
-to create a ist of images  but I need to use ng-repeat to create a list of buttons that are images
- <ul class="img-thumbnails clearfix">
-          <li class="small-image pull-left thumbnail" ng-repeat="image in product.images">
-            <img ng-src="{{image}}" />
-          </li>
-        </ul>
-*/
-//inheritance between controllers for the images
