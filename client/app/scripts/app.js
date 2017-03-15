@@ -21,7 +21,10 @@ angular
     'ngTouch',
     'ui.bootstrap'
   ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $locationProvider) {
+    //can't get the removing hash to work
+    //$locationProvider.html5Mode(true); //escaping hashtags all over the place
+
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -42,6 +45,11 @@ angular
         templateUrl: 'views/familydailyview.html',
         controller: 'FamilydailyviewCtrl',
         controllerAs: 'familydailyview'
+      })
+      .when('/sdview', {
+        templateUrl: 'views/sdview.html',
+        controller: 'SdviewCtrl',
+        controllerAs: 'sdview'
       })
       .otherwise({
         redirectTo: '/'
