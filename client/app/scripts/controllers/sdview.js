@@ -16,25 +16,37 @@
     ];
   });
 **/
+//need to figure how to not make the colors transparate
+//need to figure how to hover on specific piece and give the numberfors	
  angular.module('FamilySleep')
  	.controller('SdviewCtrl', function($scope){
- 	$scope.labels = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+ 	$scope.labels = ['Monday'];
     $scope.type = 'StackedBar';
     $scope.series = ['2015', '2016'];
     $scope.options = {
       scales: {
         xAxes: [{
           stacked: true,
+           gridLines: {
+           	display:false
+         }
         }],
         yAxes: [{
-          stacked: true
+          stacked: true,
+          gridLines: {
+           	display:false
+         }
         }]
+      },
+      legend: {
+      	display: false
       }
     };
 
     $scope.data = [
-      [65, 59, 90, 81, 56, 55, 40],
-      [28, 48, 40, 19, 96, 27, 100]
+      [65],
+      [28]
     ];
+    $scope.colors = ['#72C02C', '#3498DB']; //the orders will be assigned in this order
   });
 
