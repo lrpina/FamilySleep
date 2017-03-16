@@ -19,7 +19,8 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'chart.js'
   ])
   .config(function ($routeProvider, $locationProvider) {
     //can't get the removing hash to work
