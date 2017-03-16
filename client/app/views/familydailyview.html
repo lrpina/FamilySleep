@@ -8,8 +8,10 @@
     <!--hard coding profile but can import it from the controller as well-->
     <img src="images/avatars/momcircle.PNG" alt="momcircle" style="position: relative; top: 0px; left: 10px; width:60px; height:60px">
     <!--<div vega spec="spec" style="position: relative; z-index: 2">-->
+    <div ng-controller="DoughnutCtrl">
     <canvas id="doughnut" class="chart-doughnut" chart-data="data" chart-labels="labels" chart-options="options">
     </canvas>
+    </div>
     <div ng-controller="ModalCrtl as $ctrl" class="mom">
         <!--inserts code for the modal popup window-->
         <button type="button" class="btn btn-default" ng-click="$ctrl.open()" ng-hide="$ctrl.selected" style="position: absolute; top: 150px; left: 45px; z-index: 1">How did you sleep?</button>

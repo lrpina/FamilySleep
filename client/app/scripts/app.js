@@ -28,7 +28,7 @@ angular
 
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
+        templateUrl: 'views/familydailyview.html',
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
