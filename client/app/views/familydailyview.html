@@ -7,17 +7,23 @@
 <div class="row">
     <!--hard coding profile but can import it from the controller as well-->
     <img src="images/avatars/momcircle.PNG" alt="momcircle" style="position: relative; top: 0px; left: 10px; width:60px; height:60px">
-	<div vega spec="spec" style="position: relative; z-index: 2">
-	<div ng-controller="ModalCrtl as $ctrl" class="mom">
-    <!--code for the modal popup window-->
-    <button type="button" class="btn btn-default" ng-click="$ctrl.open()" ng-hide="$ctrl.selected" style="position: absolute; top: 100px; left: 30px; z-index: 1">How did you sleep?</button>
-    <!--if I have the below it messes with position of the button, will need to figure out how to make all this relative-->
-     <img ng-src={{$ctrl.selected.image}} ng-show="$ctrl.selected" ng-click="$ctrl.open()" style="position: absolute; top: 70px; left: 30px; z-index: 1"> 
-     <!--this is where the profile pic is coming from the controller of the modal-->
-     <!--<img ng-src={{$ctrl.profile}} style="position: absolute; top: 30px; left: 0px; height: 60px; width: 60px">-->
-	</div>
-	</div>
+    <!--<div vega spec="spec" style="position: relative; z-index: 2">-->
+    <div ng-controller="DoughnutCtrl">
+    <canvas id="doughnut" class="chart-doughnut" chart-data="data" chart-labels="labels" chart-options="options">
+    </canvas>
+    </div>
+    <div ng-controller="ModalCrtl as $ctrl" class="mom">
+        <!--inserts code for the modal popup window-->
+        <button type="button" class="btn btn-default" ng-click="$ctrl.open()" ng-hide="$ctrl.selected" style="position: absolute; top: 150px; left: 45px; z-index: 1">How did you sleep?</button>
+        <!--if I have the below it messes with position of the button, will need to figure out how to make all this relative-->
+        <img ng-src={{$ctrl.selected.image}} ng-show="$ctrl.selected" ng-click="$ctrl.open()" style="position: absolute; top: 100px; left: 45px; z-index: 1"> 
+        <!--this is where the profile pic is coming from the controller of the modal-->
+        <!--<img ng-src={{$ctrl.profile}} style="position: absolute; top: 30px; left: 0px; height: 60px; width: 60px">-->
+       </div>
+    </div>
     <!-- ideally this is where I have the same directive for the avatar-->
+    <!--<button type="button" class="btn btn-default"-->
+    <a href="/signup"> Single Daily View</a>
 </div>
 
 <!--

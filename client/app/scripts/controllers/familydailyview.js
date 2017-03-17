@@ -7,6 +7,15 @@
  * # FamilydailyviewCtrl
  * Controller of the FamilySleep
  */
+ angular.module('FamilySleep')
+  .controller('FamilydailyviewCtrl', function($scope){
+    $scope.labels = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
+        $scope.data = [300, 500, 100];
+         $scope.options = {
+          cutoutPercentage: 70
+         };
+  });
+/*
 angular.module('FamilySleep')
   .controller('FamilydailyviewCtrl', ['$scope', function($scope){
     $scope.visible = false;
@@ -78,4 +87,4 @@ angular.module('FamilySleep')
     }
   ]
 }
-}]);
+}]);*/

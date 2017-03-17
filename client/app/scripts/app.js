@@ -19,12 +19,16 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'chart.js'
   ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $locationProvider) {
+    //can't get the removing hash to work
+    //$locationProvider.html5Mode(true); //escaping hashtags all over the place
+
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
+        templateUrl: 'views/familydailyview.html',
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
@@ -43,11 +47,11 @@ angular
         controller: 'FamilydailyviewCtrl',
         controllerAs: 'familydailyview'
       })
-      // .when('/about', {
-      //   templateUrl: 'views/about.html',
-      //   controller: 'AboutCtrl',
-      //   controllerAs: 'about'
-      // })
+      .when('/sdview', {
+        templateUrl: 'views/sdview.html',
+        controller: 'SdviewCtrl',
+        controllerAs: 'sdview'
+      })
       .otherwise({
         redirectTo: '/'
       });
