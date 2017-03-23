@@ -7,6 +7,7 @@
  * # StackedbarCtrl
  * Controller of the FamilySleep
  */
+ //need to figure how to hover on specific piece and give the numberfors
 angular.module('FamilySleep')
   .controller('StackedbarCtrl', function ($scope) {
     $scope.labels = ['Monday'];
