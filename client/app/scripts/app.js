@@ -19,7 +19,7 @@ angular
     'ngSanitize',
     'ngTouch',
     'ui.bootstrap',
-    'chart.js'
+    'chart.js' //I don't know if I need to add other things here might happen when I start talking to trackdb--couch
   ])
   .config(function ($routeProvider, $locationProvider) {
     //can't get the removing hash to work
