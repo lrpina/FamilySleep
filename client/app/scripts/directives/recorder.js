@@ -15,9 +15,14 @@ angular.module('FamilySleep')
       //     title: '@'         },
 
       templateUrl: '../../views/recorder.html',
+      //Embed a custom controller in the directive
       controller: function($scope, $window, $http) {
-        $scope.instruction = "Click to record a Message!"
-
+        $scope.instruction = "Tap to record";
+        $scope.url = "";
+        $scope.recordStoppedClear = true;
+        $scope.recordRecording = false;
+        $scope.recordPausing = false;
+        $scope.recordStopped = false;
         navigator.getUserMedia(
           {audio:true, video:false},
           function(stream) {
@@ -30,31 +35,55 @@ angular.module('FamilySleep')
           }
         )
 
+        // start the recording
         $scope.onRecord = function() {
+          $scope.recordStoppedClear = false;
+          $scope.recordRecording = true;
           $window.recordRTC.startRecording();
         }
 
-        $scope.onStopRecord =  function(audioUrl) {
+        // pause the recording
+        $scope.onPause = function(audioUrl) {
+          $window.recordRTC.pauseRecording();
+          $scope.recordPausing = true;
+          $scope.recordRecording = false;
+        }
 
+        //resume the paused recording
+        $scope.onResume = function() {
+          $window.recordRTC.resumeRecording();
+          $scope.recordPausing = false;
+          $scope.recordRecording = true;
+        }
+
+        $scope.onReplay = function() {
+          console.log("replaying");
+          console.log($window.recordRTC.toURL());
+          $scope.url = $window.recordRTC.toURL();
+        }
+
+
+        $scope.onDelete = function() {
+          $scope.recordStoppedClear = true;
+          $scope.recordRecording = false;
+          $scope.recordPausing = false;
+          $scope.recordStopped = false;
+          recorder.reset();
+        }
+
+        //stop the recording
+        $scope.onStopRecord =  function(audioUrl) {
+          $scope.recordStopped = true;
+          $scope.recordRecording = false;
+          $scope.recordPausing = false;
           $window.recordRTC.stopRecording (function(audioUrl) {
             var recordedBlob = $window.recordRTC.getBlob();
             $scope.recordedBlob = recordedBlob;
-            // console.log(recordedBlob);
-            // //recordRTC.getDataURL()
-            // var formData = new FormData();
-            // console.log(formData);
-            // formData.append('test', recordedBlob);
-            // $http.post('http://localhost:3000', formData, {
-            //   transformRequest: angular.identity,
-            //   headers: {'Content-Type': undefined}
-            // })
-            // .then(function(result) {
-            //   console.log("done")
-            // })
-
+            $scope.url = $window.recordRTC.toURL();
           });
         }
 
+        // sending the recording, not sure if it will get recorder back to clean slate
         $scope.onSendRecord = function() {
           var recordedBlob = $scope.recordedBlob;
           console.log(recordedBlob);
@@ -68,9 +97,15 @@ angular.module('FamilySleep')
           })
           .then(function(result) {
             console.log("done")
+            $scope.recordStoppedClear = true;
           })
+          //temp
+          $scope.recordStoppedClear = true;
+          $scope.recordRecording = false;
+          $scope.recordPausing = false;
+          $scope.recordStopped = false;
         }
-      }, //Embed a custom controller in the directive
+      },
       link: function ($scope, element, attrs) { } //DOM manipulation
     }
   });
