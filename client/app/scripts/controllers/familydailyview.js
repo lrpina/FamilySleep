@@ -8,10 +8,10 @@
  * Controller of the FamilySleep
  */
  angular.module('FamilySleep')
-  .controller('FamilydailyviewCtrl', function($scope, sleepDataFactory, tractdbdata){
-    tractdbdata.get_sleep();
+  .controller('FamilydailyviewCtrl', ['tractdbdata', function(dbdata){
+    dbdata.get_sleep();
    
-  });
+  }]);
 /*
 angular.module('FamilySleep')
   .controller('FamilydailyviewCtrl', ['$scope', function($scope){
