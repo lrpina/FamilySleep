@@ -10,7 +10,6 @@
  */
 angular
   .module('FamilySleep', [
-    'ngVega',
     'ngAnimate',
     'ngAria',
     'ngCookies',
@@ -48,12 +47,27 @@ angular
         controller: 'FamilydailyviewCtrl',
         controllerAs: 'familydailyview'
       })
-      .when('/sdview', {
+      .when('/sdview/1', {
         templateUrl: 'views/sdview.html',
         controller: 'SdviewCtrl',
         controllerAs: 'sdview'
       })
-      .otherwise({
+      .when('/famweeklyview', {
+        templateUrl: 'views/famweeklyview.html',
+        controller: 'FamweeklyviewCtrl',
+        controllerAs: 'famweeklyview'
+      })
+      .when('/singleweeklyview', {
+        templateUrl: 'views/singleweeklyview.html',
+        controller: 'SingleweeklyviewCtrl',
+        controllerAs: 'singleweeklyview'
+      })
+      .when('/fambarview', {
+        templateUrl: 'views/fambarview.html',
+        controller: 'FambarviewCtrl',
+        controllerAs: 'fambarview'
+      })
+      .otherwise({ //I want to add an error page when we don't get to the right page
         redirectTo: '/'
       });
   });

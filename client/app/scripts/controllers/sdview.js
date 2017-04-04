@@ -16,10 +16,9 @@
     ];
   });
 **/
-//need to figure how to not make the colors transparate
-//need to figure how to hover on specific piece and give the numberfors	
+
  angular.module('FamilySleep')
- 	.controller('SdviewCtrl', function($scope){
- 	
+ 	.controller('SdviewCtrl', function($scope, sleepDataFactory){
+ 		
   });
 
