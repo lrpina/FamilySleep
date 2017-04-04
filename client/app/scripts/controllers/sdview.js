@@ -18,7 +18,7 @@
 **/
 
  angular.module('FamilySleep')
- 	.controller('SdviewCtrl', function($scope){
-
+ 	.controller('SdviewCtrl', function($scope, sleepDataFactory){
+ 		
   });
 

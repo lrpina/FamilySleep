@@ -51,6 +51,21 @@ angular
         controller: 'SdviewCtrl',
         controllerAs: 'sdview'
       })
+      .when('/famweeklyview', {
+        templateUrl: 'views/famweeklyview.html',
+        controller: 'FamweeklyviewCtrl',
+        controllerAs: 'famweeklyview'
+      })
+      .when('/singleweeklyview', {
+        templateUrl: 'views/singleweeklyview.html',
+        controller: 'SingleweeklyviewCtrl',
+        controllerAs: 'singleweeklyview'
+      })
+      .when('/fambarview', {
+        templateUrl: 'views/fambarview.html',
+        controller: 'FambarviewCtrl',
+        controllerAs: 'fambarview'
+      })
       .otherwise({ //I want to add an error page when we don't get to the right page
         redirectTo: '/'
       });

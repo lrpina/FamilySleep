@@ -93,11 +93,12 @@ angular.module('FamilySleep')
       /********** can't access here *****/ 
       var a = [300, 500, 100];
       sleep.data = a;
-      console.log("inside formatdata ");
+      console.log("inside formatdata -- sleep data -- ");
       console.log(sleep.data);
       //sleepdatafactor.labels -- Array: each element is a lebel that corresponds to the type of sleep and links to the element in .data awway
-      sleep.labels =["Download Sales", "In-Store Sales", "Mail-Order Sales"];
-      
+      sleep.labels =["Hours Slept", "Hours not Slept"];
+      console.log("inside formatdata -- labels -- ");
+      console.log(sleep.labels);
     }
 
     // Public API here

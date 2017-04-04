@@ -19,6 +19,6 @@
  */
 angular.module('FamilySleep')
   .factory('sleepDataFactory', function () {
-   
+   //I think we might want get/sets here
     return{};
   });
