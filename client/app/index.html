@@ -66,6 +66,7 @@
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+    <!--
      <script>
        !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
        (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
@@ -75,7 +76,7 @@
        ga('create', 'UA-XXXXX-X');
        ga('send', 'pageview');
     </script>
-
+-->
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -89,8 +90,6 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
-    <script src="bower_components/d3/d3.js"></script>
-    <script src="bower_components/ng-vega/dist/ng-vega.min.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/chart.js/dist/Chart.js"></script>
     <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
@@ -98,10 +97,6 @@
     <script src="bower_components/recordrtc/RecordRTC.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
-    <!--vega scripts-->
-    <script src="bower_components/d3/d3.min.js"></script>
-    <script src="bower_components/vega/vega.js"></script>
-    <script src="bower_components/ng-vega/dist/ng-vega.js"></script>
 
     <!--angular chart.js-->
     <script src="bower_components/chart.js/dist/Chart.min.js"></script>
@@ -119,6 +114,9 @@
         <script src="scripts/controllers/sdview.js"></script>
         <script src="scripts/controllers/doughnut.js"></script>
         <script src="scripts/controllers/stackedbar.js"></script>
+        <script src="scripts/services/sleepdataservice.js"></script>
+        <script src="scripts/services/sleepdatafactory.js"></script>
+        <script src="scripts/services/tractdbdata.js"></script>
         <!-- endbuild -->
 </body>
 </html>
