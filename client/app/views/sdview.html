@@ -1,35 +1,39 @@
 <!-- I don't know if I need this top definition because it is part of the router configuration-->
 <div class="singleview-container" ng-controller="SdviewCtrl">
-
+<p>This is the sdview view.</p>
 <!--
 this is where I show the personal view
-<p>This is the sdview view.</p>
 -->
 <div class="row">
 	<div class="col-xs-4">
-
 	<!--hard coding this for now-->
 	<img src="images/avatars/momcircle.PNG" alt="momcircle" style="position: relative; top: 0px; left:10px; width:60px; height:60px">
 	</div>
-	<div class="col-xs-4" ng-controller="DoughnutCtrl">
-		<!--need to pass data to here-->
-		<p>wake up time</p>
-		<canvas id="doughnut" class="chart-doughnut" chart-data="data" chart-labels="labels" chart-colors = "colors" chart-options="options">
+	<!--<div class="col-xs-4" ng-controller="DoughnutCtrl">
+		<!--need to pass data to here
+		<canvas id="doughnut" class="chart-doughnut" chart-data="data" chart-labels="labels" chart-options="options">
     	</canvas>
-    	<p> hours slept {needs to be moved to the left}</p>
 	</div>
 	<div class="col-xs-4">
 	<p> stats about sleep </p>
-		<!--**this stuff should come as vars and not all this access to vars here probably**-->
+		<!--**this stuff should come as vars and not all this access to vars here probably**-
 		<p> hours slept (need to convert to hours): {{sleep_data.sleep[0].minutesAsleep}}</p>
 		<p> wakeup time: {{sleep_data.sleep[0].minuteData[sleep_data.sleep[0].minuteData.length-1].dateTime}}
 		<p> Awake count: {{sleep_data.sleep[0].awakeCount}}</p>
-	</div>
+	</div>-->
 	<div class="row" ng-controller="StackedbarCtrl">
-	<canvas class="chart-horizontal-bar" chart-data="data" chart-labels="labels"
-	        chart-options="options" chart-series="series" chart-colors="colors"></canvas>
+	<canvas class="chart chart-bar" chart-data="data" chart-labels="labels"
+	        chart-options="options" chart-series="series" chart-colors="colors" width="30" height="5"></canvas>
+
+					<!-- <canvas class="chart chart-bar" chart-data="data" chart-labels="labels"
+					chart-option="option"
+					 chart-click="onClick"></canvas> -->
+
+			<!--<canvas id="myChart"></canvas>
+		</br>
+		</br>
+			<canvas id="myChart2"></canvas>
+		<canvas id="myChart3"></canvas>-->
+		
 	</div>
-	<div class="row">
-	<p> need to include legend for colors </p>
-	</div>
-<!--</div>-->
+</div>
