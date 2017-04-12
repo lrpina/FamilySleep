@@ -58,10 +58,12 @@ angular.module('FamilySleep').controller('ModalCrtl', function($uibModal, $log, 
         }
       }
     });
-    modalInstance.result.then(function (selectedItem1, selectedFam) {
-    	$log.info("in modalInstant result");
-      $ctrl.selected = selectedItem1;
-      $ctrl.selectedFam = selectedFam;
+    modalInstance.result.then(function (selectedItems) {
+      $ctrl.selected = selectedItems.selected;
+      $ctrl.selectedFam = selectedItems.selectedFam;
+      $log.info("******in modalsIntance result");
+      $log.info(selectedItems.selected);
+      $log.info(selectedItems.selectedFam);
     }, function () {
       $log.info('Modal dismissed at: ' + new Date());
     });
@@ -86,8 +88,10 @@ angular.module('FamilySleep').controller('ModalInstanceCtrl', function ($uibModa
   };
 
   $ctrl.ok = function () {
-    $uibModalInstance.close($ctrl.selected.item, $ctrl.selectedFam.item);
-    $log.info("inside ModalInstanceCtrl");
+    $uibModalInstance.close({selected: $ctrl.selected.item, selectedFam: $ctrl.selectedFam.item});
+    $log.info("inside ModalInstanceCtrl OK");
+    $log.info($ctrl.selected.item);
+    $log.info($ctrl.selectedFam.item);
   };
 
   $ctrl.cancel = function () {

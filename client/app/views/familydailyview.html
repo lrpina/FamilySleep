@@ -19,7 +19,9 @@
         <img ng-src={{$ctrl.selected.image}} ng-show="$ctrl.selected" ng-click="$ctrl.open()" style="position: absolute; top: 100px; left: 45px; z-index: 1"> 
         <!--this is where the profile pic is coming from the controller of the modal-->
         <!--<img ng-src={{$ctrl.profile}} style="position: absolute; top: 30px; left: 0px; height: 60px; width: 60px">-->
-       </div>
+        <p> Mood:  {{$ctrl.selected.name}}</p>
+        <p> User: {{$ctrl.selectedFam}}</p>
+    </div>
     </div>
     <!-- ideally this is where I have the same directive for the avatar-->
     <!--<button type="button" class="btn btn-default"-->

@@ -16,11 +16,14 @@ angular.module('FamilySleep')
   .directive('modalDirective', function ($modal, $log) {
     return {
     	transclude: true, //only uses this when ythe directive weraps arbitrary content
-     	restrict: 'EA',
+     	restrict: 'A',
       template: '<a ng-click="open()" ng-transclude>{{name}}</a>',
       scope: {
           useCtrl: "@",
           email: "@"
+      },
+      scope: {
+
       },
       link: function (scope, element, attrs) { //used to becalled function postLink() not sure how this works
         //element.text('this is the modalDirective directive');
