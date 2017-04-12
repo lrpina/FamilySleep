@@ -8,9 +8,28 @@
  * Controller of the FamilySleep
  */
  angular.module('FamilySleep')
-  .controller('FamilydailyviewCtrl', ['tractdbdata', function(dbdata){
+  .controller('FamilydailyviewCtrl', ['$scope', '$rootScope', 'tractdbdata', function($scope, $rootScope, dbdata){
+      $rootScope.menu = [
+            {
+                title: 'Family Daily View',
+                url: '#!/familydailyview',
+                tag: 'family-daily-view',
+            },
+            {
+                title: 'Family Weekly View',
+                url: '#!/famweeklyview',
+                tag: 'family-weekly-view',
+
+            }
+        ];
     dbdata.get_sleep();
-   
+    $rootScope.active = 'family-daily-view';
+    //$rootScope.active = 'Back';
+    $rootScope.updateActive = function (item) {
+      $rootScope.active = item;
+      //alert(item);
+    };
+
   }]);
 /*
 angular.module('FamilySleep')

@@ -6,6 +6,60 @@
 @import "partials/signup";
 /*@import "partials/familydailyview";*/
 @import "./partials/recorder";
+
+// .navbar-brand {
+//   padding: 3px;
+//   border-radius: 20px;
+//   border-color: BLACK;
+//   border-width: 5px;
+// }
+
+
+/*-------------------------
+	The menu
+--------------------------*/
+
+nav{
+	display:inline-block;
+	margin:10px 20px auto 45px;
+	background-color: transparent;
+	box-shadow:0 1px 1px #ccc;
+	border-radius:2px;
+  border-color: #0000ff;
+  border-style: solid;
+}
+
+nav a{
+	display:inline-block;
+	padding: 18px 30px;
+	color:#fff !important;
+	font-weight:bold;
+	font-size:16px;
+	text-decoration:none !important;
+	line-height:1;
+	// text-transform: uppercase;
+	background-color:transparent;
+
+}
+
+nav a:first-child{
+	border-radius:2px 0 0 2px;
+}
+
+nav a:last-child{
+	border-radius:0 2px 2px 0;
+}
+
+nav.family-daily-view .family-daily-view,
+nav.family-weekly-view .family-weekly-view,
+nav.Back .Back,
+nav.individual-daily-view .individual-daily-view,
+nav.individual-weekly-view .individual-weekly-view {
+	background-color:#5867E3;
+}
+
+// ----------------------------------------
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -15,6 +69,9 @@
 
 body {
   padding: 0;
+  margin: 0;
+  background-color: rgb(191, 242, 255);
+  height: 100%
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -27,14 +84,17 @@ body {
 }
 
 .recorder {
-  width: 99%;
+  //width: 99%;
+  float: right;
   height: 9%;
-  display: block;
+  display: inline-block;
+  margin-top: 10px;
+
 }
 
 /* Custom page header */
 .header {
-  border-bottom: 1px solid #e5e5e5;
+  //border-bottom: 1px solid #e5e5e5;
   margin-bottom: 10px;
 
   /* Make the masthead heading the same height as the navigation */
