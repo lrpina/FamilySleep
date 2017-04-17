@@ -29,45 +29,37 @@ angular
     $routeProvider
       .when('/', {
         templateUrl: 'views/familydailyview.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
+        controller: 'MainCtrl'
       })
       .when('/about', {
         templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
+        controller: 'AboutCtrl'
       })
       .when('/signup', {
         templateUrl: 'views/signup.html',
-        controller: 'SignupCtrl',
-        controllerAs: 'signup'
+        controller: 'SignupCtrl'
       })
       .when('/familydailyview', {
         templateUrl: 'views/familydailyview.html',
-        controller: 'FamilydailyviewCtrl',
-        controllerAs: 'familydailyview'
+        controller: 'FamilydailyviewCtrl'
       })
-      .when('/sdview/1', { //sdview:/:id
+      .when('/sdview/:id', {
         templateUrl: 'views/sdview.html',
-        controller: 'SdviewCtrl',
-        controllerAs: 'sdview'
+        controller: 'SdviewCtrl'
       })
       .when('/famweeklyview', {
         templateUrl: 'views/famweeklyview.html',
-        controller: 'FamweeklyviewCtrl',
-        controllerAs: 'famweeklyview'
+        controller: 'FamweeklyviewCtrl'
       })
       .when('/singleweeklyview', {
         templateUrl: 'views/singleweeklyview.html',
-        controller: 'SingleweeklyviewCtrl',
-        controllerAs: 'singleweeklyview'
+        controller: 'SingleweeklyviewCtrl'
       })
       .when('/fambarview', {
         templateUrl: 'views/fambarview.html',
-        controller: 'FambarviewCtrl',
-        controllerAs: 'fambarview'
+        controller: 'FambarviewCtrl'
       })
       .otherwise({ //I want to add an error page when we don't get to the right page
-        redirectTo: '/'
+        redirectTo: '/404.html'
       });
   });
