@@ -20,7 +20,7 @@ angular
     'ngTouch',
     'ui.bootstrap',
     'chart.js',
-    'ngMaterial'
+    'ngMaterial' //check if I still need this
   ])
   .config(function ($routeProvider, $locationProvider) {
     //can't get the removing hash to work
@@ -47,7 +47,7 @@ angular
         controller: 'FamilydailyviewCtrl',
         controllerAs: 'familydailyview'
       })
-      .when('/sdview/1', {
+      .when('/sdview/1', { //sdview:/:id
         templateUrl: 'views/sdview.html',
         controller: 'SdviewCtrl',
         controllerAs: 'sdview'

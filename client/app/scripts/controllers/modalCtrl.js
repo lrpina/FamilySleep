@@ -33,6 +33,9 @@ angular.module('FamilySleep').controller('ModalCrtl', function($uibModal, $log, 
   $ctrl.famMems = ['mom', 'dad', 'child1', 'child2'];
 	$ctrl.animationsEnabled = true;
 
+  //selected defaults
+  $ctrl.selected = null;
+  $ctrl.selectedFam = null;
   //could make an arg for fcn where we take the template that we want to use.
   //this could be that now we can use 
 	$ctrl.open = function (size, parentSelector) {

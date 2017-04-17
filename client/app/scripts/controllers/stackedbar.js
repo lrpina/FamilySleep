@@ -14,7 +14,7 @@
 **/
 angular.module('FamilySleep')
 .controller('StackedbarCtrl', ['$scope', 'sleepDataFactory', function ($scope, sleep) { 
-
+//no data here
   function getLabels() {
     var result = [];
     for (var i = 0; i < 40; i++) {

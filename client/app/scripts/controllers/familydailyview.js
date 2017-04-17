@@ -22,14 +22,16 @@
 
             }
         ];
-    dbdata.get_sleep();
+    
     $rootScope.active = 'family-daily-view';
     //$rootScope.active = 'Back';
     $rootScope.updateActive = function (item) {
       $rootScope.active = item;
       //alert(item);
     };
-
+  //getting data to visualize but this should only happen when mood has been self-report OR after a certain time of the day
+  
+  dbdata.get_sleep();
   }]);
 /*
 angular.module('FamilySleep')

@@ -18,7 +18,8 @@
 **/
 
  angular.module('FamilySleep')
- 	.controller('SdviewCtrl', function($rootScope, $scope, sleepDataFactory){
+ 	.controller('SdviewCtrl', function($rootScope, $scope, sleepDataFactory, $routeParams){
+    //doing header stuff
     $rootScope.menu = [
       {
           title: 'Back',
@@ -42,4 +43,10 @@
       $rootScope.active = item;
       //alert(item);
     };
+    /*
+    var controller = this;
+    //getting data for particular family member
+    $http({method: 'GET', url: '/data/user_data_' + $routeParams.id + '.json'})
+    .sucess(function(data))
+    */
   });
