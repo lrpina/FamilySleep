@@ -12,7 +12,7 @@
  */
 angular.module('FamilySleep')
   .controller('DoughnutCtrl', function ($scope, sleepDataFactory) {
-  	 console.log("sleep in donut");
+  	 //sconsole.log("sleep in donut");
   	 console.log(sleepDataFactory);
   	 //$scope.data = sleepDataFactory.data;
   	 //$scope.data = [300, 500, 100];
