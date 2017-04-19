@@ -18,7 +18,7 @@
 **/
 
  angular.module('FamilySleep')
- 	.controller('SdviewCtrl', function($rootScope, $scope, sleepDataFactory){
+ 	.controller('SdviewCtrl', function($rootScope, $scope, sleepDataFactory) {
     $rootScope.menu = [
       {
           title: 'Back',
@@ -42,4 +42,7 @@
       $rootScope.active = item;
       //alert(item);
     };
+    
+    // console.log("at adview");
+    // console.log(sleepDataFactory.sleep_data)
   });
