@@ -2,6 +2,14 @@
 <!--need 1x2 | 1  for moon| 1x2-->
 
 <!-- lots of repetition here, need to figure out how to call a function that just does this 4 times different parameters-->
+
+<div ng-controller="DatepickercontrollerCtrl as ctrl" ng-cloak="">
+
+    <div flex-gt-xs="">
+      <h4>Opening the calendar when the input is focused</h4>
+      <md-datepicker ng-model="ctrl.myDate" md-open-on-focus=""></md-datepicker>
+    </div>
+</div>
 <div class="col-xs-4">
 <div class="row">
     <!--hard coding profile but can import it from the controller as well-->

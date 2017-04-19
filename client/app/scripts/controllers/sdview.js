@@ -16,9 +16,8 @@
     ];
   });
 **/
-
  angular.module('FamilySleep')
- 	.controller('SdviewCtrl', function($rootScope, $scope, sleepDataFactory, $routeParams){
+ 	.controller('SdviewCtrl', ['tractdbdata', 'sleepDataFactory', 'dateFactory', function($rootScope, $scope, dbdata, sleep, sleepdate, $routeParams){
     //doing header stuff
     //console.log("sleepDataFactory");
     //console.log(sleepDataFactory);
@@ -54,4 +53,4 @@
     $http({method: 'GET', url: '/data/user_data_' + $routeParams.id + '.json'})
     .sucess(function(data))
     */
-  });
+  }]);

@@ -2,6 +2,14 @@
 <p>This is the singleweeklyview view.</p>
 <p> This is {{id}} view <p>
 
+<div ng-controller="DatepickercontrollerCtrl as ctrl" ng-cloak="">
+
+    <div flex-gt-xs="">
+      <h4>Opening the calendar when the input is focused</h4>
+      <md-datepicker ng-model="ctrl.myDate" md-open-on-focus=""></md-datepicker>
+    </div>
+</div>
+
 <div class="row">
 <div ng-controller="EmptybarchartCtrl">
 	<canvas class="chart-horizontal-bar"

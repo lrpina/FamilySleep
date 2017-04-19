@@ -8,10 +8,10 @@
  * Controller of the FamilySleep
  */
 angular.module('FamilySleep')
-  .controller('FamweeklyviewCtrl', function () {
+  .controller('FamweeklyviewCtrl', ['tractdbdata', 'sleepDataFactory', 'dateFactory', function ($scope, dbdata, sleep, sleepdate) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-  });
+  }]);
