@@ -23,10 +23,10 @@ nav{
 	display:inline-block;
 	margin:10px 20px auto 45px;
 	background-color: transparent;
-	box-shadow:0 1px 1px #ccc;
+	/*box-shadow:0 1px 1px #ccc;*/
 	border-radius:2px;
-  border-color: #0000ff;
-  border-style: solid;
+  /*border-color: #0000ff;
+  border-style: solid;*/
 }
 
 nav a{
@@ -39,7 +39,9 @@ nav a{
 	line-height:1;
 	// text-transform: uppercase;
 	background-color:transparent;
-
+  border-style: solid;
+  border-color: #7A7F86;
+  margin-right: 20px;
 }
 
 nav a:first-child{
@@ -55,7 +57,7 @@ nav.family-weekly-view .family-weekly-view,
 nav.Back .Back,
 nav.individual-daily-view .individual-daily-view,
 nav.individual-weekly-view .individual-weekly-view {
-	background-color:#5867E3;
+	background-color:#7A7F86;
 }
 
 // ----------------------------------------
@@ -67,11 +69,18 @@ nav.individual-weekly-view .individual-weekly-view {
   padding: 0.2em 0;
 }
 
+html {
+  background-color: black;
+}
+
 body {
   padding: 0;
   margin: 0;
-  background-color: rgb(191, 242, 255);
-  height: 100%
+  background: url("../images/night-trees-stars.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  /*height: 100%;
+  width: 100%;*/
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
