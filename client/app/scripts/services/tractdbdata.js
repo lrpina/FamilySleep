@@ -34,7 +34,7 @@ angular.module('FamilySleep')
     //right now this is just queuering from the file we have locally. But this is where we'll need to query the DB for particular dates
     function get_sleep() {
       
-      $http({method:'GET', url: 'data/sleep_data.json' })
+      $http({method:'GET', url: 'data/user_data_mom.json' })
       .then(function (response) {
     // this callback will be called asynchronously
       // when the response is available
@@ -142,7 +142,7 @@ angular.module('FamilySleep')
           sleep.labels =["Hours Slept", "Hours not Slept"];
           console.log("inside formatdata -- labels -- ");
           console.log(sleep.labels);
-
+          sleep.id = "mom";
           var sleepData = {
             "awakeCount": temp_data.sleep[0].awakeCount,
             "awakeDuration": temp_data.sleep[0].awakeDuration,

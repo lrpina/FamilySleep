@@ -4,35 +4,38 @@ angular.module('FamilySleep').controller('ModalCrtl', function($uibModal, $log, 
 	var $ctrl = this;	 
 	var moodImages = [
 		{ 	name:'good',
-			image:'images/faces/good.PNG'
+			image:'images/faces/good.png'
 		}, 
 		{	name:'happy',
-			image:'images/faces/happy.PNG'
+			image:'images/faces/happy.png'
 		},
 		{	name:'nightmare',
-			image: 'images/faces/nightmare.PNG'
+			image: 'images/faces/nightmare.png'
 		},
 		{	name:'sneaky',
-			image: 'images/faces/sneaky.PNG'
+			image: 'images/faces/sneaky.png'
 		},
 		{	name:'tired',
-		 	image:'images/faces/tired.PNG'
+		 	image:'images/faces/tired.png'
 		},
 		{	name:'tired_more',
-		 	image:'images/faces/tired_more.PNG'
+		 	image:'images/faces/tired_more.png'
 		},
 		{	name:'tired',
-		 	image:'images/faces/tired.PNG'
+		 	image:'images/faces/tired.png'
 		}];
   $ctrl.items = moodImages;
 	//var avatars = [];
-  var avatar = 'images/avatars/momcircle.PNG';
+  var avatar = 'images/avatars/momcircle.png';
 	$ctrl.profile = avatar;
   //family members
   /****IMPORTANT I don't know how to add members dynamically**/
   $ctrl.famMems = ['mom', 'dad', 'child1', 'child2'];
 	$ctrl.animationsEnabled = true;
 
+  //selected defaults
+  $ctrl.selected = null;
+  $ctrl.selectedFam = null;
   //could make an arg for fcn where we take the template that we want to use.
   //this could be that now we can use 
 	$ctrl.open = function (size, parentSelector) {

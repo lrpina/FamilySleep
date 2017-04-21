@@ -8,10 +8,8 @@
  * Controller of the FamilySleep
  */
 angular.module('FamilySleep')
-  .controller('SingleweeklyviewCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('SingleweeklyviewCtrl', function ($scope, sleepDataFactory) {
+  	 $scope.id = sleepDataFactory.id;
+    console.log("in SingleweeklyviewCtrl");
+    console.log($scope.id);
   });

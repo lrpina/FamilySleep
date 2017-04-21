@@ -20,7 +20,7 @@ angular
     'ngTouch',
     'ui.bootstrap',
     'chart.js',
-    'ngMaterial'
+    'ngMaterial' //check if I still need this
   ])
   .config(function ($routeProvider, $locationProvider) {
     //can't get the removing hash to work
@@ -29,45 +29,37 @@ angular
     $routeProvider
       .when('/', {
         templateUrl: 'views/familydailyview.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
+        controller: 'MainCtrl'
       })
       .when('/about', {
         templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
+        controller: 'AboutCtrl'
       })
       .when('/signup', {
         templateUrl: 'views/signup.html',
-        controller: 'SignupCtrl',
-        controllerAs: 'signup'
+        controller: 'SignupCtrl'
       })
       .when('/familydailyview', {
         templateUrl: 'views/familydailyview.html',
-        controller: 'FamilydailyviewCtrl',
-        controllerAs: 'familydailyview'
+        controller: 'FamilydailyviewCtrl'
       })
-      .when('/sdview/1', {
+      .when('/sdview/:id', {
         templateUrl: 'views/sdview.html',
-        controller: 'SdviewCtrl',
-        controllerAs: 'sdview'
+        controller: 'SdviewCtrl'
+      })
+      .when('/singleweeklyview/:id', {
+        templateUrl: 'views/singleweeklyview.html',
+        controller: 'SingleweeklyviewCtrl'
       })
       .when('/famweeklyview', {
         templateUrl: 'views/famweeklyview.html',
-        controller: 'FamweeklyviewCtrl',
-        controllerAs: 'famweeklyview'
-      })
-      .when('/singleweeklyview', {
-        templateUrl: 'views/singleweeklyview.html',
-        controller: 'SingleweeklyviewCtrl',
-        controllerAs: 'singleweeklyview'
+        controller: 'FamweeklyviewCtrl'
       })
       .when('/fambarview', {
         templateUrl: 'views/fambarview.html',
-        controller: 'FambarviewCtrl',
-        controllerAs: 'fambarview'
+        controller: 'FambarviewCtrl'
       })
       .otherwise({ //I want to add an error page when we don't get to the right page
-        redirectTo: '/'
+        redirectTo: '/404.html'
       });
   });

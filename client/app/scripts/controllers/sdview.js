@@ -18,7 +18,14 @@
 **/
 
  angular.module('FamilySleep')
- 	.controller('SdviewCtrl', function($rootScope, $scope, sleepDataFactory) {
+ 	.controller('SdviewCtrl', function($rootScope, $scope, sleepDataFactory, $routeParams){
+    //doing header stuff
+    //console.log("sleepDataFactory");
+    //console.log(sleepDataFactory);
+    $scope.id = sleepDataFactory.id;
+    console.log("in SdviewCtrl");
+    console.log($scope.id);
+
     $rootScope.menu = [
       {
           title: 'Back',
@@ -27,12 +34,12 @@
       },
       {
           title: 'Individual Daily View',
-          url: '#!/sdview/1',
+          url: '#!/sdview/' + $scope.id,
           tag: 'individual-daily-view'
       },
       {
           title: 'Individual Weekly View',
-          url: '#!/singleweeklyview',
+          url: '#!/singleweeklyview/' + $scope.id,
           tag: 'individual-weekly-view'
       }
     ];
