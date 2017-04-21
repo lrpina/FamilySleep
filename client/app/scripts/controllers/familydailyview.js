@@ -22,7 +22,7 @@
 
             }
         ];
-    dbdata.get_sleep();
+    dbdata.get_single_daily_sleep('sleep_data');
     $rootScope.active = 'family-daily-view';
     //$rootScope.active = 'Back';
     $rootScope.updateActive = function (item) {

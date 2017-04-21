@@ -28,9 +28,7 @@
 angular.module('FamilySleep')
   .factory('tractdbdata', ['$http', 'sleepDataFactory', '$q', function ($http, sleep, $q) { //I want to know if I can use a different name when it's injecteds  
     // Service logic
-    // ...
-    /**model for now.   
-    */
+
     var temp_data;
     var sleep_data;
     //right now this is just queuering from the file we have locally. But this is where we'll need to query the DB for particular dates
@@ -51,30 +49,35 @@ angular.module('FamilySleep')
       //formatdata();
     };
 
-    function load_single_weekly_sleep_data(id, dates) {
+    function get_single_weekly_sleep_data(id, dates) {
       //use existing function, such as getting data for all fam memeber for one particular day,
       //then repeat that 7 times to update factory
     }
 
-    function load_fam_weekly_sleep_data(ids, dates) {
+    function get_fam_weekly_sleep_data(ids, dates) {
       //call loagsingledaily 7 times for different dates and update factory
     }
 
-    function load_single_daily_sleep_data(id, date) {
-      
+    function get_fam_daily_sleep_data(ids, date) {
+      var promises = [];
+      angular.forEach(ids, function(question) {
+        var promise = get_single_daily_sleep_data(id, date);
+        promises.push(promise);
+      });
+      return $q.all(promises);
     }
 
-    function load_fam_daily_sleep_data(ids, date) {
+    function get_single_daily_sleep_data(id, date) {
       
       //right now, it's just for one person. But ideadly, we can to do all ids at the same time and update the sleep_data
 
-      return $http({method:'GET', url: 'data/sleep_data.json' })
+      return $http({method:'GET', url: 'data/sleep_data.json'})  //data/'+ id +'.json'
       .then(function (response) {
         // this callback will be called asynchronously
         // when the response is available
         temp_data = response.data;
         console.log(temp_data);
-        return format_data(temp_data);     
+        return format_data(id, temp_data);     
       }, function (response) {
         // called asynchronously if an error occurs
         // or server returns response with an error status.
@@ -122,11 +125,13 @@ angular.module('FamilySleep')
     <p> wakeup time: {{sleep_data.sleep[0].minuteData[sleep_data.sleep[0].minuteData.length-1].dateTime}}
     <p> Awake count: {{sleep_data.sleep[0].awakeCount}}</p>
     */
+
+    //helper function
     function newDate(time, min) {
       return moment(time).add(min, 'm');
     }
 
-    var format_data = function (rawData) { //I think I have access to temp_data here don't need to put it as an argument
+    var format_data = function (id, rawData) { //I think I have access to temp_data here don't need to put it as an argument
       return $q(function(resolve, reject) {
         if (temp_data.sleep[0] != null) {
           var a = [300, 500, 100];
@@ -176,7 +181,11 @@ angular.module('FamilySleep')
             }
             sleepData.labels.push(newDate(temp_data.sleep[0].startTime, i));
           }
+          console.log("done with formatting data before");
+          // add id as label hereb
           sleep.sleep_data = sleepData;
+          //sleep_data[id] = sleepData;
+          //sleep.sleep_data_fact = sleep_data
           console.log("done with formatting data");
           resolve("sucess");
         } else {
@@ -188,8 +197,11 @@ angular.module('FamilySleep')
     // Public API here
     //return dbfactory;
     return {
-      get_sleep: function(ids, date) {
-        return load_fam_daily_sleep_data(ids, date)
+      get_single_daily_sleep: function(id, date) {
+        return get_single_daily_sleep_data(id, date)
+      },
+      get_fam_daily_sleep_data: function(ids, date) {
+        return get_fam_daily_sleep_data(ids, date)
       }
     };
   }]);

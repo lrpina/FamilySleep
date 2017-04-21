@@ -26,7 +26,7 @@ angular.module('FamilySleep')
   // function newDate(min) {
   //   return moment("2016-07-22T18:11:00.000").add(min, 'm');
   // }
-  var test = dbdata.get_sleep();
+  var test = dbdata.get_single_daily_sleep('sleep_data');
   //have to wait for dbdate to populate 
   test.then(function(response) {
     console.log('at stackedbar')
