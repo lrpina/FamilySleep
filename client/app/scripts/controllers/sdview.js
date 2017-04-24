@@ -25,6 +25,7 @@
     $scope.id = sleepDataFactory.id;
     console.log("in SdviewCtrl");
     console.log($scope.id);
+
     $rootScope.menu = [
       {
           title: 'Back',
@@ -48,10 +49,7 @@
       $rootScope.active = item;
       //alert(item);
     };
-    /*
-    var controller = this;
-    //getting data for particular family member
-    $http({method: 'GET', url: '/data/user_data_' + $routeParams.id + '.json'})
-    .sucess(function(data))
-    */
+    
+    // console.log("at adview");
+    // console.log(sleepDataFactory.sleep_data)
   });
