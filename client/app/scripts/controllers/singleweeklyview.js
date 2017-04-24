@@ -8,7 +8,7 @@
  * Controller of the FamilySleep
  */
 angular.module('FamilySleep')
-  .controller('SingleweeklyviewCtrl', function ($scope, sleepDataFactory) {
+  .controller('SingleweeklyviewCtrl', function ($scope, sleepDataFactory, $rootScope) {
   	$rootScope.menu = [
       {
           title: 'Back',
@@ -26,6 +26,7 @@ angular.module('FamilySleep')
           tag: 'individual-weekly-view'
       }
     ];
+
     $rootScope.active = 'individual-daily-view';
     //$rootScope.active = 'Back';
     $rootScope.updateActive = function (item) {
