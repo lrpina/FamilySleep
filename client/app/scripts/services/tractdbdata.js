@@ -26,7 +26,9 @@
     sleepDataFactory is an Array, each element is a family member.
 */
 angular.module('FamilySleep')
-  .factory('tractdbdata', ['$http', 'sleepDataFactory', '$q', function ($http, sleep, $q) { //I want to know if I can use a different name when it's injecteds  
+  .factory('tractdbdata', 
+    ['$http', 'sleepDataFactory', '$q', 'sleepFamDailyDataFactory', function ($http, singleDailySleep, $q, famDailySleep) { //I want to know if I can use a different name when it's injecteds  
+    //['$http', 'sleepDataFactory', '$q', function ($http, singleDailySleep, $q) { 
     // Service logic
 
     var temp_data;
@@ -58,26 +60,28 @@ angular.module('FamilySleep')
       //call loagsingledaily 7 times for different dates and update factory
     }
 
-    function get_fam_daily_sleep_data(ids, date) {
+    function get_fam_daily_sleep_data(factory, ids, date) {
+      factory.sleep_data = {};
       var promises = [];
-      angular.forEach(ids, function(question) {
-        var promise = get_single_daily_sleep_data(id, date);
+      angular.forEach(ids, function(id) {
+        var promise = get_single_daily_sleep_data(factory, id, date);
         promises.push(promise);
       });
       return $q.all(promises);
     }
 
-    function get_single_daily_sleep_data(id, date) {
+    function get_single_daily_sleep_data(factory, id, date) {
+      factory.sleep_data = {};
       
       //right now, it's just for one person. But ideadly, we can to do all ids at the same time and update the sleep_data
 
-      return $http({method:'GET', url: 'data/sleep_data.json'})  //data/'+ id +'.json'
+      return $http({method:'GET', url: 'data/sleep_data_'+ id +'.json'})  //data/'+ id +'.json'
       .then(function (response) {
         // this callback will be called asynchronously
         // when the response is available
         temp_data = response.data;
         console.log(temp_data);
-        return format_data(id, temp_data);     
+        return format_data(factory, id, temp_data);     
       }, function (response) {
         // called asynchronously if an error occurs
         // or server returns response with an error status.
@@ -131,18 +135,17 @@ angular.module('FamilySleep')
       return moment(time).add(min, 'm');
     }
 
-    var format_data = function (id, rawData) { //I think I have access to temp_data here don't need to put it as an argument
+    var format_data = function (factory, id, rawData) { //I think I have access to temp_data here don't need to put it as an argument
       return $q(function(resolve, reject) {
         if (temp_data.sleep[0] != null) {
           var a = [300, 500, 100];
-          sleep.data = a;
+          factory.data = a;
           console.log("inside formatdata -- sleep data -- ");
-          console.log(sleep.data);
+          console.log(factory.data);
           //sleepdatafactor.labels -- Array: each element is a lebel that corresponds to the type of sleep and links to the element in .data awway
-          sleep.labels =["Hours Slept", "Hours not Slept"];
+          factory.labels =["Hours Slept", "Hours not Slept"];
           console.log("inside formatdata -- labels -- ");
-          console.log(sleep.labels);
-          sleep.id = "mom";
+          console.log(factory.labels);
           var sleepData = {
             "awakeCount": temp_data.sleep[0].awakeCount,
             "awakeDuration": temp_data.sleep[0].awakeDuration,
@@ -183,7 +186,9 @@ angular.module('FamilySleep')
           }
           console.log("done with formatting data before");
           // add id as label hereb
-          sleep.sleep_data = sleepData;
+          
+          factory.sleep_data[id] = sleepData;
+          console.log(factory.sleep_data);
           //sleep_data[id] = sleepData;
           //sleep.sleep_data_fact = sleep_data
           console.log("done with formatting data");
@@ -198,10 +203,10 @@ angular.module('FamilySleep')
     //return dbfactory;
     return {
       get_single_daily_sleep: function(id, date) {
-        return get_single_daily_sleep_data(id, date)
+        return get_single_daily_sleep_data(singleDailySleep, id, date)
       },
       get_fam_daily_sleep_data: function(ids, date) {
-        return get_fam_daily_sleep_data(ids, date)
+        return get_fam_daily_sleep_data(famDailySleep, ids, date)
       }
     };
   }]);

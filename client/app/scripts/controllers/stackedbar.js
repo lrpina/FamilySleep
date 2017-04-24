@@ -29,8 +29,60 @@ angular.module('FamilySleep')
   var test = dbdata.get_single_daily_sleep('sleep_data');
   //have to wait for dbdate to populate 
   test.then(function(response) {
-    console.log('at stackedbar')
+    console.log('at stackedbar');
+    
+    $scope.options2 = {
+      scales: {
+        xAxes: [{
+          stacked: true,
+          categoryPercentage: 1,
+          barPercentage: 1,
+          type: 'time',
+          gridLines: {
+            display: false, // Set to false here => xAxis labels displayed out of canvas
+            offsetGridLines: true,
+          },
+          ticks: {
+            display: true,
+            fontSize: 10,
+            fontFamily: 'HelveticaNeue, HelveticaNeue, Roboto, ArialRounded',
+            autoSkip: true,
+            maxTicksLimit: 20
+          },
+          time: {
+            displayFormats: {
+              minute: 'HH:mm a'
+            },
+            tooltipFormat: 'HH:mm a',
+            unit: "minute",
+            unitStepSize: 1,
+          },
+          showXLabel: 60
+        }],
+        yAxes: [{
+          stacked: true, //scaleLabel: "<%=value%>",
+          ticks: {
+            fontSize: 12,
+            fontFamily: 'HelveticaNeue, HelveticaNeue, Roboto, ArialRounded'
+          },
+          gridLines: {
+            display: false, // Set to false here => xAxis labels displayed out of canvas
+          },
+        }]
+      },
+      legend: {
+        display: true
+      }
+    };
 
+    $scope.data2 = [
+      sleep.sleep_data['mom'].minuteData.three,
+      sleep.sleep_data['mom'].minuteData.two,
+      sleep.sleep_data['mom'].minuteData.one, 
+    ];
+
+
+//------------------------------------------------------------------------------------
     $scope.options = {
       scales: {
         xAxes: [{
@@ -75,14 +127,14 @@ angular.module('FamilySleep')
       }
     };
 
-    console.log( sleep.sleep_data.minuteData);
+    //console.log($scope.id);
     $scope.data = [
-        sleep.sleep_data.minuteData.one, 
-        sleep.sleep_data.minuteData.two,
-        sleep.sleep_data.minuteData.three,
+        sleep.sleep_data['mom'].minuteData.one, 
+        sleep.sleep_data['mom'].minuteData.two,
+        sleep.sleep_data['mom'].minuteData.three,
     ];
 
-    $scope.labels = sleep.sleep_data.labels;
+    $scope.labels = sleep.sleep_data['mom'].labels;
 
     $scope.colors = [{
         backgroundColor: "#8CA2AA",
