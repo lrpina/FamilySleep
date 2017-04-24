@@ -33,7 +33,7 @@
 
   //getting data to visualize but this should only happen when mood has been self-report OR after a certain time of the day
   
-    dbdata.get_sleep();
+    //dbdata.get_sleep();
     console.log("id -- in familydailyview controller");
     $scope.id = sleep.id;
     console.log($scope.id);
