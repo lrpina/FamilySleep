@@ -7,7 +7,7 @@
  * # recorder
  */
 angular.module('FamilySleep')
-  .directive('recorder', function () {
+  .directive('recorder', function ($timeout) {
     return {
       // restrict: 'EA', //E = element, A = attribute, C = class, M = comment
       // scope: {
@@ -23,6 +23,7 @@ angular.module('FamilySleep')
         $scope.recordRecording = false;
         $scope.recordPausing = false;
         $scope.recordStopped = false;
+        $scope.recordReplay = false;
         navigator.getUserMedia(
           {audio:true, video:false},
           function(stream) {
@@ -68,21 +69,28 @@ angular.module('FamilySleep')
           $scope.recordRecording = false;
           $scope.recordPausing = false;
           $scope.recordStopped = false;
+          $scope.recordReplay = false;
           recorder.reset();
         }
 
         //stop the recording
-        $scope.onStopRecord =  function(audioUrl) {
+        $scope.onStopRecord =  function() {
           $scope.recordStopped = true;
           $scope.recordRecording = false;
           $scope.recordPausing = false;
-          $window.recordRTC.stopRecording (function(audioUrl) {
+          $window.recordRTC.stopRecording (function() {
+            $scope.url = $window.recordRTC.toURL();
             var recordedBlob = $window.recordRTC.getBlob();
             $scope.recordedBlob = recordedBlob;
-            $scope.url = $window.recordRTC.toURL();
+            console.log($scope.url);
           });
         }
 
+        $scope.onReplayRecord =  function() {
+          $scope.recordReplay = true;
+          $scope.url = $window.recordRTC.toURL();
+        }
+        
         // sending the recording, not sure if it will get recorder back to clean slate
         $scope.onSendRecord = function() {
           var recordedBlob = $scope.recordedBlob;
@@ -104,6 +112,7 @@ angular.module('FamilySleep')
           $scope.recordRecording = false;
           $scope.recordPausing = false;
           $scope.recordStopped = false;
+          $scope.recordReplay = false;
         }
       },
       link: function ($scope, element, attrs) { } //DOM manipulation

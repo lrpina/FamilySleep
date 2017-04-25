@@ -44,12 +44,21 @@
     </div>
   </div>
 
-  <div class="recorder-player" ng-if="recordStopped">
+  <div class="recorder-player" ng-show="recordReplay">
     <audio src={{url}} controls=""></audio>
   </div>
 
+  <div class="record-button" ng-if="recordStopped">
+    <md-button class="md-fab" ng-click="onReplayRecord()" aria-label="pause-button">
+      <img class="recorder-logo" src="../images/replay.png">
+    </md-button>
+    <div class="record-descrip">
+      Replay
+    </div>
+  </div>
+
   <!-- only show stop when record is recording or paused -->
-  <div class="record-button" ng-if="!recordStoppedClear">
+  <div class="record-button" ng-if="!recordStopped && !recordStoppedClear">
     <md-button class="md-fab" ng-click="onStopRecord()" aria-label="pause-button">
       <img class="recorder-logo" src="../images/stop.png">
     </md-button>
