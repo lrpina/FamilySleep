@@ -2,6 +2,12 @@
 <p>This is the singleweeklyview view.</p>
 <p> This is {{id}} view <p>
 
+
+<div class="row" ng-controller="StackedbarCtrl" ng-repeat="day in data">
+	<canvas class="chart chart-bar" chart-data="day.data" chart-labels="day.labels"
+	        chart-options="options" chart-series="series" chart-colors="colors" width="50" height="10"></canvas>		
+</div>
+
 <!-- <div class="row">
 <div ng-controller="EmptybarchartCtrl">
 	<canvas class="chart-horizontal-bar"
