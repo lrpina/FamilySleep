@@ -41,6 +41,7 @@ angular.module('FamilySleep')
     // this callback will be called asynchronously
       // when the response is available
         temp_data = response.data;
+        console.log("in get_sleep");
         console.log(temp_data);
         formatdata(temp_data);
       }, function (response) {
@@ -67,13 +68,14 @@ angular.module('FamilySleep')
     function load_fam_daily_sleep_data(ids, date) {
       
       //right now, it's just for one person. But ideadly, we can to do all ids at the same time and update the sleep_data
-
-      return $http({method:'GET', url: 'data/sleep_data.json' })
+      //'data/user_data_mom.json' })
+      return $http({method:'GET', url: 'data/user_data_mom.json' }) 
       .then(function (response) {
         // this callback will be called asynchronously
         // when the response is available
         temp_data = response.data;
-        console.log(temp_data);
+        //console.log("in load_fam_daily_sleep_data");
+        //console.log(temp_data);
         return format_data(temp_data);     
       }, function (response) {
         // called asynchronously if an error occurs
@@ -125,19 +127,22 @@ angular.module('FamilySleep')
     function newDate(time, min) {
       return moment(time).add(min, 'm');
     }
-
+    //using rawData as arugment but then never referencing, instead just using
+    //temp_data
     var format_data = function (rawData) { //I think I have access to temp_data here don't need to put it as an argument
       return $q(function(resolve, reject) {
         if (temp_data.sleep[0] != null) {
           var a = [300, 500, 100];
           sleep.data = a;
-          console.log("inside formatdata -- sleep data -- ");
-          console.log(sleep.data);
+          //console.log("inside formatdata -- sleep data -- ");
+          //console.log(sleep.data);
           //sleepdatafactor.labels -- Array: each element is a lebel that corresponds to the type of sleep and links to the element in .data awway
-          sleep.labels =["Hours Slept", "Hours not Slept"];
-          console.log("inside formatdata -- labels -- ");
-          console.log(sleep.labels);
-          sleep.id = "mom";
+          //sleep.labels =["Hours Slept", "Hours not Slept"];
+          //console.log("inside formatdata -- labels -- ");
+          //console.log(sleep.labels);
+          console.log("id in tractdbdata from temp_data");
+          sleep.id = temp_data.id;
+          console.log(sleep.id);
           var sleepData = {
             "awakeCount": temp_data.sleep[0].awakeCount,
             "awakeDuration": temp_data.sleep[0].awakeDuration,
