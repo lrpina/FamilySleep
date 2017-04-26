@@ -18,14 +18,12 @@
 **/
 
  angular.module('FamilySleep')
- 	.controller('SdviewCtrl', ['$rootScope', '$scope', 'sleepDataFactory', '$routeParams', 'tractdbdata', function($rootScope, $scope, sleepDataFactory, $routeParams, dbdata){
-    //doing header stuff
-    //console.log("sleepDataFactory");
-    //console.log(sleepDataFactory);
+ 	.controller('SdviewCtrl', [
+    '$rootScope', '$scope', 'sleepDataFactory', '$routeParams', 'tractdbdata', function(
+      $rootScope, $scope, sleepDataFactory, $routeParams, dbdata) {
     $scope.id = sleepDataFactory.id;
-    $scope.testing = 'djkslhgfkldhslkfjdkslhgfklds';
+
     console.log("in SdviewCtrl");
-    console.log($scope.id);
 
     $rootScope.menu = [
       {
@@ -45,15 +43,15 @@
       }
     ];
     $rootScope.active = 'individual-daily-view';
-    //$rootScope.active = 'Back';
     $rootScope.updateActive = function (item) {
       $rootScope.active = item;
-      //alert(item);
     };
     var promise = dbdata.get_single_daily_sleep('mom','2016-07-23');
+    
     //have to wait for dbdate to populate 
     promise.then(function(response) {
-    
+      console.log('single daily');
+      console.log(sleepDataFactory.sleep_data);
       $scope.options = {
         scales: {
           xAxes: [{
@@ -99,12 +97,12 @@
       };
 
       $scope.data = [
-          sleepDataFactory.sleep_data['mom2016-07-23'].minuteData.one, 
-          sleepDataFactory.sleep_data['mom2016-07-23'].minuteData.two,
-          sleepDataFactory.sleep_data['mom2016-07-23'].minuteData.three,
+          sleepDataFactory.sleep_data['mom']['2016-07-23'].minuteData.one, 
+          sleepDataFactory.sleep_data['mom']['2016-07-23'].minuteData.two,
+          sleepDataFactory.sleep_data['mom']['2016-07-23'].minuteData.three,
       ];
 
-      $scope.labels = sleepDataFactory.sleep_data['mom2016-07-23'].labels;
+      $scope.labels = sleepDataFactory.sleep_data['mom']['2016-07-23'].labels;
 
       $scope.colors = [{
           backgroundColor: "#8CA2AA",

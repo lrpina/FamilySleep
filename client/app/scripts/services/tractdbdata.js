@@ -27,8 +27,8 @@
 */
 angular.module('FamilySleep')
   .factory('tractdbdata', 
-    ['$http', 'sleepDataFactory', '$q', 'sleepFamDailyDataFactory', 'sleepWeeklyDataFactory',
-    function ($http, singleDailySleep, $q, famDailySleep, singleWeeklySleep) { //I want to know if I can use a different name when it's injecteds  
+    ['$http', '$q', 'sleepDataFactory', 'sleepFamDailyDataFactory', 'sleepWeeklyDataFactory', 'sleepFamWeeklyDataFactory',
+    function ($http, $q, singleDailySleep, famDailySleep, singleWeeklySleep, famWeeklySleep) { //I want to know if I can use a different name when it's injecteds  
     //['$http', 'sleepDataFactory', '$q', function ($http, singleDailySleep, $q) { 
     // Service logic
 
@@ -58,25 +58,48 @@ angular.module('FamilySleep')
       factory.sleep_data = {};
       var promises = [];
       angular.forEach(dates, function(date) {
-        var promise = get_single_daily_sleep_data(factory, id, date);
+        factory.sleep_data[id] = {};
+        var promise = get_data(factory, id, date);
         promises.push(promise);
       });
       return $q.all(promises);
     }
 
-    function get_fam_weekly_sleep_data(ids, dates) {
+    function get_fam_weekly_sleep_data(factory, ids, dates) {
       //call loagsingledaily 7 times for different dates and update factory
+      factory.sleep_data = {};
+      var promises = [];
+      angular.forEach(ids, function(id) {
+        angular.forEach(dates, function(date) {
+          factory.sleep_data[id] = {};
+          var promise = get_data(factory, id, date);
+          promises.push(promise);
+        });
+      });
+      return $q.all(promises);
     }
 
     function get_fam_daily_sleep_data(factory, ids, date) {
-
+      factory.sleep_data = {};
+      var promises = [];
+      angular.forEach(ids, function(id) {
+        
+      });
+      angular.forEach(ids, function(id) {
+        factory.sleep_data[id] = {};
+        var promise = get_data(factory, id, date);
+        promises.push(promise);
+      });
+      return $q.all(promises);
     }
 
     function get_single_daily_sleep_data(factory, id, date) {
-      factory.sleep_data = {};
-      
-      //right now, it's just for one person. But ideadly, we can to do all ids at the same time and update the sleep_data
+      factory.sleep_data[id] = {};
+      return get_single_daily_sleep_data(factory, id, date);
+    }
 
+    function get_data(factory, id, date) {   
+      //right now, it's just for one person. But ideadly, we can to do all ids at the same time and update the sleep_data
       return $http({method:'GET', url: 'data/'+ id + '_' + date + '.json'})  //data/'+ id +'.json'
       .then(function (response) {
         // this callback will be called asynchronously
@@ -90,7 +113,7 @@ angular.module('FamilySleep')
         console.error('Retrieval Error' + response.statusText);
       })
       .then(function (response) {
-        console.log("formate sucess");
+        console.log("format sucess");
       }, function (response) {
         // called asynchronously if an error occurs
         // or server returns response with an error status.
@@ -140,14 +163,15 @@ angular.module('FamilySleep')
     var format_data = function (factory, id, date, rawData) { //I think I have access to temp_data here don't need to put it as an argument
       return $q(function(resolve, reject) {
         if (temp_data.sleep[0] != null) {
-          var a = [300, 500, 100];
-          factory.data = a;
-          console.log("inside formatdata -- sleep data -- ");
-          console.log(factory.data);
-          //sleepdatafactor.labels -- Array: each element is a lebel that corresponds to the type of sleep and links to the element in .data awway
-          factory.labels =["Hours Slept", "Hours not Slept"];
+          // var a = [300, 500, 100];
+          // factory.data = a;
+          // console.log("inside formatdata -- sleep data -- ");
+          // console.log(factory.data);
+          // //sleepdatafactor.labels -- Array: each element is a lebel that corresponds to the type of sleep and links to the element in .data awway
+          // factory.labels =["Hours Slept", "Hours not Slept"];
           console.log("inside formatdata -- labels -- ");
-          console.log(factory.labels);
+          console.log(factory.sleep_data);
+          // console.log(factory.labels);
           var sleepData = {
             "awakeCount": temp_data.sleep[0].awakeCount,
             "awakeDuration": temp_data.sleep[0].awakeDuration,
@@ -186,14 +210,15 @@ angular.module('FamilySleep')
             }
             sleepData.labels.push(newDate(temp_data.sleep[0].startTime, i));
           }
-          console.log("done with formatting data before");
+          // console.log("done with formatting data before");
+          // console.log(factory.sleep_data);
+          //console.log(factory.sleep_data[id]);
           // add id as label hereb
-          var newID = id+date;
-          factory.sleep_data[(id+date)] = sleepData;
-          console.log(factory.sleep_data);
+          factory.sleep_data[id][date] = sleepData;
+         // console.log(factory.sleep_data);
           //sleep_data[id] = sleepData;
           //sleep.sleep_data_fact = sleep_data
-          console.log("done with formatting data");
+         // console.log("done with formatting data");
           resolve("sucess");
         } else {
           reject("fail");
@@ -212,6 +237,9 @@ angular.module('FamilySleep')
       },
       get_single_weekly_sleep_data: function(id, dates) {
         return get_single_weekly_sleep_data(singleWeeklySleep, id, dates)
+      }, 
+      get_fam_weekly_sleep_data: function(ids, dates) {
+        return get_fam_weekly_sleep_data(famWeeklySleep, ids, dates)
       }
     };
   }]);

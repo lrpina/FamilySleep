@@ -8,6 +8,57 @@
  * Factory in the FamilySleep.
  */
 
+ /*
+	Format
+
+	{
+		sleep_data : {
+			id : {
+				date : {
+					id: int,
+					name: String,
+					dateOfSleep: String,
+					duration: int,
+					mood: String,
+					minuteData: {
+						one : [ ints
+						],
+						two : [ ints
+						],
+						three: [ ints
+						]
+					},
+					startTime: Moment,
+					endTime: Moment
+				}
+			},
+			id2 : {
+				date : {
+					id: int,
+					name: String,
+					dateOfSleep: String,
+					duration: int,
+					mood: String,
+					minuteData: {
+						one : [ ints
+						],
+						two : [ ints
+						],
+						three: [ ints
+						]
+					},
+					startTime: Moment,
+					endTime: Moment
+				}
+			},
+			more ids
+		}
+	
+	}
+
+ */
+
+
  /* All controllers that are visualizing data need to have access to this factory singleton
  */
  /* for controllers using this data should check if there's data in it or not.
