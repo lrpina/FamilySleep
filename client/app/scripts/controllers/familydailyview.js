@@ -29,12 +29,20 @@
       $rootScope.active = item;
       //alert(item);
     };
+
   //getting data to visualize but this should only happen when mood has been self-report OR after a certain time of the day
   
     dbdata.get_sleep();
+    console.log("sleep obj in FDV");
+    console.log(sleep);
     console.log("id -- in familydailyview controller");
+    console.log(sleep.id);
     $scope.id = sleep.id;
-    console.log($scope.id);
+    
+
+
+    //given all ids, [id1, id2, id3, id4]
+    
   }]);
 /*
 angular.module('FamilySleep')

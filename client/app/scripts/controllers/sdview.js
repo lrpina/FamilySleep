@@ -17,13 +17,16 @@
   });
 **/
  angular.module('FamilySleep')
- 	.controller('SdviewCtrl', ['tractdbdata', 'sleepDataFactory', 'dateFactory', function($rootScope, $scope, dbdata, sleep, sleepdate, $routeParams){
+ 	.controller('SdviewCtrl', ['$rootScope', '$scope', '$routeParams', 'tractdbdata', 'sleepDataFactory', 'dateFactory', function($rootScope, $scope, $routeParams, dbdata, sleep, sleepdate){
     //doing header stuff
     //console.log("sleepDataFactory");
     //console.log(sleepDataFactory);
-    $scope.id = sleepDataFactory.id;
+    console.log("in SdviewCtrl");
+    console.log(sleep);
+    $scope.id = sleep.id;
     console.log("in SdviewCtrl");
     console.log($scope.id);
+
     $rootScope.menu = [
       {
           title: 'Back',
@@ -47,10 +50,5 @@
       $rootScope.active = item;
       //alert(item);
     };
-    /*
-    var controller = this;
-    //getting data for particular family member
-    $http({method: 'GET', url: '/data/user_data_' + $routeParams.id + '.json'})
-    .sucess(function(data))
-    */
+
   }]);
