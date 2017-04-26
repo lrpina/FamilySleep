@@ -50,6 +50,7 @@ angular.module('FamilySleep').controller('ModalCrtl', function($uibModal, $log, 
       templateUrl: templateDir+'myModalContent.html',
       controller: 'ModalInstanceCtrl',
       controllerAs: '$ctrl',
+      windowClass:'app-modal-window',
       size: size,
       appendTo: parentElem,
       resolve: {

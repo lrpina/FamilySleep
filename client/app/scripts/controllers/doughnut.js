@@ -24,6 +24,11 @@ angular.module('FamilySleep')
   	 /*define colors here*/
      $scope.colors = ['#0000FF', '#E0E0E0'];
      $scope.options = {
+          elements: {
+            arc: {
+              borderWidth: 0
+            }
+          },
           cutoutPercentage: 70
      };
   });
