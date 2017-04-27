@@ -94,8 +94,9 @@ angular.module('FamilySleep')
     }
 
     function get_single_daily_sleep_data(factory, id, date) {
+      factory.sleep_data = {};
       factory.sleep_data[id] = {};
-      return get_single_daily_sleep_data(factory, id, date);
+      return get_data(factory, id, date);
     }
 
     function get_data(factory, id, date) {   
