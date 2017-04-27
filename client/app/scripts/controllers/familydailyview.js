@@ -8,7 +8,7 @@
  * Controller of the FamilySleep
  */
  angular.module('FamilySleep')
-  .controller('FamilydailyviewCtrl', ['$scope', '$rootScope', 'tractdbdata', 'sleepDataFactory', function($scope, $rootScope, dbdata, sleep){
+  .controller('FamilydailyviewCtrl', ['$scope', '$rootScope', 'tractdbdata', 'sleepDataFactory', 'dateFactory', function($scope, $rootScope, dbdata, sleep, sleepdate, $routeParams){
       $rootScope.menu = [
             {
                 title: 'Family Daily View',
@@ -32,12 +32,15 @@
 
   //getting data to visualize but this should only happen when mood has been self-report OR after a certain time of the day
   
-    dbdata.get_sleep();
-    console.log("sleep obj in FDV");
+    var promise = dbdata.get_sleep();
+    promise.then(function(response){
+          console.log("sleep obj in FDV");
     console.log(sleep);
     console.log("id -- in familydailyview controller");
     console.log(sleep.id);
     $scope.id = sleep.id;
+  });
+
     
 
 

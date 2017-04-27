@@ -11,7 +11,7 @@
 
 angular.module('FamilySleep')
   .controller('SingleweeklyviewCtrl', ['tractdbdata', 'sleepDataFactory', 'dateFactory',function ($scope, dbdata, sleep, sleepdate) {
-  	 $scope.id = sleepDataFactory.id;
+  	 $scope.id = sleep.id;
     console.log("in SingleweeklyviewCtrl");
     console.log($scope.id);
   }]);
