@@ -35,4 +35,4 @@ angular.module('FamilySleep')
       console.log(famWeeklySleep.sleep_data);
   	});
 
-}])
+}]);

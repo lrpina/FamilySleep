@@ -1,16 +1,23 @@
 <div class="familydailyview-container" ng-controller="FamilydailyviewCtrl"> <!--do I need this controller here? test to get this to work with out-->
 <!--need 1x2 | 1  for moon| 1x2-->
 
-    <!-- lots of repetition here, need to figure out how to call a function that just does this 4 times different parameters-->
-    <div class="col-xs-4">
-        <div class="row">
-            <!--hard coding profile but can import it from the controller as well-->
-            <!-- ideally this is where I have the same directive for the avatar-->
-            <img ng-src="images/avatars/momcircle.png" alt="momcircle" style="position: relative; top: 0px; left: 10px; width:60px; height:60px">
-            <p>MOM{{id}}</p>
-            <!--<div vega spec="spec" style="position: relative; z-index: 2">-->
-            <div ng-controller="ModalCrtl as $ctrl" class="mom">
+<!-- lots of repetition here, need to figure out how to call a function that just does this 4 times different parameters-->
 
+<div ng-controller="DatepickercontrollerCtrl as ctrl" ng-cloak="">
+
+    <div flex-gt-xs="">
+      <h4>Opening the calendar when the input is focused</h4>
+      <md-datepicker ng-model="ctrl.myDate" md-open-on-focus=""></md-datepicker>
+    </div>
+</div>
+<div class="col-xs-4">
+<div class="row">
+    <!--hard coding profile but can import it from the controller as well-->
+    <!-- ideally this is where I have the same directive for the avatar-->
+    <img ng-src="images/avatars/momcircle.png" alt="momcircle" style="position: relative; top: 0px; left: 10px; width:60px; height:60px">
+        <p>{{id}}</p>
+    <!--<div vega spec="spec" style="position: relative; z-index: 2">-->
+    <div ng-controller="ModalCrtl as $ctrl" class="mom">
                 <!--TODO: hovering now showing up under and difficult to read, will need to look into how to control hover-->
                 <div ng-if=$ctrl.selected.name>
                     <div ng-controller="DoughnutCtrl">
