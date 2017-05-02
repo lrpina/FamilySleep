@@ -12,9 +12,8 @@
 	Format
 
 	{
-		ids : [],
+		ids : []
 		sleep_data : {
-			ids : []
 			id : {
 				date : {
 					id: int,
@@ -34,12 +33,33 @@
 					startTime: Moment,
 					endTime: Moment
 				}
-			}
+			},
+			id2 : {
+				date : {
+					id: int,
+					name: String,
+					dateOfSleep: String,
+					duration: int,
+					mood: String,
+					minuteData: {
+						one : [ ints
+						],
+						two : [ ints
+						],
+						three: [ ints
+						]
+					},
+					startTime: Moment,
+					endTime: Moment
+				}
+			},
+			more ids
 		}
 	
 	}
 
  */
+
 
  /* All controllers that are visualizing data need to have access to this factory singleton
  */
@@ -51,7 +71,7 @@
       - as well as the mood of the family member
  */
 angular.module('FamilySleep')
-  .factory('sleepDataFactory', function () {
+  .factory('sleepFamDailyDataFactory', function () {
    //I think we might want get/sets here
     return{};
   });

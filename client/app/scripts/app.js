@@ -20,7 +20,7 @@ angular
     'ngTouch',
     'ui.bootstrap',
     'chart.js',
-    'ngMaterial' //check if I still need this
+    'ngMaterial'
   ])
   .config(function ($routeProvider, $locationProvider) {
     //can't get the removing hash to work
