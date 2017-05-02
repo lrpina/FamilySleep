@@ -29,33 +29,16 @@ angular.module('FamilySleep')
   .factory('tractdbdata', 
     ['$http', '$q', 'sleepDataFactory', 'sleepFamDailyDataFactory', 'sleepWeeklyDataFactory', 'sleepFamWeeklyDataFactory',
     function ($http, $q, singleDailySleep, famDailySleep, singleWeeklySleep, famWeeklySleep) { //I want to know if I can use a different name when it's injecteds  
-    //['$http', 'sleepDataFactory', '$q', function ($http, singleDailySleep, $q) { 
-    // Service logic
+
 
     var temp_data;
     var sleep_data;
-    //right now this is just queuering from the file we have locally. But this is where we'll need to query the DB for particular dates
-    function get_sleep() {
-      
-      $http({method:'GET', url: 'data/user_data_mom.json' })
-      .then(function (response) {
-    // this callback will be called asynchronously
-      // when the response is available
-        temp_data = response.data;
-        console.log(temp_data);
-        formatdata(temp_data);
-      }, function (response) {
-      // called asynchronously if an error occurs
-      // or server returns response with an error status.
-        console.error('Error' + response.statusText);
-      });
-      //formatdata();
-    };
 
     function get_single_weekly_sleep_data(factory, id, dates) {
       //use existing function, such as getting data for all fam memeber for one particular day,
       //then repeat that 7 times to update factory
       factory.sleep_data = {};
+      factory.ids = [id];
       var promises = [];
       angular.forEach(dates, function(date) {
         factory.sleep_data[id] = {};
@@ -68,8 +51,10 @@ angular.module('FamilySleep')
     function get_fam_weekly_sleep_data(factory, ids, dates) {
       //call loagsingledaily 7 times for different dates and update factory
       factory.sleep_data = {};
+      factory.ids = [];
       var promises = [];
       angular.forEach(ids, function(id) {
+        factory.ids.push(id);
         angular.forEach(dates, function(date) {
           factory.sleep_data[id] = {};
           var promise = get_data(factory, id, date);
@@ -81,11 +66,10 @@ angular.module('FamilySleep')
 
     function get_fam_daily_sleep_data(factory, ids, date) {
       factory.sleep_data = {};
+      factory.ids = [];
       var promises = [];
       angular.forEach(ids, function(id) {
-        
-      });
-      angular.forEach(ids, function(id) {
+        factory.ids.push(id);
         factory.sleep_data[id] = {};
         var promise = get_data(factory, id, date);
         promises.push(promise);
@@ -96,6 +80,7 @@ angular.module('FamilySleep')
     function get_single_daily_sleep_data(factory, id, date) {
       factory.sleep_data = {};
       factory.sleep_data[id] = {};
+      factory.ids = [id];
       return get_data(factory, id, date);
     }
 
@@ -121,40 +106,6 @@ angular.module('FamilySleep')
         console.error('Format Error' + response.statusText);
       });
     }
-    /*
-    dbfactory.get_sleep = function(){
-      $http({method:'GET', url: 'data/sleep_data.json' })
-      .then(function (response) {
-    // this callback will be called asynchronously
-      // when the response is available
-        temp_data = response.data;
-        //console.log($scope.sleep_data);
-      }, function (response) {
-      // called asynchronously if an error occurs
-      // or server returns response with an error status.
-        console.error('Error' + response.statusText);
-      });
-      formatdata(temp_data);
-    };*/
-    /* I could do the formatting of the data here that then is used by all the the sleepdata factory to share across the views
-    */
-    /* IMPORTANT need to check if mainSleep == 1 in data coming from DB because fitbit tries to capture naps  
-    */
-    //helper function to format the data to be used in the visualization
-    /* Data Structure to use for Chartjs which will be put into sleepDataFactory
-    can have multiple data sets, just need to know to call which in the viewer
-
-    Each element has:
-
-    data Array<Number> // will need to add one value that represents that empty unslept hours
-    label == String
-    options
-    */
-    /* Example of how to acccess json object
-        <p> hours slept (need to convert to hours): {{sleep_data.sleep[0].minutesAsleep}}</p>
-    <p> wakeup time: {{sleep_data.sleep[0].minuteData[sleep_data.sleep[0].minuteData.length-1].dateTime}}
-    <p> Awake count: {{sleep_data.sleep[0].awakeCount}}</p>
-    */
 
     //helper function
     function newDate(time, min) {
@@ -174,15 +125,10 @@ angular.module('FamilySleep')
           console.log(factory.sleep_data);
           // console.log(factory.labels);
           var sleepData = {
-            "awakeCount": temp_data.sleep[0].awakeCount,
-            "awakeDuration": temp_data.sleep[0].awakeDuration,
-            "awakeningsCount": temp_data.sleep[0].awakeningsCount,
             "dateOfSleep": temp_data.sleep[0].dateOfSleep,
             "duration": temp_data.sleep[0].duration,
-            "efficiency": temp_data.sleep[0].efficiency,
-            "isMainSleep": temp_data.sleep[0].isMainSleep,
-            "id": temp_data.sleep[0].logId,
             "mood": "",
+            "moodAddedBy" : "",
             "name": temp_data.sleep[0].logId,
             "minuteData": {
               "one" : [],

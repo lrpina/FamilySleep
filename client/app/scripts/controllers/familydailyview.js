@@ -37,7 +37,7 @@
 
     var promise = dbdata.get_fam_daily_sleep_data(['mom','dad','girl','boy'],'2016-07-23');
     promise.then(function(response) {
-      console.log(famDailySleep.sleep_data);
+      console.log(famDailySleep);
 
       $scope.data = [famDailySleep.sleep_data['mom']['2016-07-23'].duration/1000/60/60, (24-famDailySleep.sleep_data['mom']['2016-07-23'].duration/1000/60/60)];
       $scope.data_dad = [famDailySleep.sleep_data['dad']['2016-07-23'].duration/1000/60/60, (24-famDailySleep.sleep_data['dad']['2016-07-23'].duration/1000/60/60)];
