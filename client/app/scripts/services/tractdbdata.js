@@ -9,41 +9,45 @@
  */
  /* This is a factory that is doing GET to call data right now from a file under data/
  */
- /* Since it's a factory, it sounds like Factories need to make other factories as dependencies. 
+ /* Since it's a factory, it sounds like Factories need to make other factories as dependencies.
  See sleepDataFactory.
  */
- /*this file will expand as it will have to query data based on data etc. I also think there should be something maintened locally 
+ /*this file will expand as it will have to query data based on data etc. I also think there should be something maintened locally
  so preserve state? and not have to query all the time*/
- 
+
  /*Another approach to modeling factories
  https://weblogs.asp.net/dwahlin/using-an-angularjs-factory-to-interact-with-a-restful-service
  */
 
 
-/* TODO: need to figure format data such that sleepDataFactory contains data for all family members 
+/* TODO: need to figure format data such that sleepDataFactory contains data for all family members
 */
-/* Need to formatdata such that we can call ng-repeat on sleepDataFactory on the on the viewers 
+/* Need to formatdata such that we can call ng-repeat on sleepDataFactory on the on the viewers
     sleepDataFactory is an Array, each element is a family member.
 */
 angular.module('FamilySleep')
-  .factory('tractdbdata', ['$http', 'sleepDataFactory', '$q', function ($http, sleep, $q) { //I want to know if I can use a different name when it's injecteds  
+  .factory('tractdbdata', ['$http', 'sleepDataFactory', '$q', function ($http, sleep, $q) { //I want to know if I can use a different name when it's injecteds 
     // Service logic
     // ...
-    /**model for now.   
+    /**model for now.
     */
     var temp_data;
     var sleep_data;
     //right now this is just queuering from the file we have locally. But this is where we'll need to query the DB for particular dates
+
     function get_sleep() {
       
       $http({method:'GET', url: 'data/user_data_mom.json' })
+
       .then(function (response) {
     // this callback will be called asynchronously
       // when the response is available
         temp_data = response.data;
+
         console.log("in get_sleep");
         console.log(temp_data);
         formatdata(temp_data);
+
       }, function (response) {
       // called asynchronously if an error occurs
       // or server returns response with an error status.
@@ -107,7 +111,7 @@ angular.module('FamilySleep')
     };*/
     /* I could do the formatting of the data here that then is used by all the the sleepdata factory to share across the views
     */
-    /* IMPORTANT need to check if mainSleep == 1 in data coming from DB because fitbit tries to capture naps  
+    /* IMPORTANT need to check if mainSleep == 1 in data coming from DB because fitbit tries to capture naps
     */
     //helper function to format the data to be used in the visualization
     /* Data Structure to use for Chartjs which will be put into sleepDataFactory
@@ -188,6 +192,7 @@ angular.module('FamilySleep')
           reject("fail");
         }
       });
+
     }
 
     // Public API here
