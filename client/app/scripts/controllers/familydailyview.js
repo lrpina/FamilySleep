@@ -8,38 +8,49 @@
  * Controller of the FamilySleep
  */
  angular.module('FamilySleep')
-  .controller('FamilydailyviewCtrl', ['$scope', '$rootScope', 'tractdbdata', 'sleepDataFactory', function($scope, $rootScope, dbdata, sleep){
-      $rootScope.menu = [
-            {
-                title: 'Family Daily View',
-                url: '#!/familydailyview',
-                tag: 'family-daily-view',
-            },
-            {
-                title: 'Family Weekly View',
-                url: '#!/famweeklyview',
-                tag: 'family-weekly-view',
+  .controller('FamilydailyviewCtrl', ['$scope', '$rootScope', 'tractdbdata', 'sleepDataFactory', 'sleepFamDailyDataFactory', function($scope, $rootScope, dbdata, sleepDataFactory, famDailySleep){
+    $rootScope.menu = [
+      {
+        title: 'Family Daily View',
+        url: '#!/familydailyview',
+        tag: 'family-daily-view',
+      },
+      {
+        title: 'Family Weekly View',
+        url: '#!/famweeklyview',
+        tag: 'family-weekly-view',
+      }
+    ];
 
-            }
-        ];
-    
     $rootScope.active = 'family-daily-view';
-    //$rootScope.active = 'Back';
     $rootScope.updateActive = function (item) {
       $rootScope.active = item;
-      //alert(item);
     };
 
   //getting data to visualize but this should only happen when mood has been self-report OR after a certain time of the day
   
-    dbdata.get_sleep();
-    console.log("sleep obj in FDV");
-    console.log(sleep);
-    console.log("id -- in familydailyview controller");
-    console.log(sleep.id);
-    $scope.id = sleep.id;
-    
 
+    //dbdata.get_sleep();
+    console.log("id -- in familydailyview controller");
+    $scope.id = sleepDataFactory.id;
+    console.log($scope.id);
+    var promise = dbdata.get_fam_daily_sleep_data(['mom','dad','girl','boy'],'2016-07-23');
+    promise.then(function(response) {
+      console.log(famDailySleep.sleep_data);
+
+      $scope.data = [famDailySleep.sleep_data['mom']['2016-07-23'].duration/1000/60/60, (24-famDailySleep.sleep_data['mom']['2016-07-23'].duration/1000/60/60)];
+      $scope.data_dad = [famDailySleep.sleep_data['dad']['2016-07-23'].duration/1000/60/60, (24-famDailySleep.sleep_data['dad']['2016-07-23'].duration/1000/60/60)];
+      $scope.data_girl = [famDailySleep.sleep_data['girl']['2016-07-23'].duration/1000/60/60, (24-famDailySleep.sleep_data['girl']['2016-07-23'].duration/1000/60/60)];
+      $scope.data_boy = [famDailySleep.sleep_data['boy']['2016-07-23'].duration/1000/60/60, (24-famDailySleep.sleep_data['boy']['2016-07-23'].duration/1000/60/60)];
+       // console.log("from DoughnutCtrl");
+       // console.log(sleepDataFactory);
+       $scope.labels = ['hours slept','hours awake']; //["Download Sales", "In-Store Sales", "Mail-Order Sales"]; 
+       /*define colors here*/
+       $scope.colors = ['#0000FF', '#E0E0E0'];
+       $scope.options = {
+            cutoutPercentage: 70
+       };
+     })
 
     //given all ids, [id1, id2, id3, id4]
     

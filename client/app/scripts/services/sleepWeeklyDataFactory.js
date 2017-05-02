@@ -8,12 +8,49 @@
  * Factory in the FamilySleep.
  */
 
- /*
+  /*
 	Format
 
 	{
 		sleep_data : {
 			id : {
+				date1 : {
+					id: int,
+					name: String,
+					dateOfSleep: String,
+					duration: int,
+					mood: String,
+					minuteData: {
+						one : [ ints
+						],
+						two : [ ints
+						],
+						three: [ ints
+						]
+					},
+					startTime: Moment,
+					endTime: Moment
+				},
+				date2 : {
+					id: int,
+					name: String,
+					dateOfSleep: String,
+					duration: int,
+					mood: String,
+					minuteData: {
+						one : [ ints
+						],
+						two : [ ints
+						],
+						three: [ ints
+						]
+					},
+					startTime: Moment,
+					endTime: Moment
+				},
+				more dates
+			},
+			id2 : {
 				date : {
 					id: int,
 					name: String,
@@ -31,12 +68,13 @@
 					startTime: Moment,
 					endTime: Moment
 				}
-			}
+			},
+			more ids
 		}
 	
 	}
 
- */
+*/
 
  /* All controllers that are visualizing data need to have access to this factory singleton
  */
@@ -48,7 +86,7 @@
       - as well as the mood of the family member
  */
 angular.module('FamilySleep')
-  .factory('sleepDataFactory', function () {
+  .factory('sleepWeeklyDataFactory', function () {
    //I think we might want get/sets here
     return{};
   });
