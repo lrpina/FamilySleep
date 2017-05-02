@@ -12,6 +12,7 @@
 	Format
 
 	{
+		ids: [],
 		sleep_data : {
 			id : {
 				date1 : {
@@ -20,6 +21,7 @@
 					dateOfSleep: String,
 					duration: int,
 					mood: String,
+					moodAddedBy : String,
 					minuteData: {
 						one : [ ints
 						],
@@ -37,6 +39,7 @@
 					dateOfSleep: String,
 					duration: int,
 					mood: String,
+					moodAddedBy : String,
 					minuteData: {
 						one : [ ints
 						],
@@ -50,26 +53,6 @@
 				},
 				more dates
 			},
-			id2 : {
-				date : {
-					id: int,
-					name: String,
-					dateOfSleep: String,
-					duration: int,
-					mood: String,
-					minuteData: {
-						one : [ ints
-						],
-						two : [ ints
-						],
-						three: [ ints
-						]
-					},
-					startTime: Moment,
-					endTime: Moment
-				}
-			},
-			more ids
 		}
 	
 	}

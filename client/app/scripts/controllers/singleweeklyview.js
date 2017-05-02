@@ -45,7 +45,7 @@ angular.module('FamilySleep')
 	
 	promise.then(function(response) {
 		console.log("in SingleweeklyviewCtrl");
-		console.log(singleWeeklySleep.sleep_data);
+		console.log(singleWeeklySleep);
 		var rawData = singleWeeklySleep.sleep_data['mom'];
 		$scope.data = [];
 

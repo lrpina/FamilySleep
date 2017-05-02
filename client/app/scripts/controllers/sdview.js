@@ -49,7 +49,7 @@
     //have to wait for dbdate to populate 
     promise.then(function(response) {
       console.log('single daily');
-      console.log(sleepDataFactory.sleep_data);
+      console.log(sleepDataFactory);
       $scope.options = {
         scales: {
           xAxes: [{
