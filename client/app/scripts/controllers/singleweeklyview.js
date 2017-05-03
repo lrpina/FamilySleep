@@ -7,8 +7,9 @@
  * # SingleweeklyviewCtrl
  * Controller of the FamilySleep
  */
-angular.module('FamilySleep')
 
+
+angular.module('FamilySleep')
   .controller('SingleweeklyviewCtrl', [
 	'$scope', 'sleepWeeklyDataFactory', 'tractdbdata',  '$rootScope', function (
 		$scope, singleWeeklySleep, dbdata, $rootScope) {
@@ -52,7 +53,7 @@ angular.module('FamilySleep')
 			var day = {
 				data: [
 				  item.minuteData.one, 
-				  item.minuteData.two,
+				  item	.minuteData.two,
 				  item.minuteData.three,
 				],
 				labels : item.labels
@@ -130,7 +131,4 @@ angular.module('FamilySleep')
 
 		$scope.series = ["Sleep", "Movement", "Restless"];
 	});
-
-
-
   }]);

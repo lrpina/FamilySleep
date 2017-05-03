@@ -6,6 +6,7 @@
 @import "partials/signup";
 /*@import "partials/familydailyview";*/
 @import "./partials/recorder";
+@import "./partials/modalstyle";
 
 // .navbar-brand {
 //   padding: 3px;
@@ -42,6 +43,7 @@ nav a{
   border-style: solid;
   border-color: #7A7F86;
   margin-right: 20px;
+  padding: 15px;
 }
 
 nav a:first-child{

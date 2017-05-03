@@ -16,13 +16,11 @@
     ];
   });
 **/
-
  angular.module('FamilySleep')
  	.controller('SdviewCtrl', [
     '$rootScope', '$scope', 'sleepDataFactory', '$routeParams', 'tractdbdata', function(
       $rootScope, $scope, sleepDataFactory, $routeParams, dbdata) {
     $scope.id = sleepDataFactory.id;
-
     console.log("in SdviewCtrl");
 
     $rootScope.menu = [

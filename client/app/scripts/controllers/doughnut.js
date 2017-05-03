@@ -16,7 +16,7 @@ angular.module('FamilySleep')
   	 //console.log(sleepDataFactory);
   	 //$scope.data = sleepDataFactory.data;
   	 //$scope.data = [300, 500, 100];
-  	 /*the numbers are divided as they come there's not actual unit for the ring*/
-   
+  	 /*the numbers are divided as they come there's not actual unit for the ring*/ 
   	 
   }]);
+
