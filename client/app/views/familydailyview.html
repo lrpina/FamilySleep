@@ -3,10 +3,10 @@
 
 <!-- lots of repetition here, need to figure out how to call a function that just does this 4 times different parameters-->
 
-<div ng-controller="DatepickercontrollerCtrl as ctrl" ng-cloak="">
+<div ng-controller="DatepickercontrollerCtrl as ctrl" ng-cloak="" id="fdv-datepicker-placement">
 
     <div flex-gt-xs="">
-      <h4>Opening the calendar when the input is focused</h4>
+      <!-- <h4>Opening the calendar when the input is focused</h4> -->
       <md-datepicker ng-model="ctrl.myDate" md-open-on-focus=""></md-datepicker>
     </div>
 </div>
@@ -14,29 +14,29 @@
 <div class="row">
     <!--hard coding profile but can import it from the controller as well-->
     <!-- ideally this is where I have the same directive for the avatar-->
-    <img ng-src="images/avatars/momcircle.png" alt="momcircle" style="position: relative; top: 0px; left: 10px; width:60px; height:60px">
+    <img ng-src="images/avatars/momcircle.png" alt="momcircle" class="profile-pics">
         <!-- <p>{{id}}</p> -->
         <p>MOM</p>
     <!--<div vega spec="spec" style="position: relative; z-index: 2">-->
     <div ng-controller="ModalCrtl as $ctrl" class="mom">
         <!--TODO: hovering now showing up under and difficult to read, will need to look into how to control hover-->
         <div ng-if=$ctrl.selected.name>
-            <div ng-controller="DoughnutCtrl" style="height:150px;width:150px; margin-left:50px;">
+            <div ng-controller="DoughnutCtrl" class="chart-placement">
                 <canvas id="doughnut" class="chart-doughnut" chart-data="data" chart-labels="labels" chart-colors ="colors" chart-options="options">
                 </canvas>
             </div>
         </div>
            <!--ng-if=!$ctrl.selected.name LEFT OFF HERE-->
          <div ng-if=!$ctrl.selected.name>
-            <div ng-controller="PiechartcontrollerCtrl" style="height:150px;width:150px; margin-left:50px;">
+            <div ng-controller="PiechartcontrollerCtrl" class="chart-placement">
             <canvas id="pie" class="chart chart-pie" chart-data="data" chart-colors ="color" chart-options="options">
             </canvas>
             </div>
         </div>
         <!--inserts code for the modal popup window-->
-        <button type="button" class="btn btn-default" ng-click="$ctrl.open()" ng-hide="$ctrl.selected" style="position: absolute; top: 135px; left: 75px; z-index: 1; white-space: normal; max-width: 100px; color:white; background-color:transparent; border-color: #C39191; font-weight:bold;">How did you sleep?</button>
+        <button type="button" class="how-sleep-button btn btn-default" ng-click="$ctrl.open()" ng-hide="$ctrl.selected">How did you sleep?</button>
         <!--if I have the below it messes with position of the button, will need to figure out how to make all this relative-->
-        <img ng-src={{$ctrl.selected.image}} ng-show="$ctrl.selected" ng-click="$ctrl.open()" style="position: absolute; width:100px; height:100px;top: 115px; left: 75px; z-index: 1"> 
+        <img ng-src={{$ctrl.selected.image}} ng-show="$ctrl.selected" ng-click="$ctrl.open()" class="mood-pics"> 
         <!--this is where the profile pic is coming from the controller of the modal-->
         <!--<img ng-src={{$ctrl.profile}} style="position: absolute; top: 30px; left: 0px; height: 60px; width: 60px">-->
         <p> Mood:  {{$ctrl.selected.name}}</p>
@@ -50,9 +50,9 @@
         <div class="row">
           <!--hard coding profile but can import it from the controller as well-->
             <!-- ideally this is where I have the same directive for the avatar-->
-            <img ng-src="images/avatars/dadcircle.png" alt="dadcircle" style="position: relative; top: 0px; left: 10px; width:60px; height:60px">
+            <img ng-src="images/avatars/dadcircle.png" alt="dadcircle" class="profile-pics">
             <p>DAD</p>
-                    <div ng-controller="DoughnutCtrl">
+                    <div ng-controller="DoughnutCtrl" class="chart-placement">
                         <canvas id="doughnut" class="chart-doughnut" chart-data="data_dad" chart-labels="labels" chart-colors ="colors" chart-options="options"></canvas>
                     </div>
 
@@ -72,13 +72,13 @@
 
           <!--hard coding profile but can import it from the controller as well-->
             <!-- ideally this is where I have the same directive for the avatar-->
-            <img ng-src="images/avatars/girlcircle.png" alt="girlcircle" style="position: relative; top: 0px; left: 10px; width:60px; height:60px">
+            <img ng-src="images/avatars/girlcircle.png" alt="girlcircle" class="profile-pics">
                 <p>GIRL</p>
             <!-- <div ng-controller="PiechartcontrollerCtrl">
                 <canvas id="pie" class="chart chart-pie" chart-data="data" chart-colors ="color" chart-options="options">
                 </canvas>
             </div> -->
-                <div ng-controller="DoughnutCtrl">
+                <div ng-controller="DoughnutCtrl" class="chart-placement">
                         <canvas id="doughnut" class="chart-doughnut" chart-data="data_girl" chart-labels="labels" chart-colors ="colors" chart-options="options"></canvas>
                     </div>
                <p> Mood:  {{$ctrl.selected.name}}</p>
@@ -88,13 +88,13 @@
         <div class="row">
           <!--hard coding profile but can import it from the controller as well-->
             <!-- ideally this is where I have the same directive for the avatar-->
-            <img ng-src="images/avatars/soncircle.png" alt="soncircle" style="position: relative; top: 0px; left: 10px; width:60px; height:60px">
+            <img ng-src="images/avatars/soncircle.png" alt="soncircle" class="profile-pics">
                 <p>DAD</p>
            <!--  <div ng-controller="PiechartcontrollerCtrl">
                 <canvas id="pie" class="chart chart-pie" chart-data="data" chart-colors ="color" chart-options="options">
                 </canvas>
             </div> -->
-             <div ng-controller="DoughnutCtrl">
+             <div ng-controller="DoughnutCtrl" class="chart-placement">
                         <canvas id="doughnut" class="chart-doughnut" chart-data="data_boy" chart-labels="labels" chart-colors ="colors" chart-options="options"></canvas>
                     </div>
                <p> Mood:  {{$ctrl.selected.name}}</p>

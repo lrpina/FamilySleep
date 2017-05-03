@@ -4,9 +4,10 @@
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
 @import "partials/signup";
-/*@import "partials/familydailyview";*/
+@import "partials/familydailyview";
 @import "./partials/recorder";
 @import "./partials/modalstyle";
+@import "partials/familyweeklyview";
 
 // .navbar-brand {
 //   padding: 3px;
