@@ -29,10 +29,19 @@
 
   //getting data to visualize but this should only happen when mood has been self-report OR after a certain time of the day
   
-    //dbdata.get_sleep();
-    console.log("id -- in familydailyview controller");
-    $scope.id = sleepDataFactory.id;
-    console.log($scope.id);
+//     //dbdata.get_sleep();
+//     console.log("id -- in familydailyview controller");
+//     $scope.id = sleepDataFactory.id;
+//     console.log($scope.id);
+// =======
+//     dbdata.get_sleep();
+//     console.log("sleep obj in FDV");
+//     console.log(sleep);
+//     console.log("id -- in familydailyview controller");
+//     console.log(sleep.id);
+//     $scope.id = sleep.id;
+    
+// >>>>>>> 147698400ad7105c15cb16a6cdbbb8f5aed0daed
 
 
     var promise = dbdata.get_fam_daily_sleep_data(['mom','dad','girl','boy'],'2016-07-23');
