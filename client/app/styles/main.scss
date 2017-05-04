@@ -93,6 +93,7 @@ body {
 .footer {
   padding-left: 15px;
   padding-right: 15px;
+  color: white;
 }
 
 .recorder {
@@ -101,7 +102,7 @@ body {
   height: 9%;
   display: inline-block;
   margin-top: 10px;
-
+  color: white;
 }
 
 /* Custom page header */
@@ -121,12 +122,16 @@ body {
 /* Custom page footer */
 .footer {
   padding-top: 19px;
-  color: #777;
+  color: white;
   border-top: 1px solid #e5e5e5;
 }
 
 .container-narrow > hr {
   margin: 30px 0;
+}
+
+.container {
+  color: white;
 }
 
 /* Main marketing message and sign up button */
