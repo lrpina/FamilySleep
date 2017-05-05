@@ -159,6 +159,8 @@ angular.module('FamilySleep')
           console.log(factory.sleep_data);
           // console.log(factory.labels);
           var sleepData = {
+            "pid" : id,
+            'fid' : temp_data.sleep[0].logId,
             "dateOfSleep": temp_data.sleep[0].dateOfSleep,
             "duration": temp_data.sleep[0].duration,
             "mood": "",

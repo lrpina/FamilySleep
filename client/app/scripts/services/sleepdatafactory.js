@@ -17,7 +17,8 @@
 			ids : []
 			id : {
 				date : {
-					id: int,
+					pid: String
+					fid: int,
 					name: String,
 					dateOfSleep: String,
 					duration: int,
