@@ -50,8 +50,7 @@
   font-weight: bold;
   font-family: 'arial', 'sans-serif';
 }
-/*
--------------------------------------------------------------------*/
+/*-------------------------------------------------------------------*/
 
 /* datepicker styles */
 .md-button.md-icon-button {
@@ -121,4 +120,9 @@ md-icon {
   top: 115px; 
   left: 75px; 
   z-index: 1;
+}
+
+#family_moon {
+  height: 150px;
+  margin-top: 200px;
 }
