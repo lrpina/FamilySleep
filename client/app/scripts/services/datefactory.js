@@ -25,8 +25,26 @@
 */
 
 angular.module('FamilySleep')
-  .factory('dateFactory', function () {
-   //I think we might want get/sets here
-    return{};
+  .factory('dateFactory', function ($rootScope) {
+    //I think we might want get/sets here
+
+    var date = new Date();
+
+    var updateDate = function(newDate) {
+      date = newDate;
+      console.log('in dateFactory');
+      console.log(date);
+      $rootScope.$broadcast('user:updated');
+    };
+
+    var getDate = function() {
+      return date;
+    };
+
+    return{
+      updateDate : updateDate,
+      getDate : getDate,
+      date: date,
+    };
   });
 
