@@ -93,7 +93,7 @@ md-icon {
   z-index: 1; 
   white-space: normal; 
   max-width: 100px; 
-  color: white; 
+  color: #555555; 
   background-color: transparent; 
   border:0px solid transparent; 
   font-weight: bold;
@@ -101,8 +101,8 @@ md-icon {
 
 .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active {
     color: white;
-    background-color: #C39191;
-    border-color: #C39191;
+    background-color: #D6C3DB;
+    border-color: #D6C3DB;
 }
 
 .profile-pics {

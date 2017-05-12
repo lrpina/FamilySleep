@@ -10,7 +10,7 @@
 angular.module('FamilySleep')
   .controller('PiechartcontrollerCtrl', function ($scope) {
   	$scope.data =[200];
-  	$scope.color = ['#C39191'];//['#E55EA2'];
+  	$scope.color = ['#D6C3DB'];//['#C39191'];//['#E55EA2'];
   	$scope.options = {
   		elements: {
   			arc: {
