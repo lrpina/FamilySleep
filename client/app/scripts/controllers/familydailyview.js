@@ -34,11 +34,15 @@
     
     var updateData = function() {
       var newDate = dateFactory.getDateString();
+      console.log("in family-daily-view");
+      console.log(newDate);
       if(dateFactory.getWeekDateString() != []) {
       var promise = dbdata.get_fam_daily_sleep_data(['mom','dad','girl','boy'], newDate);
       promise.then(function(response) {
         console.log(famDailySleep);
         $scope.data = [famDailySleep.sleep_data['mom'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['mom'][newDate].duration/1000/60/60)];
+        /****this is a temporary fix this will need to figure out once I fix the view***/
+        $scope.id = famDailySleep.sleep_data['mom'][newDate].pid;
         $scope.data_dad = [famDailySleep.sleep_data['dad'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['dad'][newDate].duration/1000/60/60)];
         $scope.data_girl = [famDailySleep.sleep_data['girl'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['girl'][newDate].duration/1000/60/60)];
         $scope.data_boy = [famDailySleep.sleep_data['boy'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['boy'][newDate].duration/1000/60/60)];
