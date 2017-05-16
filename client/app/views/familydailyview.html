@@ -19,8 +19,11 @@
         <p>MOM</p>
     
     <div ng-controller="ModalCrtl as $ctrl" class="mom">
-        <!--TODO: hovering now showing up under and difficult to read, will need to look into how to control hover-->
+    <!-- LEFT OFF HERE IN TRYING TO FIGURE OUT THE FACTORY THAT MAINTAINS THE PICTURES AND NOT RESTARTS-->x``   
+        <!-- TODO: $ctrl.selected.name this is a state that comes from selfreport factory-->
+        <!-- <div ng-if=have access through scope-->
         <div ng-if=$ctrl.selected.name>
+        <!--TODO: hovering now showing up under and difficult to read, will need to look into how to control hover-->
             <div ng-controller="DoughnutCtrl" class="chart-placement">
                 <canvas id="doughnut" class="chart-doughnut" chart-data="data" chart-labels="labels" chart-colors ="colors" chart-options="options">
                 </canvas>
@@ -33,12 +36,11 @@
             </div>
         </div>
         <!--inserts code for the modal popup window-->
-        <!--TODO  -->
         <button type="button" class="how-sleep-button btn btn-default" ng-click="$ctrl.open()" ng-hide="$ctrl.selected">How did you sleep?</button>
         
         <!-- GOT RID OF THE BUTTON -->
         <!--<img ng-src={{$ctrl.selected.image}} ng-show="$ctrl.selected" ng-click="$ctrl.open()" class="mood-pics"> -->
-        <img ng-src={{$ctrl.selected.image}} ng-show="$ctrl.selected" ng-click="$ctrl.open()" class="mood-pics">
+        <img ng-src={{$ctrl.selected.image}} ng-show="$ctrl.selected" class="mood-pics">
         <!-- TODO need to add text of mood selected -->
         
         <p> Mood:  {{$ctrl.selected.name}}</p>

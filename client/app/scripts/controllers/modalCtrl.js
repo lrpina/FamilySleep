@@ -37,10 +37,11 @@ angular.module('FamilySleep').controller('ModalCrtl', ['selfReportState', '$uibM
   //selected defaults
   ///***TODO this will probably come from selfreport factory state
   /***TODO hard coding mom for now but need to know*//*
-  if (selfReportState.mom.selected==null) {
+  need to expose selfReportState to scope so that I can test it in viewer
+  if (selfReportState.mom.selected==null) { //then do all the logic below
     $ctrl.selected = null;
     $ctrl.selectedFam = null;  
-  } else {
+  } else { //don't need to do anything I believe
     $ctrl.selected = selfReportState.mom.selected;
     $ctrl.selectedFam = selfReportState.mom.selected;  
   }
