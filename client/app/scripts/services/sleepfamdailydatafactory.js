@@ -16,7 +16,8 @@
 		sleep_data : {
 			id : {
 				date : {
-					id: int,
+					pid: String,
+					fid: int,
 					name: String,
 					dateOfSleep: String,
 					duration: int,
@@ -36,7 +37,8 @@
 			},
 			id2 : {
 				date : {
-					id: int,
+					pid: String,
+					fid: int,
 					name: String,
 					dateOfSleep: String,
 					duration: int,

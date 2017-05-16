@@ -30,6 +30,7 @@
 
           <a ng-repeat="n in menu" href='{{n.url}}' class='{{n.tag}}' ng-click="updateActive(n.tag)" >{{n.title}}</a>
       </nav>
+      <date-picker></date-picker>
       <div class="recorder">
         <recorder></recorder>
       </div>
@@ -110,9 +111,10 @@
         <script src="scripts/controllers/fambarview.js"></script>
         <script src="scripts/controllers/piechartcontroller.js"></script>
         <script src="scripts/controllers/emptybarchart.js"></script>
-        <script src="scripts/controllers/datepickercontroller.js"></script>
         <script src="scripts/services/datefactory.js"></script>
         <script src="scripts/services/selfreportstate.js"></script>
+        <script src="scripts/services/sleepdailydatafactory.js"></script>
+        <script src="scripts/directives/datepicker.js"></script>
         <!-- endbuild -->
 </body>
 </html>
