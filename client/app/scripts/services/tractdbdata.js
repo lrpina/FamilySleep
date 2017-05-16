@@ -27,7 +27,7 @@
 */
 angular.module('FamilySleep')
   .factory('tractdbdata', 
-    ['$http', '$q', 'sleepDataFactory', 'sleepFamDailyDataFactory', 'sleepWeeklyDataFactory', 'sleepFamWeeklyDataFactory',
+    ['$http', '$q', 'sleepDailyDataFactory', 'sleepFamDailyDataFactory', 'sleepWeeklyDataFactory', 'sleepFamWeeklyDataFactory',
     function ($http, $q, singleDailySleep, famDailySleep, singleWeeklySleep, famWeeklySleep) { //I want to know if I can use a different name when it's injecteds  
 
 
