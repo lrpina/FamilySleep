@@ -11,8 +11,8 @@
 
 angular.module('FamilySleep')
   .controller('SingleweeklyviewCtrl', [
-	'$scope', 'sleepWeeklyDataFactory', 'tractdbdata',  '$rootScope', function (
-		$scope, singleWeeklySleep, dbdata, $rootScope) {
+	'$scope', 'sleepWeeklyDataFactory', 'tractdbdata',  '$rootScope', 'dateFactory', function (
+		$scope, singleWeeklySleep, dbdata, $rootScope, dateFactory) {
 
 	$scope.id = singleWeeklySleep.id;
 	$rootScope.menu = [
@@ -40,11 +40,15 @@ angular.module('FamilySleep')
 	//$scope.id = sleepDataFactory.id;
 	console.log("in SingleweeklyviewCtrl");
 
-	// console.log($scope.id);
-	$scope.test = "test";
-	console.log($scope.test);
-	$scope.updateData = function () {
-		var promise = dbdata.get_single_weekly_sleep_data('mom', ['2016-07-23','2016-07-24','2016-07-25','2016-07-26']);
+	$scope.$on('date:updated', function() {
+    updateData();
+  });
+
+	var updateData = function () {
+		if(dateFactory.getWeekDateString() != []) {
+		var promise = dbdata.get_single_weekly_sleep_data('mom', dateFactory.getWeekDateString()
+			//['2016-07-23','2016-07-24','2016-07-25','2016-07-26']
+			);
 		
 		promise.then(function(response) {
 			console.log("in SingleweeklyviewCtrl");
@@ -134,6 +138,9 @@ angular.module('FamilySleep')
 
 			$scope.series = ["Sleep", "Movement", "Restless"];
 		});
+	}else {
+        alert('date factory get week didnt populate');
+      }
 	}
-	$scope.updateData();
-  }]);
+	updateData();
+}]);

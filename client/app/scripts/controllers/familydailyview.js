@@ -28,14 +28,13 @@
       $rootScope.active = item;
     };
 
-    $scope.$on('user:updated', function() {
+    $scope.$on('date:updated', function() {
       updateData();
     });
     
     var updateData = function() {
-      var newRawDate = dateFactory.getDate();
-      var newDate = newRawDate.getFullYear() + "-" + (newRawDate.getMonth() > 9 ? "" : "0" ) + (newRawDate.getMonth()+1) + '-' + newRawDate.getDate();
- 
+      var newDate = dateFactory.getDateString();
+      if(dateFactory.getWeekDateString() != []) {
       var promise = dbdata.get_fam_daily_sleep_data(['mom','dad','girl','boy'], newDate);
       promise.then(function(response) {
         console.log(famDailySleep);
@@ -52,6 +51,9 @@
               cutoutPercentage: 70
          };
       });
+    }else {
+        alert('date factory get week didnt populate');
+      }
     }
     updateData();
 

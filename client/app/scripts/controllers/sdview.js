@@ -7,15 +7,6 @@
  * # SdviewCtrl
  * Controller of the FamilySleep
  */
-/**angular.module('FamilySleep')
-  .controller('SdviewCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
-**/
  angular.module('FamilySleep')
  	.controller('SdviewCtrl', ['$rootScope', '$scope', 'sleepDailyDataFactory', '$routeParams', 'tractdbdata', 'dateFactory',
     function($rootScope, $scope, sleepDataFactory, $routeParams, dbdata, dateFactory) {
@@ -44,14 +35,13 @@
       $rootScope.active = item;
     };
 
-    $scope.$on('user:updated', function() {
+    $scope.$on('date:updated', function() {
       updateData();
     });
 
     var updateData = function() {
-      var newRawDate = dateFactory.getDate();
-      var newDate = newRawDate.getFullYear() + "-" + (newRawDate.getMonth() > 9 ? "" : "0" ) + (newRawDate.getMonth()+1) + '-' + newRawDate.getDate();
-
+      var newDate = dateFactory.getDateString();
+      if(dateFactory.getWeekDateString() != []) {
       var promise = dbdata.get_single_daily_sleep('mom', newDate);
       //have to wait for dbdate to populate 
       promise.then(function(response) {
@@ -137,6 +127,9 @@
         $scope.series = ["Sleep", "Movement", "Restless"];
 
       });
+    }else {
+        alert('date factory get week didnt populate');
+      }
     }
     updateData();
   }]);

@@ -9,8 +9,8 @@
  */
 angular.module('FamilySleep')
   .controller('FamweeklyviewCtrl', [
-  	'$scope', '$rootScope', 'tractdbdata', 'sleepFamWeeklyDataFactory', function(
-  		$scope, $rootScope, dbdata, famWeeklySleep) {
+  	'$scope', '$rootScope', 'tractdbdata', 'sleepFamWeeklyDataFactory', 'dateFactory', function(
+  		$scope, $rootScope, dbdata, famWeeklySleep, dateFactory) {
 	$rootScope.menu = [
 		{
 		    title: 'Family Daily View',
@@ -29,10 +29,22 @@ angular.module('FamilySleep')
       $rootScope.active = item;
     };
 
-    var promise = dbdata.get_fam_weekly_sleep_data(['mom','dad','girl','boy'],['2016-07-23', '2016-07-24', '2016-07-25','2016-07-26', '2016-07-27', '2016-07-28', '2016-07-29']);
-    promise.then(function(response) {
-    	console.log('in family weekly view');
-      	console.log(famWeeklySleep);
-  	});
+    $scope.$on('date:updated', function() {
+      updateData();
+    });
 
+    var updateData = function () {
+      console.log(dateFactory.getWeekDateString());
+      if(dateFactory.getWeekDateString() != []) {
+        var promise = dbdata.get_fam_weekly_sleep_data(['mom','dad','girl','boy'], dateFactory.getWeekDateString());
+        promise.then(function(response) {
+        	console.log('in family weekly view');
+          console.log(famWeeklySleep);
+      	});
+      } else {
+        alert('date factory get week didnt populate');
+      }
+    }
+
+    updateData();
 }]);
