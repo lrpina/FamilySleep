@@ -1,5 +1,6 @@
 'use strict';
-angular.module('FamilySleep').controller('ModalCrtl', function($uibModal, $log, $document){
+/*** TODO need to add mood selected to the sleep object **/
+angular.module('FamilySleep').controller('ModalCrtl', ['selfReportState', '$uibModal', '$log', '$document', function(selfReportState, $uibModal, $log, $document){
   var templateDir = 'views/templates/';
 	var $ctrl = this;	 
 	var moodImages = [
@@ -34,8 +35,17 @@ angular.module('FamilySleep').controller('ModalCrtl', function($uibModal, $log, 
 	$ctrl.animationsEnabled = true;
 
   //selected defaults
-  $ctrl.selected = null;
-  $ctrl.selectedFam = null;
+  ///***TODO this will probably come from selfreport factory state
+  /***TODO hard coding mom for now but need to know*//*
+  need to expose selfReportState to scope so that I can test it in viewer
+  if (selfReportState.mom.selected==null) { //then do all the logic below
+    $ctrl.selected = null;
+    $ctrl.selectedFam = null;  
+  } else { //don't need to do anything I believe
+    $ctrl.selected = selfReportState.mom.selected;
+    $ctrl.selectedFam = selfReportState.mom.selected;  
+  }
+  */
   //could make an arg for fcn where we take the template that we want to use.
   //this could be that now we can use 
 	$ctrl.open = function (size, parentSelector) {
@@ -72,7 +82,7 @@ angular.module('FamilySleep').controller('ModalCrtl', function($uibModal, $log, 
       $log.info('Modal dismissed at: ' + new Date());
     });
   };
-});
+}]);
 
 // Please note that $uibModalInstance represents a modal window (instance) dependency.
 // It is not the same as the $uibModal service used above.

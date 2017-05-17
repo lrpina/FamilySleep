@@ -10,16 +10,18 @@
     <img ng-src="images/avatars/momcircle.png" alt="momcircle" class="profile-pics">
         <!-- <p>{{id}}</p> -->
         <p>MOM</p>
-    <!--<div vega spec="spec" style="position: relative; z-index: 2">-->
+    
     <div ng-controller="ModalCrtl as $ctrl" class="mom">
-        <!--TODO: hovering now showing up under and difficult to read, will need to look into how to control hover-->
+    <!-- LEFT OFF HERE IN TRYING TO FIGURE OUT THE FACTORY THAT MAINTAINS THE PICTURES AND NOT RESTARTS-->x``   
+        <!-- TODO: $ctrl.selected.name this is a state that comes from selfreport factory-->
+        <!-- <div ng-if=have access through scope-->
         <div ng-if=$ctrl.selected.name>
+        <!--TODO: hovering now showing up under and difficult to read, will need to look into how to control hover-->
             <div ng-controller="DoughnutCtrl" class="chart-placement">
                 <canvas id="doughnut" class="chart-doughnut" chart-data="data" chart-labels="labels" chart-colors ="colors" chart-options="options">
                 </canvas>
             </div>
         </div>
-           <!--ng-if=!$ctrl.selected.name LEFT OFF HERE-->
          <div ng-if=!$ctrl.selected.name>
             <div ng-controller="PiechartcontrollerCtrl" class="chart-placement">
             <canvas id="pie" class="chart chart-pie" chart-data="data" chart-colors ="color" chart-options="options">
@@ -28,18 +30,21 @@
         </div>
         <!--inserts code for the modal popup window-->
         <button type="button" class="how-sleep-button btn btn-default" ng-click="$ctrl.open()" ng-hide="$ctrl.selected">How did you sleep?</button>
-        <!--if I have the below it messes with position of the button, will need to figure out how to make all this relative-->
-        <img ng-src={{$ctrl.selected.image}} ng-show="$ctrl.selected" ng-click="$ctrl.open()" class="mood-pics"> 
-        <!--this is where the profile pic is coming from the controller of the modal-->
-        <!--<img ng-src={{$ctrl.profile}} style="position: absolute; top: 30px; left: 0px; height: 60px; width: 60px">-->
+        
+        <!-- GOT RID OF THE BUTTON -->
+        <!--<img ng-src={{$ctrl.selected.image}} ng-show="$ctrl.selected" ng-click="$ctrl.open()" class="mood-pics"> -->
+        <img ng-src={{$ctrl.selected.image}} ng-show="$ctrl.selected" class="mood-pics">
+        <!-- TODO need to add text of mood selected -->
+        
         <p> Mood:  {{$ctrl.selected.name}}</p>
         <p> User: {{$ctrl.selectedFam}}</p>
         
         <div ng-if=$ctrl.selected.name>
-        <a ng-href="#!/sdview/{{id}}" class="button btn-primary"> Single Daily View</a> <!--want an ng-if here to show only after daily sleep and self-report is available -->
+        <!--TODO bug: need to fix this id based on how the data is organized now -->
+        <a ng-href="#!/sdview/{{id}}" class="button btn-primary"> Single Daily View</a> <!--TODO want an ng-if here to show only after daily sleep and self-report is available -->
 
         </div>
-</div>
+    </div>
         <div class="row">
           <!--hard coding profile but can import it from the controller as well-->
             <!-- ideally this is where I have the same directive for the avatar-->
