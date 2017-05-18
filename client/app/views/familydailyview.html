@@ -9,8 +9,8 @@
     <!-- ideally this is where I have the same directive for the avatar-->
     <img ng-src="images/avatars/momcircle.png" alt="momcircle" class="profile-pics">
         <!-- <p>{{id}}</p> -->
-        <p>MOM</p>
-    
+    <p class="fdv-names">MOM</p>
+    <!--<div vega spec="spec" style="position: relative; z-index: 2">-->
     <div ng-controller="ModalCrtl as $ctrl" class="mom">
     <!-- LEFT OFF HERE IN TRYING TO FIGURE OUT THE FACTORY THAT MAINTAINS THE PICTURES AND NOT RESTARTS-->x``   
         <!-- TODO: $ctrl.selected.name this is a state that comes from selfreport factory-->
@@ -49,7 +49,7 @@
           <!--hard coding profile but can import it from the controller as well-->
             <!-- ideally this is where I have the same directive for the avatar-->
             <img ng-src="images/avatars/dadcircle.png" alt="dadcircle" class="profile-pics">
-            <p>DAD</p>
+            <p class="fdv-names">DAD</p>
                     <div ng-controller="DoughnutCtrl" class="chart-placement">
                         <canvas id="doughnut" class="chart-doughnut" chart-data="data_dad" chart-labels="labels" chart-colors ="colors" chart-options="options"></canvas>
                     </div>
@@ -61,8 +61,9 @@
 </div>
     <div class="col-xs-4"> 
     	<!--this isn't correct. Trying to figure out where to put the moon in the middle-->
-    	<p> THERE IS A DIV COLUMN HERE TO FIT IN THE MOON</p>
-    	<p>this is where the moon goes</p> <!-- need to figure out to center this-->   
+    	<!--<p> THERE IS A DIV COLUMN HERE TO FIT IN THE MOON</p>
+    	<p>this is where the moon goes</p> --> <!-- need to figure out to center this-->
+        <img src="images/moons/moon7a.png" alt="moon" id="family_moon">   
     </div>
 
     <div class="col-xs-4">
@@ -71,7 +72,7 @@
           <!--hard coding profile but can import it from the controller as well-->
             <!-- ideally this is where I have the same directive for the avatar-->
             <img ng-src="images/avatars/girlcircle.png" alt="girlcircle" class="profile-pics">
-                <p>GIRL</p>
+            <p class="fdv-names">GIRL</p>
             <!-- <div ng-controller="PiechartcontrollerCtrl">
                 <canvas id="pie" class="chart chart-pie" chart-data="data" chart-colors ="color" chart-options="options">
                 </canvas>
@@ -87,7 +88,7 @@
           <!--hard coding profile but can import it from the controller as well-->
             <!-- ideally this is where I have the same directive for the avatar-->
             <img ng-src="images/avatars/soncircle.png" alt="soncircle" class="profile-pics">
-                <p>DAD</p>
+            <p class="fdv-names">DAD</p>
            <!--  <div ng-controller="PiechartcontrollerCtrl">
                 <canvas id="pie" class="chart chart-pie" chart-data="data" chart-colors ="color" chart-options="options">
                 </canvas>

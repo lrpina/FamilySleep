@@ -4,8 +4,8 @@
 */
 
 .familyweeklyview-container {
-  margin-left: -150px;
-  margin-right: -600px;
+  margin-left: -100px;
+  margin-right: -100px;
   color: white;
 }
 
@@ -17,4 +17,16 @@
   margin-top: -75px;
   margin-bottom: 50px;
   margin-left: 350px;
+}
+
+.fwv-names {
+	text-align: center;
+}
+
+.fwv-profile-pics {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 60px;
+	height: 60px;
 }
