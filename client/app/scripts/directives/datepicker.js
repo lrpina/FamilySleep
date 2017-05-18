@@ -23,7 +23,16 @@ angular.module('FamilySleep')
 		  	$scope.pickNewDate = function () {
 		  		dateFactory.updateDate($scope.myDate);
 		  		console.log($route.current.controller);
-		  	}
+		  	};
+        $scope.today = function () {
+          $scope.myDate = new Date();
+        };
+        $scope.yesterday = function () {
+          $scope.myDate = moment(new Date()).subtract(1, 'days').toDate();
+        };
+        $scope.tomorrow = function () {
+          $scope.myDate = moment(new Date()).add(1, 'days').toDate();
+        };
 		  }],
     };
   });
