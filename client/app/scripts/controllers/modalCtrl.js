@@ -35,6 +35,7 @@ angular.module('FamilySleep').controller('ModalCrtl', ['selfReportState', '$uibM
 	$ctrl.animationsEnabled = true;
   /**asigning selfReportState factory to states to have access in the viewer*/
   $ctrl.states = selfReportState;
+  //$ctrl.states.child1.state = true;
   
   /*console.log("in ModalCrtl");
   if(!$ctrl.states.mom.state){
