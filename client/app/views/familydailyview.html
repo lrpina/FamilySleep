@@ -1,4 +1,4 @@
-<div class="familydailyview-container" ng-controller="FamilydailyviewCtrl"> <!--do I need this controller here? test to get this to work with out-->
+…<div class="familydailyview-container" ng-controller="FamilydailyviewCtrl"> <!--do I need this controller here? test to get this to work with out-->
 <!--need 1x2 | 1  for moon| 1x2-->
 
 <!-- lots of repetition here, need to figure out how to call a function that just does this 4 times different parameters-->
@@ -8,42 +8,38 @@
     <!--hard coding profile but can import it from the controller as well-->
     <!-- ideally this is where I have the same directive for the avatar-->
     <img ng-src="images/avatars/momcircle.png" alt="momcircle" class="profile-pics">
-        <!-- <p>{{id}}</p> -->
+   
     <p class="fdv-names">MOM</p>
-    <!--<div vega spec="spec" style="position: relative; z-index: 2">-->
+   
     <div ng-controller="ModalCrtl as $ctrl" class="mom">
-    <!-- LEFT OFF HERE IN TRYING TO FIGURE OUT THE FACTORY THAT MAINTAINS THE PICTURES AND NOT RESTARTS-->x``   
-        <!-- TODO: $ctrl.selected.name this is a state that comes from selfreport factory-->
-        <!-- <div ng-if=have access through scope-->
-        <div ng-if=$ctrl.selected.name>
+        <div ng-if=$ctrl.states.mom.state>
         <!--TODO: hovering now showing up under and difficult to read, will need to look into how to control hover-->
             <div ng-controller="DoughnutCtrl" class="chart-placement">
                 <canvas id="doughnut" class="chart-doughnut" chart-data="data" chart-labels="labels" chart-colors ="colors" chart-options="options">
                 </canvas>
             </div>
+             <img ng-src={{$ctrl.states.mom.image}} class="mood-pics">
+             <p> Mood reported to be {{$ctrl.states.mom.mood | uppercase}}</p>
+             <!--TODO bug: need to fix this id based on how the data is organized now -->
+            <a ng-href="#!/sdview/{{id}}" class="button btn-primary"> Single Daily View</a> <!--TODO want an ng-if here to show only after daily sleep and self-report is available -->
         </div>
-         <div ng-if=!$ctrl.selected.name>
+         <div ng-if=!$ctrl.states.mom.state>
             <div ng-controller="PiechartcontrollerCtrl" class="chart-placement">
-            <canvas id="pie" class="chart chart-pie" chart-data="data" chart-colors ="color" chart-options="options">
-            </canvas>
+                <canvas id="pie" class="chart chart-pie" chart-data="data" chart-colors ="color" chart-options="options">
+                </canvas>
             </div>
+          <!--inserts code for the modal popup window-->
+            <button type="button" class="how-sleep-button btn btn-default" ng-click="$ctrl.open('mom')" ng-hide="$ctrl.selected">How did you sleep?</button>
         </div>
-        <!--inserts code for the modal popup window-->
-        <button type="button" class="how-sleep-button btn btn-default" ng-click="$ctrl.open()" ng-hide="$ctrl.selected">How did you sleep?</button>
+      
         
         <!-- GOT RID OF THE BUTTON -->
         <!--<img ng-src={{$ctrl.selected.image}} ng-show="$ctrl.selected" ng-click="$ctrl.open()" class="mood-pics"> -->
-        <img ng-src={{$ctrl.selected.image}} ng-show="$ctrl.selected" class="mood-pics">
         <!-- TODO need to add text of mood selected -->
         
-        <p> Mood:  {{$ctrl.selected.name}}</p>
-        <p> User: {{$ctrl.selectedFam}}</p>
-        
-        <div ng-if=$ctrl.selected.name>
-        <!--TODO bug: need to fix this id based on how the data is organized now -->
-        <a ng-href="#!/sdview/{{id}}" class="button btn-primary"> Single Daily View</a> <!--TODO want an ng-if here to show only after daily sleep and self-report is available -->
-
-        </div>
+        <!--<p> Mood:  {{$ctrl.selected.name}}</p>
+        <p> User: {{$ctrl.selectedFam}}</p>-->
+        <p> HERE momState: {{$ctrl.states.mom.mood}}</p>
     </div>
         <div class="row">
           <!--hard coding profile but can import it from the controller as well-->

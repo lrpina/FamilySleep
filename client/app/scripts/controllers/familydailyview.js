@@ -8,8 +8,8 @@
  * Controller of the FamilySleep
  */
  angular.module('FamilySleep')
-  .controller('FamilydailyviewCtrl', ['$scope', '$rootScope', 'tractdbdata', 'sleepDataFactory', 'sleepFamDailyDataFactory', 'dateFactory',
-    function($scope, $rootScope, dbdata, sleepDataFactory, famDailySleep, dateFactory){
+  .controller('FamilydailyviewCtrl', ['$scope', '$rootScope', 'tractdbdata', 'sleepDataFactory', 'sleepFamDailyDataFactory', 'dateFactory', 'selfReportState',
+    function($scope, $rootScope, dbdata, sleepDataFactory, famDailySleep, dateFactory, selfReportState){
     $rootScope.menu = [
       {
         title: 'Family Daily View',
@@ -34,8 +34,8 @@
     
     var updateData = function() {
       var newDate = dateFactory.getDateString();
-      console.log("in family-daily-view");
-      console.log(newDate);
+      
+      //console.log(newDate);
       if(dateFactory.getWeekDateString() != []) {
       var promise = dbdata.get_fam_daily_sleep_data(['mom','dad','girl','boy'], newDate);
       promise.then(function(response) {

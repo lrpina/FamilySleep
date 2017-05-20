@@ -69,7 +69,7 @@ angular.module('FamilySleep')
       date: date,
       getDateString: getDateString,
       getWeekDate : getWeekDate,
-      getWeekDateString : getWeekDateString,
+      getWeekDateString : getWeekDateString
 
     };
   });
