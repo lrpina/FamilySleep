@@ -2,146 +2,38 @@
 <!--need 1x2 | 1  for moon| 1x2-->
 
 <!-- lots of repetition here, need to figure out how to call a function that just does this 4 times different parameters-->
-<!--
+
+<div ng-repeat="member in family">
 <div class="col-xs-4">
-<div ng-controller="ModalCrtl as $ctrl">
- <button type="button" class="btn btn-default" ng-click="$ctrl.open('mom')">Q1?</button>
-
-  <button type="button" class="btn btn-default" ng-click="$ctrl.open('dad')">Q2?</button>
-</div>
-</div>-->
-<div class="col-xs-4">
-<div class="row">
-    <!--hard coding profile but can import it from the controller as well-->
-    <!-- ideally this is where I have the same directive for the avatar-->
-    <img ng-src="images/avatars/momcircle.png" alt="momcircle" class="profile-pics">
-   
-    <p class="fdv-names">MOM</p>
-   
-    <div ng-controller="ModalCrtl as $ctrl" class="mom">
-        <div ng-if=$ctrl.states.mom.state>
-        <!--TODO: hovering now showing up under and difficult to read, will need to look into how to control hover-->
-            <div ng-controller="DoughnutCtrl" class="chart-placement">
-                <canvas id="doughnut" class="chart-doughnut" chart-data="data" chart-labels="labels" chart-colors ="colors" chart-options="options">
-                </canvas>
-            </div>
-             <img ng-src={{$ctrl.states.mom.image}} class="mood-pics">
-             <p> Mood reported to be {{$ctrl.states.mom.mood | uppercase}}</p>
-             <!--TODO bug: need to fix this id based on how the data is organized now -->
-            <a ng-href="#!/sdview/{{id}}" class="button btn-primary"> Single Daily View</a> <!--TODO want an ng-if here to show only after daily sleep and self-report is available -->
-        </div>
-         <div ng-if=!$ctrl.states.mom.state>
-            <div ng-controller="PiechartcontrollerCtrl" class="chart-placement">
-                <canvas id="pie" class="chart chart-pie" chart-data="data" chart-colors ="color" chart-options="options">
-                </canvas>
-            </div>
-          <!--inserts code for the modal popup window-->
-            <button type="button" class="how-sleep-button btn btn-default" ng-click="$ctrl.open('mom')">How did you sleep?</button>
-
-        </div>
-            
-        <p> HERE momState: {{$ctrl.states.mom.mood}}</p>
-</div>
-</div>
-
-    <!--*********other family member starts here****-->
-    <div class="row">
-          <!--hard coding profile but can import it from the controller as well-->
-            <!-- ideally this is where I have the same directive for the avatar-->
-            <img ng-src="images/avatars/dadcircle.png" alt="dadcircle" class="profile-pics">
-            <p class="fdv-names">DAD</p>
-            <div ng-controller="ModalCrtl as $ctrl" class="dad">
-                <div ng-if=$ctrl.states.dad.state>
-                <!--TODO: hovering now showing up under and difficult to read, will need to look into how to control hover-->
+    <div ng-show="member.type=='family'">
+        <div class="row">
+            <img ng-src={{member.avatar}} class="fdv-names">
+            <p class="fdv-names">{{member.name}}</p>
+            <div ng-controller="ModalCrtl as $ctrl">
+                <div ng-if=$ctrl.states[member.name].state>
                     <div ng-controller="DoughnutCtrl" class="chart-placement">
-                        <canvas id="doughnut" class="chart-doughnut" chart-data="data_dad" chart-labels="labels" chart-colors ="colors" chart-options="options">
+                        <canvas id="doughnut" class="chart-doughnut" chart-data="member.sleep" chart-labels="labels" chart-colors ="colors" chart-options="options">
                         </canvas>
                     </div>
-             <img ng-src={{$ctrl.states.dad.image}}>
-             <p> Mood reported to be {{$ctrl.states.dad.mood | uppercase}}</p>
-             <!--TODO bug: need to fix this id based on how the data is organized now -->
-             <!--TODO want an ng-if here to show only after daily sleep and self-report is available -->
+                     <img ng-src={{$ctrl.states[member.name].image}} class="mood-pics">
+                     <p> Mood reported to be {{$ctrl.states[member.name].mood | uppercase}}</p>
                 </div>
-            <div ng-if=!$ctrl.states.dad.state>
-                <div ng-controller="PiechartcontrollerCtrl" class="chart-placement">
+                <div ng-if=!$ctrl.states[member.name].state>
+                 <div ng-controller="PiechartcontrollerCtrl" class="chart-placement">
                     <canvas id="pie" class="chart chart-pie" chart-data="data" chart-colors ="color" chart-options="options">
                     </canvas>
                 </div>
                 <!--inserts code for the modal popup window-->
-                <button type="button" class="btn btn-default" ng-click="$ctrl.open('dad')">How did you sleep?</button>
-            </div>
-            <!--<p> HERE dadState: {{$ctrl.states.dad.mood}}</p>-->
-        </div>
-    </div>
-
-    </div>
-    <div class="col-xs-4"> 
-    	<!--this isn't correct. Trying to figure out where to put the moon in the middle-->
-    	<!--<p> THERE IS A DIV COLUMN HERE TO FIT IN THE MOON</p>
-    	<p>this is where the moon goes</p> --> <!-- need to figure out to center this-->
-        <img src="images/moons/moon7a.png" alt="moon" id="family_moon">   
-    </div>
-
-    <div class="col-xs-4">
-        <div class="row">
-
-          <!--hard coding profile but can import it from the controller as well-->
-            <!-- ideally this is where I have the same directive for the avatar-->
-            <img ng-src="images/avatars/girlcircle.png" alt="girlcircle" class="profile-pics">
-            <p class="fdv-names">GIRL</p>
-
-            <div ng-controller="ModalCrtl as $ctrl" class="child1">
-                <div ng-if=$ctrl.states.child1.state>
-                <!--TODO: hovering now showing up under and difficult to read, will need to look into how to control hover-->
-                    <div ng-controller="DoughnutCtrl" class="chart-placement">
-                        <canvas id="doughnut" class="chart-doughnut" chart-data="data_girl" chart-labels="labels" chart-colors ="colors" chart-options="options">
-                        </canvas>
-                    </div>
-                    <img ng-src={{$ctrl.states.child1.image}}>
-                    <p> Mood reported to be {{$ctrl.states.child1.mood | uppercase}}</p>
+                <button type="button" class="how-sleep-button btn btn-default" ng-click="$ctrl.open(member.name)">How did you sleep?</button>
                 </div>
-                <div ng-if=!$ctrl.states.child1.state>
-                    <div ng-controller="PiechartcontrollerCtrl">
-                        <div ng-controller="PiechartcontrollerCtrl" class="chart-placement">
-                            <canvas id="pie" class="chart chart-pie" chart-data="data" chart-colors ="color" chart-options="options">
-                            </canvas>
-                        </div>
-                         <button type="button" class="btn btn-default" ng-click="$ctrl.open('child1')">How did you sleep?</button>
-                    </div> 
-                </div>
-                <!--<p> Mood:  {{$ctrl.selected.name}}</p>
-                <p> User: {{$ctrl.selectedFam}}</p>-->
-                <!--<p> HERE chil1State: {{$ctrl.states.child1.mood}}</p>-->
-            </div>
-        </div>
-
-        <div class="row">
-          <!--hard coding profile but can import it from the controller as well-->
-            <!-- ideally this is where I have the same directive for the avatar-->
-            <img ng-src="images/avatars/soncircle.png" alt="soncircle" class="profile-pics">
-            <p class="fdv-names">SON</p>
-                <div ng-controller="ModalCrtl as $ctrl" class="child2">
-                    <div ng-if=$ctrl.states.child2.state>
-                    <!--TODO: hovering now showing up under and difficult to read, will need to look into how to control hover-->
-                    <div ng-controller="DoughnutCtrl" class="chart-placement">
-                        <canvas id="doughnut" class="chart-doughnut" chart-data="data_girl" chart-labels="labels" chart-colors ="colors" chart-options="options">
-                        </canvas>
-                    </div>
-                    <img ng-src={{$ctrl.states.child2.image}}>
-                    <p> Mood reported to be {{$ctrl.states.child2.mood | uppercase}}</p>
-                    </div>
-                    <div ng-if=!$ctrl.states.child2.state>
-                        <div ng-controller="PiechartcontrollerCtrl" class="chart-placement">
-                            <canvas id="pie" class="chart chart-pie" chart-data="data" chart-colors ="color" chart-options="options">
-                            </canvas>
-                             <button type="button" class="btn btn-default" ng-click="$ctrl.open('child2')">How did you sleep?</button>
-                        </div>
-                    </div>
-                <!--<p> Mood:  {{$ctrl.selected.name}}</p>
-                <p> User: {{$ctrl.selectedFam}}</p>-->
-                <!--<p> HERE child2State: {{$ctrl.states.child2.mood}}</p>-->
             </div>
         </div>
     </div>
+    <div ng-show="member.type=='moon'">
+        <img ng-src={{member.image}} alt="moon" id="family_moon">
+    </div>
+    </div>
+</div>
+
 </div>
 
