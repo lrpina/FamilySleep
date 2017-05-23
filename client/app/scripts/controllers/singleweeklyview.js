@@ -82,6 +82,7 @@ angular.module('FamilySleep')
 					ticks: {
 					  display: true,
 					  fontSize: 10,
+					  fontColor: "white",
 					  fontFamily: 'HelveticaNeue, HelveticaNeue, Roboto, ArialRounded',
 					  autoSkip: true,
 					  maxTicksLimit: 20
@@ -100,6 +101,7 @@ angular.module('FamilySleep')
 					stacked: true, //scaleLabel: "<%=value%>",
 					ticks: {
 					  fontSize: 12,
+					  fontColor: "white",
 					  fontFamily: 'HelveticaNeue, HelveticaNeue, Roboto, ArialRounded'
 					},
 					gridLines: {
@@ -108,7 +110,10 @@ angular.module('FamilySleep')
 				  }]
 				},
 				legend: {
-				  display: true
+				  display: true,
+	              labels: {
+	                fontColor: 'white'
+	              }
 				}
 			};
 
