@@ -3,7 +3,7 @@
 
 <!-- lots of repetition here, need to figure out how to call a function that just does this 4 times different parameters-->
 
-<div ng-repeat="member in family">
+<div ng-repeat="member in family | toArray">
 <div class="col-xs-4">
     <div ng-show="member.type=='family'">
         <div class="row">

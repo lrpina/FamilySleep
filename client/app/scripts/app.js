@@ -20,6 +20,7 @@ angular
     'ngTouch',
     'ui.bootstrap',
     'chart.js',
+    'angular-toArrayFilter',
     'ngMaterial'
   ])
   .config(function ($routeProvider, $locationProvider) {

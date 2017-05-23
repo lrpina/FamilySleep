@@ -10,6 +10,7 @@
  angular.module('FamilySleep')
   .controller('FamilydailyviewCtrl', ['$scope', '$rootScope', 'tractdbdata', 'sleepDataFactory', 'sleepFamDailyDataFactory', 'dateFactory', 'selfReportState',
     function($scope, $rootScope, dbdata, sleepDataFactory, famDailySleep, dateFactory, selfReportState){
+      /*the variable below needs to come from sleepdataFactory, famDailySleep. Need to talk to Clarissa about this*/
       var familyInfo = {
         mom: {
           type: "family",
@@ -76,8 +77,8 @@
     });
     
     var updateData = function() {
-      console.log("famDailySleep");
-      console.log("in updateData");
+      //console.log("famDailySleep");
+      //console.log("in updateData");
       var newDate = dateFactory.getDateString();
       
       console.log(newDate);
@@ -91,10 +92,8 @@
         $scope.data_dad = [famDailySleep.sleep_data['dad'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['dad'][newDate].duration/1000/60/60)];
         $scope.data_girl = [famDailySleep.sleep_data['girl'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['girl'][newDate].duration/1000/60/60)];
         $scope.data_boy = [famDailySleep.sleep_data['boy'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['boy'][newDate].duration/1000/60/60)];*/
-        var mom_sleep = [famDailySleep.sleep_data['mom'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['mom'][newDate].duration/1000/60/60)];
-        console.log('after query');
-        console.log(mom_sleep);
-        familyInfo.mom.sleep = mom_sleep;
+        
+        familyInfo.mom.sleep = [famDailySleep.sleep_data['mom'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['mom'][newDate].duration/1000/60/60)];
         familyInfo.dad.sleep = [famDailySleep.sleep_data['dad'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['dad'][newDate].duration/1000/60/60)];
         familyInfo.child1.sleep = [famDailySleep.sleep_data['girl'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['girl'][newDate].duration/1000/60/60)];
         familyInfo.child2.sleep = [famDailySleep.sleep_data['boy'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['boy'][newDate].duration/1000/60/60)];
@@ -104,8 +103,6 @@
         $scope.data_girl = [famDailySleep.sleep_data['girl'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['girl'][newDate].duration/1000/60/60)];
         $scope.data_boy = [famDailySleep.sleep_data['boy'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['boy'][newDate].duration/1000/60/60)];*/
         $scope.family = familyInfo;
-        console.log('after assignment');
-        console.log($scope.family.mom.sleep);
         //console.log($scope.family);
         $scope.labels = ['hours slept','hours awake'];
          /*define colors here*/
@@ -119,7 +116,17 @@
       }
     }
     updateData();
+    $scope.col = 0;
+    $scope.addCol = function(){
+      $scope.col=1;
+      console.log("in addCol");
+      console.log($scope.col);
+    };
 
-    //given all ids, [id1, id2, id3, id4]
-    
+    $scope.removeCol = function(){
+      $scope.col=0;
+      console.log("in removeCol");
+      console.log($scope.col);
+    }
+  
   }]);
