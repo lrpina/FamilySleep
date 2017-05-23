@@ -6,7 +6,7 @@
 <div ng-repeat="member in family | toArray">
 <div class="col-xs-4">
     <div ng-show="member.type=='family'">
-        <div class="row">
+
             <img ng-src={{member.avatar}} class="fdv-names">
             <p class="fdv-names">{{member.name}}</p>
             <div ng-controller="ModalCrtl as $ctrl">
@@ -27,7 +27,7 @@
                 <button type="button" class="how-sleep-button btn btn-default" ng-click="$ctrl.open(member.name)">How did you sleep?</button>
                 </div>
             </div>
-        </div>
+        
     </div>
     <div ng-show="member.type=='moon'">
         <img ng-src={{member.image}} alt="moon" id="family_moon">
