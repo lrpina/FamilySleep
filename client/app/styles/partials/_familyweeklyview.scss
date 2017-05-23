@@ -4,19 +4,13 @@
 */
 
 .familyweeklyview-container {
-  margin-left: -100px;
-  margin-right: -100px;
   color: white;
 }
 
 .person {
   margin-bottom: 40px;
-}
-
-#fwv-datepicker-placement {
-  margin-top: -75px;
-  margin-bottom: 50px;
-  margin-left: 350px;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .fwv-names {
@@ -29,4 +23,11 @@
 	margin-right: auto;
 	width: 60px;
 	height: 60px;
+}
+
+.fwv-columns {
+  float:left; 
+  width:75px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
