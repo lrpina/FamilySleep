@@ -17,6 +17,7 @@
                     </div>
                      <img ng-src={{$ctrl.states[member.name].image}} class="mood-pics">
                      <p> Mood reported to be {{$ctrl.states[member.name].mood | uppercase}}</p>
+                     <a ng-href="#!/sdview/{{member.name}}" class="button btn-primary"> Single Daily View</a> <!--want an ng-if here to show only after daily sleep and self-report is available -->
                 </div>
                 <div ng-if=!$ctrl.states[member.name].state>
                  <div ng-controller="PiechartcontrollerCtrl" class="chart-placement">
