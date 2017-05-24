@@ -1,0 +1,23 @@
+{
+	"data": [{
+		"name": "Marge",
+		"targetedHours": 9,
+		"profilePic": "images/avatars/momcircle.png",
+		"relation": "mom"
+	}, {
+		"name": "Homer",
+		"targetedHours": 8,
+		"profilePic": "images/avatars/dadcircle.png",
+		"relation": "dad"
+	}, {
+		"name": "Lisa",
+		"targetedHours": 10,
+		"profilePic": "images/avatars/girlcircle.png",
+		"relation": "girl"
+	}, {
+		"name": "Bart",
+		"targetedHours": 10,
+		"profilePic": "images/avatars/boycircle.png",
+		"relation": "boy"
+	}]
+}

@@ -1,6 +1,7 @@
 'use strict';
 /*** TODO need to add mood selected to the sleep object **/
-angular.module('FamilySleep').controller('ModalCrtl', ['selfReportState', '$uibModal', '$log', '$document', function(selfReportState, $uibModal, $log, $document){
+angular.module('FamilySleep').controller('ModalCrtl', ['selfReportState', '$uibModal', '$log', '$document', 'tractdbdata',
+  function(selfReportState, $uibModal, $log, $document, tractdbdata){
   var templateDir = 'views/templates/';
 	var $ctrl = this;	 
 	var moodImages = [
@@ -78,6 +79,7 @@ angular.module('FamilySleep').controller('ModalCrtl', ['selfReportState', '$uibM
       $log.info("******in modalsIntance result");
       $log.info(selectedItems.selected);
       $log.info(selectedItems.selectedFam);
+      tractdbdata.update_mood();
     }, function () {
       $log.info('Modal dismissed at: ' + new Date());
     });

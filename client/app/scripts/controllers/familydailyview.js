@@ -8,8 +8,8 @@
  * Controller of the FamilySleep
  */
  angular.module('FamilySleep')
-  .controller('FamilydailyviewCtrl', ['$scope', '$rootScope', 'tractdbdata', 'sleepDataFactory', 'sleepFamDailyDataFactory', 'dateFactory',
-    function($scope, $rootScope, dbdata, sleepDataFactory, famDailySleep, dateFactory){
+  .controller('FamilydailyviewCtrl', ['$scope', '$rootScope', 'tractdbdata', 'sleepDataFactory', 'sleepFamDailyDataFactory', 'dateFactory', 'personaFactory',
+    function($scope, $rootScope, dbdata, sleepDataFactory, famDailySleep, dateFactory, personaFactory){
     $rootScope.menu = [
       {
         title: 'Family Daily View',
@@ -31,6 +31,9 @@
     $scope.$on('date:updated', function() {
       updateData();
     });
+
+    personaFactory.retrieveProfiles();
+
     
     var updateData = function() {
       var newDate = dateFactory.getDateString();
@@ -38,8 +41,10 @@
       console.log(newDate);
       if(dateFactory.getWeekDateString() != []) {
       var promise = dbdata.get_fam_daily_sleep_data(['mom','dad','girl','boy'], newDate);
+
       promise.then(function(response) {
         console.log(famDailySleep);
+
         $scope.data = [famDailySleep.sleep_data['mom'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['mom'][newDate].duration/1000/60/60)];
         /****this is a temporary fix this will need to figure out once I fix the view***/
         $scope.id = famDailySleep.sleep_data['mom'][newDate].pid;
@@ -54,6 +59,7 @@
          $scope.options = {
               cutoutPercentage: 70
          };
+        $rootScope.$broadcast('familydailyview:updated');
       });
     }else {
         alert('date factory get week didnt populate');

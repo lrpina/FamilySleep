@@ -7,7 +7,7 @@
  * # datePicker
  */
 angular.module('FamilySleep')
-  .directive('datePicker', function () {
+  .directive('datePicker', ['$rootScope', function ($rootScope) {
     return {
       templateUrl: '../../views/datePicker.html',
       //restrict: 'E',
@@ -26,13 +26,16 @@ angular.module('FamilySleep')
 		  	};
         $scope.today = function () {
           $scope.myDate = new Date();
+          dateFactory.updateDate($scope.myDate);
         };
         $scope.yesterday = function () {
-          $scope.myDate = moment(new Date()).subtract(1, 'days').toDate();
+          $scope.myDate = moment(dateFactory.getDate()).subtract(1, 'days').toDate();
+          dateFactory.updateDate($scope.myDate);
         };
         $scope.tomorrow = function () {
-          $scope.myDate = moment(new Date()).add(1, 'days').toDate();
+          $scope.myDate = moment(dateFactory.getDate()).add(1, 'days').toDate();
+          dateFactory.updateDate($scope.myDate);
         };
 		  }],
     };
-  });
+  }]);

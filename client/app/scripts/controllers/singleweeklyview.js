@@ -90,7 +90,7 @@ angular.module('FamilySleep')
 					  displayFormats: {
 						minute: 'HH:mm a'
 					  },
-					  tooltipFormat: 'HH:mm a',
+					  tooltipFormat: 'YYYY-MM-DD HH:mm a',
 					  unit: "minute",
 					  unitStepSize: 1,
 					},

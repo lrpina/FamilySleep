@@ -1,5 +1,6 @@
 'use strict';
 
+
 /**
  * @ngdoc service
  * @name FamilySleep.tractdbdata
@@ -27,12 +28,36 @@
 */
 angular.module('FamilySleep')
   .factory('tractdbdata', 
-    ['$http', '$q', 'sleepDailyDataFactory', 'sleepFamDailyDataFactory', 'sleepWeeklyDataFactory', 'sleepFamWeeklyDataFactory',
-    function ($http, $q, singleDailySleep, famDailySleep, singleWeeklySleep, famWeeklySleep) { //I want to know if I can use a different name when it's injecteds  
+    ['$http', '$q', 'sleepDailyDataFactory', 'sleepFamDailyDataFactory', 'sleepWeeklyDataFactory', 'sleepFamWeeklyDataFactory', 'personaFactory',
+    function ($http, $q, singleDailySleep, famDailySleep, singleWeeklySleep, famWeeklySleep, personaFactory) { //I want to know if I can use a different name when it's injecteds  
 
 
     var temp_data;
     var sleep_data;
+
+    function update_mood(id, mood, reporter) {
+      return $http({method:'GET', url: 'data/mom_2017-05-13.json' })
+        .then(function (response) {
+          // this callback will be called asynchronously
+          // when the response is available
+          temp_data = response.data.sleep[0].logId;
+          console.log(temp_data);
+          return put_data(temp_data, 'data/testing.json');
+        }, function (response) {
+          // called asynchronously if an error occurs
+          // or server returns response with an error status.
+          console.error('Error' + response.statusText);
+        });
+    }
+
+    function put_data(data, url) {
+      return $http.put(url, data)
+      .then(function (response) {
+        alert("put success");
+      }, function(response) {
+        console.error('Error occured during put: ' + response.statusText);
+      });
+    }
 
     function get_single_weekly_sleep_data(factory, id, dates) {
       //use existing function, such as getting data for all fam memeber for one particular day,
@@ -111,13 +136,13 @@ angular.module('FamilySleep')
     dbfactory.get_sleep = function(){
       $http({method:'GET', url: 'data/sleep_data.json' })
       .then(function (response) {
-    // this callback will be called asynchronously
-      // when the response is available
+        //this callback will be called asynchronously
+        // when the response is available
         temp_data = response.data;
         //console.log($scope.sleep_data);
       }, function (response) {
-      // called asynchronously if an error occurs
-      // or server returns response with an error status.
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
         console.error('Error' + response.statusText);
       });
       formatdata(temp_data);
@@ -167,14 +192,33 @@ angular.module('FamilySleep')
             "moodAddedBy" : "",
             "name": temp_data.sleep[0].logId,
             "minuteData": {
+              //'empty': [],
               "one" : [],
               "two" : [],
               "three" : [],
             },
             "startTime": moment(temp_data.sleep[0].startTime),
             "endTime": newDate(temp_data.sleep[0].startTime, temp_data.sleep[0].timeInBed),
-            "labels": [moment(temp_data.sleep[0].startTime).subtract(1,'m')],
+            "labels": [],
           };
+
+         
+          var realStartTime = moment(temp_data.sleep[0].startTime)
+          var targetSleepTime = moment(realStartTime).set({'hour': 17, 'minute': 0, 'second': 0});
+          var diffTime = realStartTime.diff(targetSleepTime, 'm');
+          console.log('targetSleepTime:' + targetSleepTime.toString());
+          console.log('realStartTime' + realStartTime.toString());
+          console.log(diffTime)
+          if(diffTime > 0) {
+            for(var i = 0; i < diffTime; i++) {
+                sleepData.minuteData.one.push(0);
+                sleepData.minuteData.two.push(0);
+                sleepData.minuteData.three.push(0);
+                sleepData.labels.push(moment(targetSleepTime).add(i, 'm'));
+            }
+          }
+
+         
 
           for(var i = 0; i < temp_data.sleep[0].minuteData.length; i++) {
             var time = temp_data.sleep[0].minuteData[i];
@@ -184,12 +228,12 @@ angular.module('FamilySleep')
               sleepData.minuteData.three.push(0);
             } else if(time.value == 2) {
               sleepData.minuteData.one.push(0);
-              sleepData.minuteData.two.push(2);
+              sleepData.minuteData.two.push(3);
               sleepData.minuteData.three.push(0);
             } else {
               sleepData.minuteData.one.push(0);
               sleepData.minuteData.two.push(0);
-              sleepData.minuteData.three.push(4);
+              sleepData.minuteData.three.push(3);
             }
             sleepData.labels.push(newDate(temp_data.sleep[0].startTime, i));
           }
@@ -224,6 +268,7 @@ angular.module('FamilySleep')
       }, 
       get_fam_weekly_sleep_data: function(ids, dates) {
         return get_fam_weekly_sleep_data(famWeeklySleep, ids, dates)
-      }
+      },
+      update_mood: update_mood
     };
   }]);
