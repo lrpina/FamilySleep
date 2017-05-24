@@ -11,10 +11,16 @@
 
 angular.module('FamilySleep')
   .controller('SingleweeklyviewCtrl', [
-	'$scope', 'sleepWeeklyDataFactory', 'tractdbdata',  '$rootScope', 'dateFactory', function (
-		$scope, singleWeeklySleep, dbdata, $rootScope, dateFactory) {
+	'$scope', 'sleepWeeklyDataFactory', 'tractdbdata',  '$rootScope', 'dateFactory', '$routeParams', function (
+		$scope, singleWeeklySleep, dbdata, $rootScope, dateFactory, $routeParams) {
 
-	$scope.id = singleWeeklySleep.id;
+	$scope.id = $routeParams.id;
+	if($routeParams.id=='child1'){
+      $scope.id = 'boy';
+    } else if ($routeParams.id=='child2')
+    {
+      $scope.id = 'girl';
+    };
 	$rootScope.menu = [
 	  {
 		  title: 'Back',
