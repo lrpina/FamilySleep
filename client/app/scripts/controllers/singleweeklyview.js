@@ -52,14 +52,14 @@ angular.module('FamilySleep')
 
 	var updateData = function () {
 		if(dateFactory.getWeekDateString() != []) {
-		var promise = dbdata.get_single_weekly_sleep_data('mom', dateFactory.getWeekDateString()
+		var promise = dbdata.get_single_weekly_sleep_data($scope.id, dateFactory.getWeekDateString()
 			//['2016-07-23','2016-07-24','2016-07-25','2016-07-26']
 			);
 		
 		promise.then(function(response) {
 			console.log("in SingleweeklyviewCtrl");
 			console.log(singleWeeklySleep);
-			var rawData = singleWeeklySleep.sleep_data['mom'];
+			var rawData = singleWeeklySleep.sleep_data[$scope.id];
 			$scope.data = [];
 
 			angular.forEach(rawData, function(item) {
