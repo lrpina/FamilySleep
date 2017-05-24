@@ -63,7 +63,9 @@ angular.module('FamilySleep')
 					  item	.minuteData.two,
 					  item.minuteData.three,
 					],
-					labels : item.labels
+					labels : item.labels,
+					date: item.dateOfSleep,
+					mood: item.mood
 				}
 				$scope.data.push(day);
 			});
