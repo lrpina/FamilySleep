@@ -2,7 +2,9 @@
 /*** TODO need to add mood selected to the sleep object **/
 angular.module('FamilySleep').controller('ModalCrtl', ['selfReportState', '$uibModal', '$log', '$document', function(selfReportState, $uibModal, $log, $document){
   var templateDir = 'views/templates/';
-	var $ctrl = this;	 
+	var $ctrl = this;
+  $ctrl.buttonState = 0;
+
 	var moodImages = [
 		{ 	name:'good',
 			image:'images/faces/good.png'
@@ -35,6 +37,7 @@ angular.module('FamilySleep').controller('ModalCrtl', ['selfReportState', '$uibM
 	$ctrl.animationsEnabled = true;
   /**asigning selfReportState factory to states to have access in the viewer*/
   $ctrl.states = selfReportState;
+  //$ctrl.states.child1.state = true;
   
   /*console.log("in ModalCrtl");
   if(!$ctrl.states.mom.state){
@@ -52,6 +55,8 @@ angular.module('FamilySleep').controller('ModalCrtl', ['selfReportState', '$uibM
 		$log.info("in open of ModalCrtl"); //added this might need to pass log
     console.log(famID);
     var fam = famID;
+    $ctrl.buttonState = 0;
+    console.log($ctrl.buttonState);
     //var temp = $ctrl.states[fam];
     console.log($ctrl.states[famID]);
     console.log("using variable to also accessSelfreportState");

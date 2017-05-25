@@ -11,10 +11,16 @@
 
 angular.module('FamilySleep')
   .controller('SingleweeklyviewCtrl', [
-	'$scope', 'sleepWeeklyDataFactory', 'tractdbdata',  '$rootScope', 'dateFactory', function (
-		$scope, singleWeeklySleep, dbdata, $rootScope, dateFactory) {
+	'$scope', 'sleepWeeklyDataFactory', 'tractdbdata',  '$rootScope', 'dateFactory', '$routeParams', function (
+		$scope, singleWeeklySleep, dbdata, $rootScope, dateFactory, $routeParams) {
 
-	$scope.id = singleWeeklySleep.id;
+	$scope.id = $routeParams.id;
+	if($routeParams.id=='child1'){
+      $scope.id = 'boy';
+    } else if ($routeParams.id=='child2')
+    {
+      $scope.id = 'girl';
+    };
 	$rootScope.menu = [
 	  {
 		  title: 'Back',
@@ -46,14 +52,14 @@ angular.module('FamilySleep')
 
 	var updateData = function () {
 		if(dateFactory.getWeekDateString() != []) {
-		var promise = dbdata.get_single_weekly_sleep_data('mom', dateFactory.getWeekDateString()
+		var promise = dbdata.get_single_weekly_sleep_data($scope.id, dateFactory.getWeekDateString()
 			//['2016-07-23','2016-07-24','2016-07-25','2016-07-26']
 			);
 		
 		promise.then(function(response) {
 			console.log("in SingleweeklyviewCtrl");
 			console.log(singleWeeklySleep);
-			var rawData = singleWeeklySleep.sleep_data['mom'];
+			var rawData = singleWeeklySleep.sleep_data[$scope.id];
 			$scope.data = [];
 
 			angular.forEach(rawData, function(item) {
@@ -63,7 +69,9 @@ angular.module('FamilySleep')
 					  item	.minuteData.two,
 					  item.minuteData.three,
 					],
-					labels : item.labels
+					labels : item.labels,
+					date: item.dateOfSleep,
+					mood: item.mood
 				}
 				$scope.data.push(day);
 			});
