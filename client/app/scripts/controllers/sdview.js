@@ -66,7 +66,6 @@
               },
               ticks: {
                 display: true,
-                fontColor: "white",
                 fontSize: 10,
                 fontFamily: 'HelveticaNeue, HelveticaNeue, Roboto, ArialRounded',
                 autoSkip: true,
@@ -86,7 +85,6 @@
               stacked: true, //scaleLabel: "<%=value%>",
               ticks: {
                 fontSize: 12,
-                fontColor: "white",
                 fontFamily: 'HelveticaNeue, HelveticaNeue, Roboto, ArialRounded'
               },
               gridLines: {
@@ -95,10 +93,7 @@
             }]
           },
           legend: {
-            display: true,
-            labels: {
-              fontColor: 'white'
-            }
+            display: true
           }
         };
 
