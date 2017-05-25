@@ -12,6 +12,8 @@ angular.module('FamilySleep')
     // Service logic
     // ...
 
+    // use object hasOwnproperty
+
     var profiles = [];
 
     var temp_data; 

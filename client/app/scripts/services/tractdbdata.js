@@ -35,29 +35,29 @@ angular.module('FamilySleep')
     var temp_data;
     var sleep_data;
 
-    function update_mood(id, mood, reporter) {
-      return $http({method:'GET', url: 'data/mom_2017-05-13.json' })
-        .then(function (response) {
-          // this callback will be called asynchronously
-          // when the response is available
-          temp_data = response.data.sleep[0].logId;
-          console.log(temp_data);
-          return put_data(temp_data, 'data/testing.json');
-        }, function (response) {
-          // called asynchronously if an error occurs
-          // or server returns response with an error status.
-          console.error('Error' + response.statusText);
-        });
-    }
+    // function update_mood(id, mood, reporter) {
+    //   return $http({method:'GET', url: 'data/mom_2017-05-13.json' })
+    //     .then(function (response) {
+    //       // this callback will be called asynchronously
+    //       // when the response is available
+    //       temp_data = response.data.sleep[0].logId;
+    //       console.log(temp_data);
+    //       return put_data(temp_data, 'data/testing.json');
+    //     }, function (response) {
+    //       // called asynchronously if an error occurs
+    //       // or server returns response with an error status.
+    //       console.error('Error' + response.statusText);
+    //     });
+    // }
 
-    function put_data(data, url) {
-      return $http.put(url, data)
-      .then(function (response) {
-        alert("put success");
-      }, function(response) {
-        console.error('Error occured during put: ' + response.statusText);
-      });
-    }
+    // function put_data(data, url) {
+    //   return $http.put(url, data)
+    //   .then(function (response) {
+    //     alert("put success");
+    //   }, function(response) {
+    //     console.error('Error occured during put: ' + response.statusText);
+    //   });
+    // }
 
     function get_single_weekly_sleep_data(factory, id, dates) {
       //use existing function, such as getting data for all fam memeber for one particular day,
@@ -269,6 +269,5 @@ angular.module('FamilySleep')
       get_fam_weekly_sleep_data: function(ids, dates) {
         return get_fam_weekly_sleep_data(famWeeklySleep, ids, dates)
       },
-      update_mood: update_mood
     };
   }]);

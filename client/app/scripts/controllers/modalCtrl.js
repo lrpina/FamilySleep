@@ -79,7 +79,7 @@ angular.module('FamilySleep').controller('ModalCrtl', ['selfReportState', '$uibM
       $log.info("******in modalsIntance result");
       $log.info(selectedItems.selected);
       $log.info(selectedItems.selectedFam);
-      tractdbdata.update_mood();
+    
     }, function () {
       $log.info('Modal dismissed at: ' + new Date());
     });
