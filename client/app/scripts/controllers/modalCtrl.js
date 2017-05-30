@@ -3,7 +3,9 @@
 angular.module('FamilySleep').controller('ModalCrtl', ['selfReportState', '$uibModal', '$log', '$document', 'tractdbdata',
   function(selfReportState, $uibModal, $log, $document, tractdbdata){
   var templateDir = 'views/templates/';
-	var $ctrl = this;	 
+	var $ctrl = this;
+  $ctrl.buttonState = 0;
+
 	var moodImages = [
 		{ 	name:'good',
 			image:'images/faces/good.png'
@@ -28,31 +30,40 @@ angular.module('FamilySleep').controller('ModalCrtl', ['selfReportState', '$uibM
 		}];
   $ctrl.items = moodImages;
 	//var avatars = [];
-  var avatar = 'images/avatars/momcircle.png';
-	$ctrl.profile = avatar;
+  //var avatar = 'images/avatars/momcircle.png';
+	//$ctrl.profile = avatar;
   //family members
   /****IMPORTANT I don't know how to add members dynamically**/
   $ctrl.famMems = ['mom', 'dad', 'child1', 'child2'];
 	$ctrl.animationsEnabled = true;
-
-  //selected defaults
-  ///***TODO this will probably come from selfreport factory state
-  /***TODO hard coding mom for now but need to know*//*
-  need to expose selfReportState to scope so that I can test it in viewer
-  if (selfReportState.mom.selected==null) { //then do all the logic below
-    $ctrl.selected = null;
-    $ctrl.selectedFam = null;  
-  } else { //don't need to do anything I believe
-    $ctrl.selected = selfReportState.mom.selected;
-    $ctrl.selectedFam = selfReportState.mom.selected;  
+  /**asigning selfReportState factory to states to have access in the viewer*/
+  $ctrl.states = selfReportState;
+  //$ctrl.states.child1.state = true;
+  
+  /*console.log("in ModalCrtl");
+  if(!$ctrl.states.mom.state){
+      console.log("in the initial state");
+      console.log ($ctrl.states.mom.state);
   }
-  */
+  $ctrl.states.mom.state = selfReportState.mom.state = true;
+  $ctrl.states.mom.image = selfReportState.mom.image = 'images/faces/tired.png';
+    if(selfReportState.mom.state){
+    console.log ($ctrl.states.mom.image);  
+  }*/
   //could make an arg for fcn where we take the template that we want to use.
   //this could be that now we can use 
-	$ctrl.open = function (size, parentSelector) {
+	$ctrl.open = function (famID) {
 		$log.info("in open of ModalCrtl"); //added this might need to pass log
-    var parentElem = parentSelector ? 
-      angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+    console.log(famID);
+    var fam = famID;
+    $ctrl.buttonState = 0;
+    console.log($ctrl.buttonState);
+    //var temp = $ctrl.states[fam];
+    console.log($ctrl.states[famID]);
+    console.log("using variable to also accessSelfreportState");
+    console.log(selfReportState[famID]);
+    //var parentElem = parentSelector ? 
+      //angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
     //using
     var modalInstance = $uibModal.open({
       animation: $ctrl.animationsEnabled,
@@ -62,8 +73,8 @@ angular.module('FamilySleep').controller('ModalCrtl', ['selfReportState', '$uibM
       controller: 'ModalInstanceCtrl',
       controllerAs: '$ctrl',
       windowClass:'app-modal-window',
-      size: size,
-      appendTo: parentElem,
+      //size: size,
+      //appendTo: parentElem,
       resolve: {
         items: function () {
           return $ctrl.items;
@@ -76,10 +87,19 @@ angular.module('FamilySleep').controller('ModalCrtl', ['selfReportState', '$uibM
     modalInstance.result.then(function (selectedItems) {
       $ctrl.selected = selectedItems.selected;
       $ctrl.selectedFam = selectedItems.selectedFam;
+      $ctrl.states[famID].state = selfReportState[famID].state = true;
+      $ctrl.states[famID].mood = selfReportState[famID].mood = selectedItems.selected.name;
+      $ctrl.states[famID].image = selfReportState[famID].image = selectedItems.selected.image;
+
       $log.info("******in modalsIntance result");
-      $log.info(selectedItems.selected);
-      $log.info(selectedItems.selectedFam);
-    
+      //$log.info(selectedItems.selected);
+      //$log.info(selectedItems.selectedFam);
+      $log.info(selectedItems.selected.name);
+      $log.info(selectedItems.selected.image);
+      $log.info("from $ctrl states");
+      $log.info($ctrl.states[famID].state);
+      $log.info($ctrl.states[famID].mood);
+      $log.info($ctrl.states[famID].image);
     }, function () {
       $log.info('Modal dismissed at: ' + new Date());
     });

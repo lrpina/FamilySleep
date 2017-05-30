@@ -10,7 +10,15 @@
  angular.module('FamilySleep')
  	.controller('SdviewCtrl', ['$rootScope', '$scope', 'sleepDailyDataFactory', '$routeParams', 'tractdbdata', 'dateFactory',
     function($rootScope, $scope, sleepDataFactory, $routeParams, dbdata, dateFactory) {
-    $scope.id = sleepDataFactory.id;
+    //$scope.id = $routeParams.id;
+    if($routeParams.id=='child1'){
+      $scope.id = 'boy';
+    } else if ($routeParams.id=='child2')
+    {
+      $scope.id = 'girl';
+    } else{
+      $scope.id = $routeParams.id;
+    };
     console.log("in SdviewCtrl");
 
     $rootScope.menu = [
@@ -42,10 +50,11 @@
     var updateData = function() {
       var newDate = dateFactory.getDateString();
       if(dateFactory.getWeekDateString() != []) {
-      var promise = dbdata.get_single_daily_sleep('mom', newDate);
+      var promise = dbdata.get_single_daily_sleep($scope.id, newDate);
       //have to wait for dbdate to populate 
       promise.then(function(response) {
         console.log('single daily');
+        console.log($scope.id);
         console.log(sleepDataFactory);
         $scope.options = {
           scales: {
@@ -92,33 +101,33 @@
         };
 
         $scope.data = [
-            sleepDataFactory.sleep_data['mom'][newDate].minuteData.one, 
-            sleepDataFactory.sleep_data['mom'][newDate].minuteData.two,
-            sleepDataFactory.sleep_data['mom'][newDate].minuteData.three,
+            sleepDataFactory.sleep_data[$scope.id][newDate].minuteData.one, 
+            sleepDataFactory.sleep_data[$scope.id][newDate].minuteData.two,
+            sleepDataFactory.sleep_data[$scope.id][newDate].minuteData.three,
         ];
 
-        $scope.labels = sleepDataFactory.sleep_data['mom'][newDate].labels;
+        $scope.labels = sleepDataFactory.sleep_data[$scope.id][newDate].labels;
 
         $scope.colors = [{
-            backgroundColor: "#8CA2AA",
-            borderColor: "#8CA2AA",
-            pointBackgroundColor: "#8CA2AA",
-            pointBorderColor: "#fff",
+            backgroundColor: "#44d2d1",
+            borderColor: "#44d2d1",
+            pointBackgroundColor: "#44d2d1",
+            pointBorderColor: "#44d2d1",
             pointHoverBackgroundColor: "#fff",
             pointHoverBorderColor: "#8CA2AA",
           }, {
             backgroundColor: "#551A8B",
             borderColor: "#551A8B",
-            pointBackgroundColor: "#6B8FBD",
-            pointBorderColor: "#fff",
+            pointBackgroundColor: "#551A8B",
+            pointBorderColor: "#551A8B",
             pointHoverBackgroundColor: "#fff",
             pointHoverBorderColor: "#6B8FBD",
           },
           {
-            backgroundColor: "#03E2E7",
-            borderColor: "#03E2E7",
-            pointBackgroundColor: "#6B8FBD",
-            pointBorderColor: "#fff",
+            backgroundColor: "#FC3F73",
+            borderColor: "#FC3F73",
+            pointBackgroundColor: "#FC3F73",
+            pointBorderColor: "#FC3F73",
             pointHoverBackgroundColor: "#fff",
             pointHoverBorderColor: "#6B8FBD",
           },

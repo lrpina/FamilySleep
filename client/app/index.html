@@ -30,10 +30,11 @@
 
           <a ng-repeat="n in menu" href='{{n.url}}' class='{{n.tag}}' ng-click="updateActive(n.tag)" >{{n.title}}</a>
       </nav>
-      <date-picker></date-picker>
       <div class="recorder">
         <recorder></recorder>
       </div>
+      <br>
+      <date-picker></date-picker>
     </div>
 
     <div class="container">
@@ -41,11 +42,11 @@
     </div>
     
 
-    <div class="footer">
+    <!-- <div class="footer">
       <div class="container">
         <p><i class="fa fa-heart"></i> from the Yeoman team</p>
       </div>
-    </div>
+    </div> -->
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -80,6 +81,7 @@
     <script src="bower_components/moment/moment.js"></script>
     <script src="bower_components/angular-momentjs/angular-momentjs.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-toArrayFilter/toArrayFilter.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

@@ -117,7 +117,7 @@ angular.module('FamilySleep')
         // when the response is available
         temp_data = response.data;
 
-        console.log(temp_data);
+        //console.log(temp_data);
         return format_data(factory, id, date, temp_data);     
       }, function (response) {
         // called asynchronously if an error occurs
@@ -125,7 +125,7 @@ angular.module('FamilySleep')
         console.error('Retrieval Error' + response.statusText);
       })
       .then(function (response) {
-        console.log("format sucess");
+        //console.log("format sucess");
       }, function (response) {
         // called asynchronously if an error occurs
         // or server returns response with an error status.
@@ -180,8 +180,8 @@ angular.module('FamilySleep')
           // console.log(factory.data);
           // //sleepdatafactor.labels -- Array: each element is a lebel that corresponds to the type of sleep and links to the element in .data awway
           // factory.labels =["Hours Slept", "Hours not Slept"];
-          console.log("inside formatdata -- labels -- ");
-          console.log(factory.sleep_data);
+          //console.log("inside formatdata -- labels -- ");
+          //console.log(factory.sleep_data);
           // console.log(factory.labels);
           var sleepData = {
             "pid" : id,

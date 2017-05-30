@@ -43,7 +43,7 @@ nav a{
 	// text-transform: uppercase;
 	background-color:transparent;
   border-style: solid;
-  border-color: #6e85b6;/*#7A7F86;*/
+  border-color: #778ec4;/*#6e85b6;*/
   margin-right: 20px;
   padding: 15px;
 }
@@ -61,7 +61,8 @@ nav.family-weekly-view .family-weekly-view,
 nav.Back .Back,
 nav.individual-daily-view .individual-daily-view,
 nav.individual-weekly-view .individual-weekly-view {
-	background-color: #6e85b6;/*#7A7F86;*/
+	background-color: #778ec4;/*#6e85b6;*/
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 }
 
 // ----------------------------------------
