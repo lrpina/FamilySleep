@@ -21,11 +21,6 @@
           pid: "f1m1",
           avatar: "images/avatars/momcircle.png"
         },
-        moon: {
-          type: "moon",
-          name: "moon",
-          image: "images/moons/moon7a.png",
-        },
         dad: {
           type: "family",
           sleep: null,
@@ -54,6 +49,13 @@
           avatar: "images/avatars/boycircle.png"
         }
       };
+      /***old member of familyInfo
+      moon: {
+          type: "moon",
+          name: "moon",
+          image: "images/moons/moon7a.png",
+        },
+      ***/
     $rootScope.menu = [
       {
         title: 'Family Daily View',

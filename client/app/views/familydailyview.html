@@ -2,10 +2,14 @@
 <!--do I need this controller here? test to get this to work with out-->    
 <!--need 1x2 | 1  for moon| 1x2-->
 
-<div ng-repeat="member in family | toArray">
-<div class="col-xs-4">
+<div ng-repeat="member in family">
+<!--Notes for Sang-Wha: if you want to see the index you can do
+<p>{{$index}}</p>
+There might be other things you can do with
+-->
+<div ng-if="$even" class="col-xs-4">
+<!--even object -->
     <div ng-show="member.type=='family'">
-
             <img ng-src={{member.avatar}} class="fdv-names">
             <p class="fdv-names">{{member.name}}</p>
             <div ng-controller="ModalCrtl as $ctrl">
@@ -27,19 +31,47 @@
                 <button type="button" class="how-sleep-button btn btn-default" ng-click="$ctrl.open(member.name)">How did you sleep?</button>
                 </div>
             </div>
-        
     </div>
-    <div ng-show="member.type=='moon'">
-        <!--<img ng-src={{member.image}} alt="moon" id="family_moon">-->
+</div>
+<div ng-if="odd" class="col-xs-4">
+<!--odd object -->
+    <div ng-show="member.type=='family'">
+            <img ng-src={{member.avatar}} class="fdv-names">
+            <p class="fdv-names">{{member.name}}</p>
+            <div ng-controller="ModalCrtl as $ctrl">
+                <div ng-if=$ctrl.states[member.name].state>
+                    <div ng-controller="DoughnutCtrl" class="chart-placement">
+                        <canvas id="doughnut" class="chart-doughnut" chart-data="member.sleep" chart-labels="labels" chart-colors ="colors" chart-options="options">
+                        </canvas>
+                    </div>
+                     <img ng-src={{$ctrl.states[member.name].image}} class="mood-pics">
+                     <p> Mood reported to be {{$ctrl.states[member.name].mood | uppercase}}</p>
+                     <a ng-href="#!/sdview/{{member.name}}" class="button btn-primary"> Single Daily View</a> <!--want an ng-if here to show only after daily sleep and self-report is available -->
+                </div>
+                <div ng-if=!$ctrl.states[member.name].state>
+                 <div ng-controller="PiechartcontrollerCtrl" class="chart-placement">
+                    <canvas id="pie" class="chart chart-pie" chart-data="data" chart-colors ="color" chart-options="options">
+                    </canvas>
+                </div>
+                <!--inserts code for the modal popup window-->
+                <button type="button" class="how-sleep-button btn btn-default" ng-click="$ctrl.open(member.name)">How did you sleep?</button>
+                </div>
+            </div>
+    </div>
+</div>
+
+</div>
+
+<div ng-controller="MoonCtrl" class="col-xs-4"> 
+    <img ng-src="{{moonImage}}" alt="moon" id="family_moon">
+</div>
+    <!--<div ng-show="member.type=='moon'">
+        <!--<img ng-src={{member.image}} alt="moon" id="family_moon">
         <div ng-controller="MoonCtrl" class="col-xs-4"> 
-        <!--this isn't correct. Trying to figure out where to put the moon in the middle-->
+        <!--this isn't correct. Trying to figure out where to put the moon in the middle
         <!--<p> THERE IS A DIV COLUMN HERE TO FIT IN THE MOON</p>
-        <p>this is where the moon goes</p> --> <!-- need to figure out to center this-->
+        <p>this is where the moon goes</p> --> <!-- need to figure out to center this
         <img src="{{moonImage}}" alt="moon" id="family_moon">   
         </div>
-    </div>
+    </div>-->
 </div>
-
-</div>
-</div>
-
