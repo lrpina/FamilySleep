@@ -16,6 +16,8 @@
     } else if ($routeParams.id=='child2')
     {
       $scope.id = 'girl';
+    } else{
+      $scope.id = $routeParams.id;
     };
     console.log("in SdviewCtrl");
 
@@ -52,6 +54,7 @@
       //have to wait for dbdate to populate 
       promise.then(function(response) {
         console.log('single daily');
+        console.log($scope.id);
         console.log(sleepDataFactory);
         $scope.options = {
           scales: {

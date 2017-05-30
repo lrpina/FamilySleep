@@ -44,11 +44,11 @@ angular.module('FamilySleep')
     };
 
     var getDateString = function() {
-      var tempDate = "2016-07-29";
-      date = moment(tempDate).format('YYYY-MM-DD');
-      return date;
+      //var tempDate = "2016-07-29";
+      /*date = moment(tempDate).format('YYYY-MM-DD');
+      return date;*/
       //to return today uncomment below
-      /*return date.format('YYYY-MM-DD');*/
+      return date.format('YYYY-MM-DD');
     }
 
     var getWeekDateString = function() {
