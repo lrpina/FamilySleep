@@ -30,7 +30,7 @@
           pid: "f1m2",
           avatar: "images/avatars/dadcircle.png"
         },
-        child1: {
+        girl: {
           type: "family",
           sleep: null,
           mood: selfReportState.child1.mood,
@@ -39,7 +39,7 @@
           pid: "f1m3",
           avatar: "images/avatars/girlcircle.png"
         },
-        child2: {
+        boy: {
           type: "family",
           sleep: null,
           pid: "f1m4",
@@ -97,10 +97,10 @@
         $scope.data_dad = [famDailySleep.sleep_data['dad'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['dad'][newDate].duration/1000/60/60)];
         $scope.data_girl = [famDailySleep.sleep_data['girl'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['girl'][newDate].duration/1000/60/60)];
         $scope.data_boy = [famDailySleep.sleep_data['boy'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['boy'][newDate].duration/1000/60/60)];*/
-        for(var fam in famDailySleep){
-          if(fam.type=='family'){
+        for(var fam in familyInfo){
+
             familyInfo[fam].sleep = [famDailySleep.sleep_data[fam][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data[fam][newDate].duration/1000/60/60)];
-          }
+          
         }
         /*familyInfo.mom.sleep = [famDailySleep.sleep_data['mom'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['mom'][newDate].duration/1000/60/60)];
         familyInfo.dad.sleep = [famDailySleep.sleep_data['dad'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['dad'][newDate].duration/1000/60/60)];

@@ -10,11 +10,11 @@
         <!--<div class="fwv-columns" ng-repeat="day in member">-->
         <div ng-repeat="day in member">
           <div ng-show="day.duration !=-1">
-            <div class="col-xs-1">
+            <div class="fwv-columns">
               <!--<div ng-controller="DoughnutCtrl" class="chart-placement">-->
-                  <canvas id="doughnut" class="chart-placement chart-doughnut" chart-data="day.sleep" chart-labels="labels" chart-colors ="colors" chart-options="options">
+                  <canvas id="doughnut" class="chart chart-doughnut" chart-data="day.sleep" chart-labels="labels" chart-colors ="colors" chart-options="options">
                   </canvas>
-                  <img ng-src="images/faces/good.png" class="mood-pics">
+                  <img ng-src="images/faces/good.png" class="fwv-mood-pics">
               <!--</div>-->
               </div>
               </div>
@@ -29,8 +29,7 @@
         </div>
       </div>
     </div>
-</div>
-</div>
+
 <!--
 <div class="person row">
   <div class="col-xs-6">
