@@ -95,11 +95,23 @@
 }
 
 #family_moon {
+  position: fixed;
   height: 150px;
-  margin-top: 200px;
+  top: 50%;
+  left: 50%;
+  margin-top: 0; /* Negative half of height. */
+  margin-left: -71px; /* Negative half of width. */
 }
 
 .fdv-names {
     text-align: center;
     width: 60px;
+}
+
+.fdv-even-column {
+  margin-right: 110px;
+}
+
+.fdv-odd-column {
+  margin-left: 110px;
 }
