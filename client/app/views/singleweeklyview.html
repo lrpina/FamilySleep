@@ -1,10 +1,13 @@
 <div class="singleweeklyview-container" ng-controller="SingleweeklyviewCtrl">
 
 <p> {{id}}</p>
+<p>No Data</p>
 <div class="row" ng-controller="StackedbarCtrl" ng-repeat="day in data">
 
 <p>{{day.date}}</p>
-	<canvas class="chart chart-bar" chart-data="day.data" chart-labels="day.labels" chart-options="options" chart-series="series" chart-colors="colors"  height="75px"></canvas>	<!--width="50" height="10"-->
+	<p ng-if="day.labels.length==0">No Data</p>
+	 <canvas ng-if="day.labels.length>0" class="chart chart-bar" chart-data="day.data" chart-labels="day.labels" chart-options="options" chart-series="series" chart-colors="colors"  height="75px"></canvas>	
+	<!--width="50" height="10"-->
    <img ng-src={{day.mood}} class="mood-pics">
 </div>
 

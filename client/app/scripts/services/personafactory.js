@@ -2,10 +2,10 @@
 
 /**
  * @ngdoc service
- * @name FamilySleep.personaFactory
+ * @id FamilySleep.personaFactory
  * @description
  * # personaFactory
- * Factory in the FamilySleep. Contains each family memebr's profile pic, target hours, name, and type of family member
+ * Factory in the FamilySleep. Contains each family memebr's profile pic, target hours, id, and type of family member
  */
 angular.module('FamilySleep')
   .factory('personaFactory', ['$http', function ($http) {
@@ -40,9 +40,11 @@ angular.module('FamilySleep')
       console.log(profiles);
     }
 
-    var getProfile = function (name) {
-      for(var i = 0; i < profiles.length(); i++) {
-        if(profiles[i].name == name) {
+    retrieveProfiles();
+
+    var getProfile = function (id) {
+      for(var i = 0; i < profiles.length; i++) {
+        if(profiles[i].id == id) {
           return profiles[i];
         }
       }
@@ -52,26 +54,43 @@ angular.module('FamilySleep')
       return profiles;
     }
 
-    var getProfPic = function(name) {
-      for(var i = 0; i < profiles.length(); i++) {
-        if(profiles[i].name == name) {
+    var getProfPic = function(id) {
+      for(var i = 0; i < profiles.length; i++) {
+        if(profiles[i].id == id) {
           return profiles[i].profilePic;
         }
       }
     }
 
-    var getTargetedHours = function(name) {
-      for(var i = 0; i < profiles.length(); i++) {
-        if(profiles[i].name == name) {
+    var getTargetedHours = function(id) {
+      for(var i = 0; i < profiles.length; i++) {
+        if(profiles[i].id == id) {
           return profiles[i].targetedHours;
         }
       }
     }
 
-    var getRelation = function(name) {
-      for(var i = 0; i < profiles.length(); i++) {
-        if(profiles[i].name == name) {
+    var getTargetedHours = function(id) {
+      for(var i = 0; i < profiles.length; i++) {
+        if(profiles[i].id == id) {
+          return profiles[i].targetedHours;
+        }
+      }
+    }
+
+    var getRelation = function(id) {
+      for(var i = 0; i < profiles.length; i++) {
+        if(profiles[i].id == id) {
           return profiles[i].relation;
+        }
+      }
+    }
+
+    var getName = function(id) {
+      for(var i = 0; i < profiles.length; i++) {
+        console.log(profiles[i].relation);
+        if(profiles[i].relation == id) {
+          return profiles[i].name;
         }
       }
     }
@@ -83,7 +102,8 @@ angular.module('FamilySleep')
       getRelation : getRelation,
       getAllProfiles : getAllProfiles,
       getProfile: getProfile,
-      retrieveProfiles: retrieveProfiles
+      retrieveProfiles: retrieveProfiles,
+      getName: getName
 
     };
   }]);

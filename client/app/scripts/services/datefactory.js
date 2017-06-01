@@ -23,14 +23,11 @@ angular.module('FamilySleep')
       date_week = [];
 
       var dayOfWeek = date.day();
-      for (var i = dayOfWeek; i > 0; i--) {
+      for (var i = 0; i < 7; i++) {
         var newDate = moment(date).subtract(i, 'days');
         date_week.push(newDate);  
       }
-      for (var i = 0; i < 7 - dayOfWeek; i++) {
-        var newDate = moment(date).add(i, 'days');
-        date_week.push(newDate); 
-      }
+      
       console.log(date_week);
       console.log('in dateFactory');
       console.log(date.format());
