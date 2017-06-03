@@ -14,13 +14,15 @@ angular.module('FamilySleep')
 	'$scope', 'sleepWeeklyDataFactory', 'tractdbdata',  '$rootScope', 'dateFactory', '$routeParams', function (
 		$scope, singleWeeklySleep, dbdata, $rootScope, dateFactory, $routeParams) {
 
-	$scope.id = $routeParams.id;
+	
 	if($routeParams.id=='child1'){
       $scope.id = 'boy';
     } else if ($routeParams.id=='child2')
     {
       $scope.id = 'girl';
-    };
+    } else {
+    	$scope.id = $routeParams.id;
+    }
 	$rootScope.menu = [
 	  {
 		  title: 'Back',
@@ -78,17 +80,39 @@ angular.module('FamilySleep')
 				$scope.options = {
 					scales: {
 					  xAxes: [{
+						display: false
+					  }],
+					  yAxes: [{
+						display: false
+					  }]	
+					},
+					hover: { //to turn off hover
+						mode: null
+					},
+					tooltips:{ //to turn off hover
+						enabled: false
+					},
+					legend: {
+					  display: false
+					}
+				};
+
+				$scope.options_first = {
+					scales: {
+					  xAxes: [{
 						stacked: true,
 						categoryPercentage: 1,
 						barPercentage: 1,
 						type: 'time',
+						position: 'top',
 						gridLines: {
 						  display: false, // Set to false here => xAxis labels displayed out of canvas
 						  offsetGridLines: true,
 						},
 						ticks: {
 						  display: true,
-						  fontSize: 10,
+						  fontSize: 20,
+						  fontColor: 'white',
 						  fontFamily: 'HelveticaNeue, HelveticaNeue, Roboto, ArialRounded',
 						  autoSkip: true,
 						  maxTicksLimit: 20
@@ -104,21 +128,63 @@ angular.module('FamilySleep')
 						showXLabel: 60
 					  }],
 					  yAxes: [{
-						stacked: true, //scaleLabel: "<%=value%>",
-						ticks: {
-						  fontSize: 12,
-						  fontFamily: 'HelveticaNeue, HelveticaNeue, Roboto, ArialRounded'
-						},
-						gridLines: {
-						  display: false, // Set to false here => xAxis labels displayed out of canvas
-						},
+						display: false
 					  }]
 					},
+					hover: { //to turn off hover
+						mode: null
+					},
+					tooltips:{ //to turn off hover
+						enabled: false
+					},
 					legend: {
-					  display: true
+					  display: false
 					}
 				};
 
+				$scope.options_last = {
+					scales: {
+					  xAxes: [{
+						stacked: true,
+						categoryPercentage: 1,
+						barPercentage: 1,
+						type: 'time',
+						gridLines: {
+						  display: false, // Set to false here => xAxis labels displayed out of canvas
+						  offsetGridLines: true,
+						},
+						ticks: {
+						  display: true,
+						  fontSize: 20,
+						  fontColor: 'white',
+						  fontFamily: 'HelveticaNeue, HelveticaNeue, Roboto, ArialRounded',
+						  autoSkip: true,
+						  maxTicksLimit: 20
+						},
+						time: {
+						  displayFormats: {
+							minute: 'HH:mm a'
+						  },
+						  tooltipFormat: 'YYYY-MM-DD HH:mm a',
+						  unit: "minute",
+						  unitStepSize: 1,
+						},
+						showXLabel: 60
+					  }],
+					  yAxes: [{
+						display: false
+					  }]
+					},
+					hover: { //to turn off hover
+						mode: null
+					},
+					tooltips:{ //to turn off hover
+						enabled: false
+					},
+					legend: {
+					  display: false
+					}
+				};
 				$scope.colors = [{
 					backgroundColor: "#551A8B",
 					borderColor: "#551A8B",

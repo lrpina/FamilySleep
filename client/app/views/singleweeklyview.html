@@ -1,14 +1,34 @@
 <div class="singleweeklyview-container" ng-controller="SingleweeklyviewCtrl">
 
 <p> {{id}}</p>
-<p>No Data</p>
+<!--no data when there is not data for that day -->
+<!--<p>No Data</p>-->
 <div class="row" ng-controller="StackedbarCtrl" ng-repeat="day in data">
 
 <p>{{day.date}}</p>
-	<p ng-if="day.labels.length==0">No Data</p>
-	 <canvas ng-if="day.labels.length>0" class="chart chart-bar" chart-data="day.data" chart-labels="day.labels" chart-options="options" chart-series="series" chart-colors="colors"  height="75px"></canvas>	
-	<!--width="50" height="10"-->
-   <img ng-src={{day.mood}} class="mood-pics">
+	<!--<p ng-if="day.labels.length==0">No Data</p> I think I want this to be duration-->
+	<div ng-switch on="$index">
+		<div ng-switch-when="0">
+			<canvas class="chart chart-bar" chart-data="day.data" chart-labels="day.labels" chart-options="options_first" chart-series="series" chart-colors="colors"  height="75px"></canvas>	
+			<!--<img ng-src={{day.mood}} class="mood-pics">-->
+			<img ng-src="images/faces/good.png" class="fwv-mood-pics">
+		</div>
+		<div ng-switch-when="6">
+			<canvas class="chart chart-bar" chart-data="day.data" chart-labels="day.labels" chart-options="options_last" chart-series="series" chart-colors="colors"  height="75px"></canvas>
+			<!--<img ng-src={{day.mood}} class="mood-pics">-->
+			<img ng-src="images/faces/good.png" class="fwv-mood-pics">
+		</div>
+		<div ng-switch-default>
+			<canvas class="chart chart-bar" chart-data="day.data" chart-labels="day.labels" chart-options="options" chart-series="series" chart-colors="colors"  height="75px"></canvas>	
+			<!--<img ng-src={{day.mood}} class="mood-pics">-->
+			 <img ng-src="images/faces/good.png" class="fwv-mood-pics">
+		</div>
+	</div>
+	<!--
+	 <canvas ng-if="day.labels.length>" class="chart chart-bar" chart-data="day.data" chart-labels="day.labels" chart-options="options" chart-series="series" chart-colors="colors"  height="75px"></canvas>	
+	<!--width="50" height="10"
+   
+   </div>
 </div>
 
 <!-- <div class="row">
