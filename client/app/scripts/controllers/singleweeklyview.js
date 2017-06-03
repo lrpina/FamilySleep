@@ -58,7 +58,7 @@ angular.module('FamilySleep')
 			
 			promise.then(function(response) {
 				console.log("in SingleweeklyviewCtrl");
-				console.log(singleWeeklySleep);
+				//console.log(singleWeeklySleep);
 				var rawData = singleWeeklySleep.sleep_data[$scope.id];
 				$scope.data = [];
 
@@ -69,11 +69,12 @@ angular.module('FamilySleep')
 						  item.minuteData.two,
 						  item.minuteData.three,
 						],
+						duration:item.duration,
 						labels : item.labels,
 						date: item.dateOfSleep,
 						mood: item.mood
 					}
-
+					//console.log(day.duration);
 					$scope.data.push(day);
 				});
 				

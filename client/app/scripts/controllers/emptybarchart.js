@@ -9,16 +9,16 @@
  */
 angular.module('FamilySleep')
   .controller('EmptybarchartCtrl', function ($scope) {
-  	$scope.color = ['#D3D3D3'];
-  	$scope.data = [65];
-  	$scope.labels = ['Empty'];
+  	$scope.color = ['#c2abff'];
+  	$scope.data = [0, 10];
+  	$scope.labels = ['Test'];
   	$scope.options = {
   		scales: {
     xAxes: [{
-                    display:false
+                    display:true
             }],
     yAxes: [{
-                    display:false
+                    display:true
             }]
     }
   	};
