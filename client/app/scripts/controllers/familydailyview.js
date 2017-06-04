@@ -79,7 +79,6 @@
     });
 
     personaFactory.retrieveProfiles();
-
     
     var updateData = function() {
       //console.log("famDailySleep");
@@ -88,40 +87,45 @@
       
       console.log(newDate);
       if(dateFactory.getWeekDateString() != []) {
-      var promise = dbdata.get_fam_daily_sleep_data(['mom','dad','girl','boy'], newDate);
+        var promise = dbdata.get_fam_daily_sleep_data(['mom','dad','girl','boy'], newDate);
 
-      promise.then(function(response) {
-        /*$scope.data = [famDailySleep.sleep_data['mom'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['mom'][newDate].duration/1000/60/60)];
-        /****this is a temporary fix this will need to figure out once I fix the view
-        $scope.id = famDailySleep.sleep_data['mom'][newDate].pid;
-        $scope.data_dad = [famDailySleep.sleep_data['dad'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['dad'][newDate].duration/1000/60/60)];
-        $scope.data_girl = [famDailySleep.sleep_data['girl'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['girl'][newDate].duration/1000/60/60)];
-        $scope.data_boy = [famDailySleep.sleep_data['boy'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['boy'][newDate].duration/1000/60/60)];*/
-        for(var fam in familyInfo){
-
-            familyInfo[fam].sleep = [famDailySleep.sleep_data[fam][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data[fam][newDate].duration/1000/60/60)];
+        promise.then(function(response) {
+          /*$scope.data = [famDailySleep.sleep_data['mom'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['mom'][newDate].duration/1000/60/60)];
+          /****this is a temporary fix this will need to figure out once I fix the view
+          $scope.id = famDailySleep.sleep_data['mom'][newDate].pid;
+          $scope.data_dad = [famDailySleep.sleep_data['dad'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['dad'][newDate].duration/1000/60/60)];
+          $scope.data_girl = [famDailySleep.sleep_data['girl'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['girl'][newDate].duration/1000/60/60)];
+          $scope.data_boy = [famDailySleep.sleep_data['boy'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['boy'][newDate].duration/1000/60/60)];*/
           
-        }
-        /*familyInfo.mom.sleep = [famDailySleep.sleep_data['mom'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['mom'][newDate].duration/1000/60/60)];
-        familyInfo.dad.sleep = [famDailySleep.sleep_data['dad'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['dad'][newDate].duration/1000/60/60)];
-        familyInfo.child1.sleep = [famDailySleep.sleep_data['girl'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['girl'][newDate].duration/1000/60/60)];
-        familyInfo.child2.sleep = [famDailySleep.sleep_data['boy'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['boy'][newDate].duration/1000/60/60)];*/
-        /****this is a temporary fix this will need to figure out once I fix the view
-        $scope.id = famDailySleep.sleep_data['mom'][newDate].pid;
-        $scope.data_dad = [famDailySleep.sleep_data['dad'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['dad'][newDate].duration/1000/60/60)];
-        $scope.data_girl = [famDailySleep.sleep_data['girl'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['girl'][newDate].duration/1000/60/60)];
-        $scope.data_boy = [famDailySleep.sleep_data['boy'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['boy'][newDate].duration/1000/60/60)];*/
-        $scope.family = familyInfo;
-        //console.log($scope.family);
-        $scope.labels = ['hours slept','hours awake'];
-         /*define colors here*/
-         $scope.colors = ['#0000FF', '#E0E0E0'];
-         $scope.options = {
-              cutoutPercentage: 70
-         };
-        $rootScope.$broadcast('familydailyview:updated');
-      });
-    }else {
+          // if there is no data, sleep will be undefined.
+
+          for(var fam in famDailySleep) {
+            if(fam.type=='family') {
+              familyInfo[fam].sleep = [famDailySleep.sleep_data[fam][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data[fam][newDate].duration/1000/60/60)];
+            }
+          }
+          /*familyInfo.mom.sleep = [famDailySleep.sleep_data['mom'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['mom'][newDate].duration/1000/60/60)];
+          familyInfo.dad.sleep = [famDailySleep.sleep_data['dad'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['dad'][newDate].duration/1000/60/60)];
+          familyInfo.child1.sleep = [famDailySleep.sleep_data['girl'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['girl'][newDate].duration/1000/60/60)];
+          familyInfo.child2.sleep = [famDailySleep.sleep_data['boy'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['boy'][newDate].duration/1000/60/60)];*/
+          /****this is a temporary fix this will need to figure out once I fix the view
+          $scope.id = famDailySleep.sleep_data['mom'][newDate].pid;
+          $scope.data_dad = [famDailySleep.sleep_data['dad'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['dad'][newDate].duration/1000/60/60)];
+          $scope.data_girl = [famDailySleep.sleep_data['girl'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['girl'][newDate].duration/1000/60/60)];
+          $scope.data_boy = [famDailySleep.sleep_data['boy'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['boy'][newDate].duration/1000/60/60)];*/
+          
+          $scope.family = familyInfo;
+          console.log($scope.family);
+          
+          $scope.labels = ['hours slept','hours awake'];
+           /*define colors here*/
+           $scope.colors = ['#0000FF', '#E0E0E0'];
+           $scope.options = {
+                cutoutPercentage: 70
+           };
+          $rootScope.$broadcast('familydailyview:updated');
+        });
+      } else {
         alert('date factory get week didnt populate');
       }
     }

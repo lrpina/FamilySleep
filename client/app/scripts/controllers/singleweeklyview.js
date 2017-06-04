@@ -14,13 +14,15 @@ angular.module('FamilySleep')
 	'$scope', 'sleepWeeklyDataFactory', 'tractdbdata',  '$rootScope', 'dateFactory', '$routeParams', function (
 		$scope, singleWeeklySleep, dbdata, $rootScope, dateFactory, $routeParams) {
 
-	$scope.id = $routeParams.id;
+	
 	if($routeParams.id=='child1'){
       $scope.id = 'boy';
     } else if ($routeParams.id=='child2')
     {
       $scope.id = 'girl';
-    };
+    } else {
+    	$scope.id = $routeParams.id;
+    }
 	$rootScope.menu = [
 	  {
 		  title: 'Back',
@@ -52,103 +54,167 @@ angular.module('FamilySleep')
 
 	var updateData = function () {
 		if(dateFactory.getWeekDateString() != []) {
-		var promise = dbdata.get_single_weekly_sleep_data($scope.id, dateFactory.getWeekDateString()
-			//['2016-07-23','2016-07-24','2016-07-25','2016-07-26']
-			);
-		
-		promise.then(function(response) {
-			console.log("in SingleweeklyviewCtrl");
-			console.log(singleWeeklySleep);
-			var rawData = singleWeeklySleep.sleep_data[$scope.id];
-			$scope.data = [];
-
-			angular.forEach(rawData, function(item) {
-				var day = {
-					data: [
-					  item.minuteData.one, 
-					  item	.minuteData.two,
-					  item.minuteData.three,
-					],
-					labels : item.labels,
-					date: item.dateOfSleep,
-					mood: item.mood
-				}
-				$scope.data.push(day);
-			});
+			var promise = dbdata.get_single_weekly_sleep_data($scope.id, dateFactory.getWeekDateString());
 			
-			$scope.options = {
-				scales: {
-				  xAxes: [{
-					stacked: true,
-					categoryPercentage: 1,
-					barPercentage: 1,
-					type: 'time',
-					gridLines: {
-					  display: false, // Set to false here => xAxis labels displayed out of canvas
-					  offsetGridLines: true,
+			promise.then(function(response) {
+				console.log("in SingleweeklyviewCtrl");
+				//console.log(singleWeeklySleep);
+				var rawData = singleWeeklySleep.sleep_data[$scope.id];
+				$scope.data = [];
+
+				angular.forEach(rawData, function(item) {
+					var day = {
+						data: [
+						  item.minuteData.one, 
+						  item.minuteData.two,
+						  item.minuteData.three,
+						],
+						duration:item.duration,
+						labels : item.labels,
+						date: item.dateOfSleep,
+						mood: item.mood
+					}
+					//console.log(day.duration);
+					$scope.data.push(day);
+				});
+				
+				$scope.options = {
+					scales: {
+					  xAxes: [{
+						display: false
+					  }],
+					  yAxes: [{
+						display: false
+					  }]	
 					},
-					ticks: {
-					  display: true,
-					  fontSize: 10,
-					  fontFamily: 'HelveticaNeue, HelveticaNeue, Roboto, ArialRounded',
-					  autoSkip: true,
-					  maxTicksLimit: 20
+					hover: { //to turn off hover
+						mode: null
 					},
-					time: {
-					  displayFormats: {
-						minute: 'HH:mm a'
-					  },
-					  tooltipFormat: 'YYYY-MM-DD HH:mm a',
-					  unit: "minute",
-					  unitStepSize: 1,
+					tooltips:{ //to turn off hover
+						enabled: false
 					},
-					showXLabel: 60
-				  }],
-				  yAxes: [{
-					stacked: true, //scaleLabel: "<%=value%>",
-					ticks: {
-					  fontSize: 12,
-					  fontFamily: 'HelveticaNeue, HelveticaNeue, Roboto, ArialRounded'
+					legend: {
+					  display: false
+					}
+				};
+
+				$scope.options_first = {
+					scales: {
+					  xAxes: [{
+						stacked: true,
+						categoryPercentage: 1,
+						barPercentage: 1,
+						type: 'time',
+						position: 'top',
+						gridLines: {
+						  display: false, // Set to false here => xAxis labels displayed out of canvas
+						  offsetGridLines: true,
+						},
+						ticks: {
+						  display: true,
+						  fontSize: 20,
+						  fontColor: 'white',
+						  fontFamily: 'HelveticaNeue, HelveticaNeue, Roboto, ArialRounded',
+						  autoSkip: true,
+						  maxTicksLimit: 20
+						},
+						time: {
+						  displayFormats: {
+							minute: 'HH:mm a'
+						  },
+						  tooltipFormat: 'YYYY-MM-DD HH:mm a',
+						  unit: "minute",
+						  unitStepSize: 1,
+						},
+						showXLabel: 60
+					  }],
+					  yAxes: [{
+						display: false
+					  }]
 					},
-					gridLines: {
-					  display: false, // Set to false here => xAxis labels displayed out of canvas
+					hover: { //to turn off hover
+						mode: null
 					},
-				  }]
+					tooltips:{ //to turn off hover
+						enabled: false
+					},
+					legend: {
+					  display: false
+					}
+				};
+
+				$scope.options_last = {
+					scales: {
+					  xAxes: [{
+						stacked: true,
+						categoryPercentage: 1,
+						barPercentage: 1,
+						type: 'time',
+						gridLines: {
+						  display: false, // Set to false here => xAxis labels displayed out of canvas
+						  offsetGridLines: true,
+						},
+						ticks: {
+						  display: true,
+						  fontSize: 20,
+						  fontColor: 'white',
+						  fontFamily: 'HelveticaNeue, HelveticaNeue, Roboto, ArialRounded',
+						  autoSkip: true,
+						  maxTicksLimit: 20
+						},
+						time: {
+						  displayFormats: {
+							minute: 'HH:mm a'
+						  },
+						  tooltipFormat: 'YYYY-MM-DD HH:mm a',
+						  unit: "minute",
+						  unitStepSize: 1,
+						},
+						showXLabel: 60
+					  }],
+					  yAxes: [{
+						display: false
+					  }]
+					},
+					hover: { //to turn off hover
+						mode: null
+					},
+					tooltips:{ //to turn off hover
+						enabled: false
+					},
+					legend: {
+					  display: false
+					}
+				};
+				$scope.colors = [{
+					backgroundColor: "#551A8B",
+					borderColor: "#551A8B",
+					pointBackgroundColor: "#6B8FBD",
+					pointBorderColor: "#fff",
+					pointHoverBackgroundColor: "#fff",
+					pointHoverBorderColor: "#6B8FBD",
 				},
-				legend: {
-				  display: true
-				}
-			};
+				{
+					backgroundColor: "#03E2E7",
+					borderColor: "#03E2E7",
+					pointBackgroundColor: "#6B8FBD",
+					pointBorderColor: "#fff",
+					pointHoverBackgroundColor: "#fff",
+					pointHoverBorderColor: "#6B8FBD",
+				},{
+					backgroundColor: "#8CA2AA",
+					borderColor: "#8CA2AA",
+					pointBackgroundColor: "#8CA2AA",
+					pointBorderColor: "#fff",
+					pointHoverBackgroundColor: "#fff",
+					pointHoverBorderColor: "#8CA2AA",
+				}];
 
-			$scope.colors = [{
-				backgroundColor: "#551A8B",
-				borderColor: "#551A8B",
-				pointBackgroundColor: "#6B8FBD",
-				pointBorderColor: "#fff",
-				pointHoverBackgroundColor: "#fff",
-				pointHoverBorderColor: "#6B8FBD",
-			},
-			{
-				backgroundColor: "#03E2E7",
-				borderColor: "#03E2E7",
-				pointBackgroundColor: "#6B8FBD",
-				pointBorderColor: "#fff",
-				pointHoverBackgroundColor: "#fff",
-				pointHoverBorderColor: "#6B8FBD",
-			},{
-				backgroundColor: "#8CA2AA",
-				borderColor: "#8CA2AA",
-				pointBackgroundColor: "#8CA2AA",
-				pointBorderColor: "#fff",
-				pointHoverBackgroundColor: "#fff",
-				pointHoverBorderColor: "#8CA2AA",
-			}];
-
-			$scope.series = ["Sleep", "Movement", "Restless"];
-		});
-	}else {
-        alert('date factory get week didnt populate');
-      }
+				$scope.series = ["Sleep", "Movement", "Restless"];
+			});
+		} else {
+	    alert('date factory get week didnt populate');
+	  }
 	}
 	updateData();
 }]);

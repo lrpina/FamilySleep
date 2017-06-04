@@ -3,21 +3,27 @@
 		"name": "Marge",
 		"targetedHours": 9,
 		"profilePic": "images/avatars/momcircle.png",
-		"relation": "mom"
+		"relation": "mom",
+		"id": "parent1"
 	}, {
 		"name": "Homer",
 		"targetedHours": 8,
 		"profilePic": "images/avatars/dadcircle.png",
-		"relation": "dad"
+		"relation": "dad",
+		"id": "parent2"
 	}, {
 		"name": "Lisa",
 		"targetedHours": 10,
 		"profilePic": "images/avatars/girlcircle.png",
-		"relation": "girl"
+		"relation": "girl",
+		"id": "child1"
+
 	}, {
 		"name": "Bart",
 		"targetedHours": 10,
 		"profilePic": "images/avatars/boycircle.png",
-		"relation": "boy"
+		"relation": "boy",
+		"id": "child2"
+
 	}]
 }

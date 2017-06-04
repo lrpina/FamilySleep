@@ -116,13 +116,14 @@ angular.module('FamilySleep')
         // this callback will be called asynchronously
         // when the response is available
         temp_data = response.data;
-
         //console.log(temp_data);
         return format_data(factory, id, date, temp_data);     
       }, function (response) {
         // called asynchronously if an error occurs
         // or server returns response with an error status.
-        console.error('Retrieval Error' + response.statusText);
+        //console.error('Retrieval Error' + response.statusText);
+        console.log("filling factory with empties");
+        return format_data_empty(factory, id, date);
       })
       .then(function (response) {
         //console.log("format sucess");
@@ -190,7 +191,7 @@ angular.module('FamilySleep')
             "duration": temp_data.sleep[0].duration,
             "mood": "",
             "moodAddedBy" : "",
-            "name": temp_data.sleep[0].logId,
+            "name": id,
             "minuteData": {
               //'empty': [],
               "one" : [],
@@ -217,8 +218,6 @@ angular.module('FamilySleep')
                 sleepData.labels.push(moment(targetSleepTime).add(i, 'm'));
             }
           }
-
-         
 
           for(var i = 0; i < temp_data.sleep[0].minuteData.length; i++) {
             var time = temp_data.sleep[0].minuteData[i];
@@ -251,7 +250,43 @@ angular.module('FamilySleep')
           reject("fail");
         }
       });
+    }
+    
 
+    var format_data_empty = function (factory, id, date) { //I think I have access to temp_data here don't need to put it as an argument
+      return $q(function(resolve, reject) {
+
+          var sleepData = {
+            "pid" : id,
+            'fid' : "",
+            "dateOfSleep": date,
+            "duration": -1,
+            "mood": "",
+            "moodAddedBy" : "",
+            "name": id,
+            "minuteData": {
+              //'empty': [],
+              "one" : [],
+              "two" : [],
+              "three" : [],
+            },
+            "startTime": "",
+            "endTime": "",
+            "labels": [],
+          };
+
+      
+           //console.log("done with formatting data before");
+          // console.log(factory.sleep_data);
+          //console.log(factory.sleep_data[id]);
+          // add id as label hereb
+          factory.sleep_data[id][date] = sleepData;
+         // console.log(factory.sleep_data);
+          //sleep_data[id] = sleepData;
+          //sleep.sleep_data_fact = sleep_data
+          //console.log("done with formatting data");
+          resolve("sucess");
+      });
     }
 
     // Public API here

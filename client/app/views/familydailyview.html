@@ -10,8 +10,14 @@ There might be other things you can do with
 <div ng-if="$even" class="fdv-even-column col-xs-4">
 <!--even object -->
     <div ng-show="member.type=='family'">
-            <img ng-src={{member.avatar}} class="fdv-names">
+        <div>
+            <img ng-src={{member.avatar}} class="profile-pics">
             <p class="fdv-names">{{member.name}}</p>
+        </div>
+        <div class="target-hours">
+            <a ng-href="#!/sdview/{{member.name}}" class="btn btn-primary" style="visibility:hidden;"> Single Daily View</a> <!--want an ng-if here to show only after daily sleep and self-report is available -->
+            <p>Target hours: 8</p>
+        </div>
             <div ng-controller="ModalCrtl as $ctrl">
                 <div ng-if=$ctrl.states[member.name].state>
                     <div ng-controller="DoughnutCtrl" class="chart-placement">
@@ -20,7 +26,7 @@ There might be other things you can do with
                     </div>
                      <img ng-src={{$ctrl.states[member.name].image}} class="mood-pics">
                      <p> Mood reported to be {{$ctrl.states[member.name].mood | uppercase}}</p>
-                     <a ng-href="#!/sdview/{{member.name}}" class="button btn-primary"> Single Daily View</a> <!--want an ng-if here to show only after daily sleep and self-report is available -->
+                     <!-- <a ng-href="#!/sdview/{{member.name}}" class="button btn-primary"> Single Daily View</a>  --><!--want an ng-if here to show only after daily sleep and self-report is available -->
                 </div>
                 <div ng-if=!$ctrl.states[member.name].state>
                  <div ng-controller="PiechartcontrollerCtrl" class="chart-placement">
@@ -36,8 +42,14 @@ There might be other things you can do with
 <div ng-if="$odd" class="fdv-odd-column col-xs-4">
 <!--odd object -->
     <div ng-show="member.type=='family'">
-            <img ng-src={{member.avatar}} class="fdv-names">
+        <div>
+            <img ng-src={{member.avatar}} class="profile-pics">
             <p class="fdv-names">{{member.name}}</p>
+        </div>
+        <div class="target-hours">
+            <a ng-href="#!/sdview/{{member.name}}" class="btn btn-primary"> Single Daily View</a> <!--want an ng-if here to show only after daily sleep and self-report is available -->
+            <p>Target hours: 8</p>
+        </div>
             <div ng-controller="ModalCrtl as $ctrl">
                 <div ng-if=$ctrl.states[member.name].state>
                     <div ng-controller="DoughnutCtrl" class="chart-placement">
@@ -46,7 +58,7 @@ There might be other things you can do with
                     </div>
                      <img ng-src={{$ctrl.states[member.name].image}} class="mood-pics">
                      <p> Mood reported to be {{$ctrl.states[member.name].mood | uppercase}}</p>
-                     <a ng-href="#!/sdview/{{member.name}}" class="button btn-primary"> Single Daily View</a> <!--want an ng-if here to show only after daily sleep and self-report is available -->
+                     <!-- <a ng-href="#!/sdview/{{member.name}}" class="button btn-primary"> Single Daily View</a> --> <!--want an ng-if here to show only after daily sleep and self-report is available -->
                 </div>
                 <div ng-if=!$ctrl.states[member.name].state>
                  <div ng-controller="PiechartcontrollerCtrl" class="chart-placement">
