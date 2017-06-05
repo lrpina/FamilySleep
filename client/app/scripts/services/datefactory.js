@@ -60,13 +60,19 @@ angular.module('FamilySleep')
       return date_week;
     };
 
+    var getToday = function(){
+      var today = moment.format('YYYY-MM-DD HH:mm:ss');
+      return
+    };
+
     return{
       updateDate : updateDate,
       getDate : getDate,
       date: date,
       getDateString: getDateString,
       getWeekDate : getWeekDate,
-      getWeekDateString : getWeekDateString
+      getWeekDateString : getWeekDateString,
+      getToday: getToday
 
     };
   });
