@@ -12,7 +12,7 @@
             <p> name </p>
         </div>
           <div ng-repeat="day in member" class="fwv-columns">
-            <div ng-show="day.duration !=-1">
+            <div ng-show="day.duration !=-1" class="fwv-chart-placement">
                 <!--<div ng-controller="DoughnutCtrl" class="chart-placement">-->
                     <canvas id="doughnut" class="chart chart-doughnut" chart-data="day.sleep" chart-labels="labels" chart-colors ="colors" chart-options="options">
                     </canvas>
@@ -20,7 +20,7 @@
                     <p class="fwv-mood-text">mood</p>
                 <!--</div>-->
             </div>
-            <div ng-show="day.duration==-1" ng-controller="PiechartcontrollerCtrl">
+            <div ng-show="day.duration==-1" ng-controller="PiechartcontrollerCtrl" class="fwv-chart-placement">
                   <canvas id="doughnut" class="chart chart-pie" chart-data="data" chart-colors ="color" chart-options="options">
                   </canvas>
             </div>
