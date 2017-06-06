@@ -14,9 +14,8 @@ There might be other things you can do with
             <img ng-src={{member.avatar}} class="profile-pics">
             <p class="fdv-names">{{member.name}}</p>
         </div>
-        <div class="user-info">
-            <a ng-href="#!/sdview/{{member.name}}" class="btn btn-primary" style="visibility:hidden;"> Single Daily View</a> <!--want an ng-if here to show only after daily sleep and self-report is available -->
-            <p class="target-hours">Target hours: 8</p>
+        <div class="target-hours">
+            <p>Target hours: 8</p>
         </div>
         <div ng-controller="ModalCrtl as $ctrl">
             <div ng-if=$ctrl.states[member.name].state>
@@ -26,7 +25,9 @@ There might be other things you can do with
                 </div>
                  <img ng-src={{$ctrl.states[member.name].image}} class="mood-pics">
                  <p>Mood reported to be {{$ctrl.states[member.name].mood | uppercase}}</p>
-                 <!-- <a ng-href="#!/sdview/{{member.name}}" class="button btn-primary"> Single Daily View</a>  --><!--want an ng-if here to show only after daily sleep and self-report is available -->
+                 <div class="single-view-button">
+                    <a ng-href="#!/sdview/{{member.name}}" class="btn btn-primary"> Single Daily View</a><!--want an ng-if here to show only after daily sleep and self-report is available -->
+                </div>
                  <div>
                     <p class="hours-slept">Hours slept: <br>5</p>
                 </div>
@@ -49,9 +50,8 @@ There might be other things you can do with
             <img ng-src={{member.avatar}} class="profile-pics">
             <p class="fdv-names">{{member.name}}</p>
         </div>
-        <div class="user-info">
-            <a ng-href="#!/sdview/{{member.name}}" class="btn btn-primary"> Single Daily View</a> <!--want an ng-if here to show only after daily sleep and self-report is available -->
-            <p class="target-hours">Target hours: 8</p>
+        <div class="target-hours">
+            <p>Target hours: 8</p>
         </div>
         <div ng-controller="ModalCrtl as $ctrl">
             <div ng-if=$ctrl.states[member.name].state>
@@ -61,7 +61,9 @@ There might be other things you can do with
                 </div>
                  <img ng-src={{$ctrl.states[member.name].image}} class="mood-pics">
                  <p> Mood reported to be {{$ctrl.states[member.name].mood | uppercase}}</p>
-                 <!-- <a ng-href="#!/sdview/{{member.name}}" class="button btn-primary"> Single Daily View</a> --> <!--want an ng-if here to show only after daily sleep and self-report is available -->
+                 <div class="single-view-button">
+                    <a ng-href="#!/sdview/{{member.name}}" class="btn btn-primary"> Single Daily View</a><!--want an ng-if here to show only after daily sleep and self-report is available -->
+                </div>
                  <div>
                     <p class="hours-slept">Hours slept: <br>5</p>
                 </div>

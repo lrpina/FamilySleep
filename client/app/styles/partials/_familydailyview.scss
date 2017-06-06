@@ -89,21 +89,22 @@
   display: inline-block;
 }
 
-.user-info {
-  margin-left: 80px;
-  margin-top: -70px;
-  margin-bottom: 15px;
+.single-view-button {
+    margin-top: -250px;
+    margin-left: 90px;
 }
 
 .target-hours {
-  margin-left: 20px;
+  margin-left: 110px;
+  margin-top: -35px;
+  margin-bottom: 15px;
 }
 
 .mood-pics {
   position: absolute; 
   width: 100px; 
   height: 100px;
-  top: 104px; 
+  top: 105px; 
   left: 120px; 
   z-index: 1;
 }
@@ -130,12 +131,12 @@
 }
 
 .fdv-odd-column {
-  margin-left: 125px;
+  margin-left: 160px;
   margin-bottom: 20px;
   height: 260px;
 }
 
 .hours-slept {
-  margin-top: -140px;
+  margin-top: 70px;
   font-size: small;
 }
