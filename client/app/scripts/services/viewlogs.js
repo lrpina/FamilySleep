@@ -21,11 +21,16 @@ angular.module('FamilySleep')
     pushes back data to server
     */
     var logPage = function (pName, date){
+      var temp = {pname: pName, date: date};
+      pLogs.push(temp);
+    };
 
+    var sendToDB = function(){
+      //HTTP put to send to server
+      //need to handle error or OK coming back from server
     };
     return {
-      someMethod: function () {
-        return meaningOfLife;
-      }
+      logPage: logPage,
+      sendToDB: sendToDB
     };
   });
