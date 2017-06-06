@@ -101,8 +101,8 @@
 
           for(var fam in familyInfo) {
               familyInfo[fam].sleep = [famDailySleep.sleep_data[fam][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data[fam][newDate].duration/1000/60/60)];
-              console.log("fam member sleep");
-              console.log(familyInfo[fam].sleep);
+              //console.log("fam member sleep");
+              //console.log(familyInfo[fam].sleep);
           }
           /*familyInfo.mom.sleep = [famDailySleep.sleep_data['mom'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['mom'][newDate].duration/1000/60/60)];
           familyInfo.dad.sleep = [famDailySleep.sleep_data['dad'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['dad'][newDate].duration/1000/60/60)];

@@ -75,14 +75,14 @@ nav.individual-weekly-view .individual-weekly-view {
 }
 
 html {
-  background-color: black;
+  background-color: #5979c4;
 }
 
 body {
   padding: 0;
   margin: 0;
-  background: url("../images/cartoon_sky.png");
-  background-repeat: no-repeat;
+  background: url("../images/new_cartoon_sky.png");
+  background-repeat: repeat-x;
   background-size: contain;
   /*height: 100%;
   width: 100%;*/
@@ -159,7 +159,7 @@ body {
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
-    max-width: 730px;
+    max-width: 800px;
   }
 
   /* Remove the padding we set earlier */

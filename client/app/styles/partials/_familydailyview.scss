@@ -56,13 +56,13 @@
 .chart-placement {
   height:150px;
   width:150px; 
-  margin-left:50px;
+  margin-left: 70px;
 }
 
 .how-sleep-button {
   position: absolute; 
-  top: 135px; 
-  left: 75px; 
+  top: 125px; 
+  left: 110px; 
   z-index: 1; 
   white-space: normal; 
   max-width: 100px; 
@@ -85,21 +85,52 @@
   height: 60px;
 }
 
+.profile-area {
+  display: inline-block;
+}
+
+.user-info {
+  margin-left: 80px;
+  margin-top: -70px;
+  margin-bottom: 15px;
+}
+
+.target-hours {
+  margin-left: 20px;
+}
+
 .mood-pics {
   position: absolute; 
   width: 100px; 
   height: 100px;
-  top: 115px; 
-  left: 75px; 
+  top: 104px; 
+  left: 110px; 
   z-index: 1;
 }
 
 #family_moon {
+  position: fixed;
   height: 150px;
-  margin-top: 200px;
+  top: 50%;
+  left: 50%;
+  margin-top: 0; /* Negative half of height. */
+  margin-left: -71px; /* Negative half of width. */
 }
 
 .fdv-names {
     text-align: center;
     width: 60px;
+    margin: 0;
+}
+
+.fdv-even-column {
+  margin-right: 125px;
+  margin-bottom: 20px;
+  height: 260px;
+}
+
+.fdv-odd-column {
+  margin-left: 125px;
+  margin-bottom: 20px;
+  height: 260px;
 }
