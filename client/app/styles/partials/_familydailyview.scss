@@ -56,13 +56,13 @@
 .chart-placement {
   height:150px;
   width:150px; 
-  margin-left:50px;
+  margin-left: 70px;
 }
 
 .how-sleep-button {
   position: absolute; 
   top: 125px; 
-  left: 90px; 
+  left: 110px; 
   z-index: 1; 
   white-space: normal; 
   max-width: 100px; 
@@ -89,10 +89,14 @@
   display: inline-block;
 }
 
-.target-hours {
+.user-info {
   margin-left: 80px;
   margin-top: -70px;
   margin-bottom: 15px;
+}
+
+.target-hours {
+  margin-left: 20px;
 }
 
 .mood-pics {
@@ -100,7 +104,7 @@
   width: 100px; 
   height: 100px;
   top: 104px; 
-  left: 90px; 
+  left: 110px; 
   z-index: 1;
 }
 
