@@ -10,8 +10,14 @@
  */
 angular.module('FamilySleep')
   .factory('viewLogs', function () {
+    
+    /* this variable has the following format
+    {pname: "name of page", date: "date when visited"}
+    */
+    var pLogs;
+
     /*
-    takes argument name of page and date to log into factory
+    takes argument name of page name and date to log into factory
     pushes back data to server
     */
     var logPage = function (pName, date){
