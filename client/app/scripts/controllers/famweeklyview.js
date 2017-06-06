@@ -33,23 +33,29 @@ angular.module('FamilySleep')
       updateData();
     });
     $scope.famWeekData;
+    $scope.dateWeekStr;
     var updateData = function () {
-      console.log(dateFactory.getWeekDateString());
+      $scope.dateWeekStr = dateFactory.getWeekDateString();
+      console.log("dateWeekStr");
+      console.log($scope.dateWeekStr);
+      //var dateWeek = dateFactory.getWeekDate();
+      //console.log("dateWeek");
+      //console.log(dateWeek);
       if(dateFactory.getWeekDateString() != []) {
-        var promise = dbdata.get_fam_weekly_sleep_data(['mom','dad','girl','boy'], dateFactory.getWeekDateString());
+        var promise = dbdata.get_fam_weekly_sleep_data(['mom','dad','girl','boy'], $scope.dateWeekStr);
         promise.then(function(response) {
         	console.log('in family weekly view');
           //console.log(famWeeklySleep.sleep_data);
           $scope.famWeekData = famWeeklySleep.sleep_data;
           //console.log(famWeekData);
           for (var fam in $scope.famWeekData){
-            console.log(fam)
+            //console.log(fam)
             var nights = $scope.famWeekData[fam];
             //console.log(nights);
             for(var night in nights){
-              console.log("in nights loop");
+              //console.log("in nights loop");
               var data = nights[night];
-              //console.log(data);
+              //console.log(data.dateOfSleep);
               //console.log("duration");
               //console.info(data.duration);
               data.sleep = [data.duration/1000/60/60, (24-data.duration/1000/60/60)];
@@ -59,7 +65,7 @@ angular.module('FamilySleep')
               //night.sleep = [0, 5];
             }
           }
-          console.log($scope.famWeekData);
+          //console.log($scope.famWeekData);
           $scope.labels = ['hours slept','hours awake'];
          /*define colors here*/
          $scope.colors = ['#0000FF', '#E0E0E0'];
