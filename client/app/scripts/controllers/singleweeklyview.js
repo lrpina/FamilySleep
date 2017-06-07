@@ -81,7 +81,8 @@ angular.module('FamilySleep')
 				$scope.options = {
 					scales: {
 					  xAxes: [{
-						display: false
+						display: false,
+						barThickness : 1,
 					  }],
 					  yAxes: [{
 						display: false
@@ -95,7 +96,9 @@ angular.module('FamilySleep')
 					},
 					legend: {
 					  display: false
-					}
+					},
+					responsive:false,
+    				maintainAspectRatio: false
 				};
 
 				$scope.options_first = {
@@ -104,6 +107,7 @@ angular.module('FamilySleep')
 						stacked: true,
 						categoryPercentage: 1,
 						barPercentage: 1,
+						barThickness : 1,
 						type: 'time',
 						position: 'top',
 						gridLines: {
@@ -112,7 +116,7 @@ angular.module('FamilySleep')
 						},
 						ticks: {
 						  display: true,
-						  fontSize: 20,
+						  fontSize: 12,
 						  fontColor: 'white',
 						  fontFamily: 'HelveticaNeue, HelveticaNeue, Roboto, ArialRounded',
 						  autoSkip: true,
@@ -140,7 +144,9 @@ angular.module('FamilySleep')
 					},
 					legend: {
 					  display: false
-					}
+					},
+					responsive:false,
+    				maintainAspectRatio: false
 				};
 
 				$scope.options_last = {
@@ -149,6 +155,7 @@ angular.module('FamilySleep')
 						stacked: true,
 						categoryPercentage: 1,
 						barPercentage: 1,
+						barThickness : 1,
 						type: 'time',
 						gridLines: {
 						  display: false, // Set to false here => xAxis labels displayed out of canvas
@@ -156,7 +163,7 @@ angular.module('FamilySleep')
 						},
 						ticks: {
 						  display: true,
-						  fontSize: 20,
+						  fontSize: 12,
 						  fontColor: 'white',
 						  fontFamily: 'HelveticaNeue, HelveticaNeue, Roboto, ArialRounded',
 						  autoSkip: true,
@@ -184,30 +191,27 @@ angular.module('FamilySleep')
 					},
 					legend: {
 					  display: false
-					}
+					},
+					responsive:false,
+    				maintainAspectRatio: false
 				};
 				$scope.colors = [{
-					backgroundColor: "#551A8B",
-					borderColor: "#551A8B",
-					pointBackgroundColor: "#6B8FBD",
-					pointBorderColor: "#fff",
-					pointHoverBackgroundColor: "#fff",
-					pointHoverBorderColor: "#6B8FBD",
+					backgroundColor: "#44d2d1",
+					borderColor: "#44d2d1",
+					pointBackgroundColor: "#44d2d1",
+					pointBorderColor: "#44d2d1"
 				},
 				{
-					backgroundColor: "#03E2E7",
-					borderColor: "#03E2E7",
-					pointBackgroundColor: "#6B8FBD",
-					pointBorderColor: "#fff",
-					pointHoverBackgroundColor: "#fff",
-					pointHoverBorderColor: "#6B8FBD",
-				},{
-					backgroundColor: "#8CA2AA",
-					borderColor: "#8CA2AA",
-					pointBackgroundColor: "#8CA2AA",
-					pointBorderColor: "#fff",
-					pointHoverBackgroundColor: "#fff",
-					pointHoverBorderColor: "#8CA2AA",
+					backgroundColor: "#551A8B",
+					borderColor: "#551A8B",
+					pointBackgroundColor: "#551A8B",
+					pointBorderColor: "#551A8B"
+				},
+				{
+					backgroundColor: "#FC3F73",
+					borderColor: "#FC3F73",
+					pointBackgroundColor: "#FC3F73",
+					pointBorderColor: "#FC3F73"
 				}];
 
 				$scope.series = ["Sleep", "Movement", "Restless"];
