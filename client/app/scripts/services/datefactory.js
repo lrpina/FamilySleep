@@ -46,7 +46,7 @@ angular.module('FamilySleep')
       return date;*/
       //to return today uncomment below
       return date.format('YYYY-MM-DD');
-    }
+    };
 
     var getWeekDateString = function() {
       var result = [];

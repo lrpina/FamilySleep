@@ -8,8 +8,8 @@
  * Controller of the FamilySleep
  */
  angular.module('FamilySleep')
- 	.controller('SdviewCtrl', ['$rootScope', '$scope', 'sleepDailyDataFactory', '$routeParams', 'tractdbdata', 'dateFactory',
-    function($rootScope, $scope, sleepDataFactory, $routeParams, dbdata, dateFactory) {
+ 	.controller('SdviewCtrl', ['$rootScope', '$scope', 'sleepDailyDataFactory', '$routeParams', 'tractdbdata', 'dateFactory', 'personaFactory',
+    function($rootScope, $scope, sleepDataFactory, $routeParams, dbdata, dateFactory, personaFactory) {
     //$scope.id = $routeParams.id;
     if($routeParams.id=='child1'){
       $scope.id = 'boy';

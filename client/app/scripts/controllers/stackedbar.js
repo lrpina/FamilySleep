@@ -13,7 +13,7 @@
 3. when hover show only one value
 **/
 angular.module('FamilySleep')
-.controller('StackedbarCtrl', ['$scope', 'sleepDataFactory', 'tractdbdata', function ($scope, sleep, dbdata) { 
+.controller('StackedbarCtrl', ['$scope', function ($scope) { 
   // function getLabels() {
   //   var result = [];
   //   for (var i = 0; i < 400; i++) {

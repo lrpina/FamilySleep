@@ -5,28 +5,57 @@
  * @id FamilySleep.personaFactory
  * @description
  * # personaFactory
- * Factory in the FamilySleep. Contains each family memebr's profile pic, target hours, id, and type of family member
+ * Factory in the FamilySleep. Contains each family member's profile pic, target hours, id, and type of family member
+ */
+ /* format of profiles object
+{
+  "data": [{
+    "name": "Rob",
+    "targetedHours": 9,
+    "profilePic": "images/avatars/momcircle.png",
+    "relation": "parent1",
+    "id": "mom"
+  }, {
+    "name": "Pat",
+    "targetedHours": 8,
+    "profilePic": "images/avatars/dadcircle.png",
+    "relation": "parent2",
+    "id": "dad"
+  }, {
+    "name": "JR",
+    "targetedHours": 10,
+    "profilePic": "images/avatars/girlcircle.png",
+    "relation": "child1",
+    "id": "boy"
+
+  }, {
+    "name": "AJ",
+    "targetedHours": 10,
+    "profilePic": "images/avatars/boycircle.png",
+    "relation": "child2",
+    "id": "girl"
+  }]
+}
+
  */
 angular.module('FamilySleep')
   .factory('personaFactory', ['$http', function ($http) {
     // Service logic
     // ...
-
-    // use object hasOwnproperty
-
+    //array holding all the profiles, structure is set above
     var profiles = [];
 
     var temp_data; 
 
     var retrieveProfiles = function() {
       //get file for profiles and update them 
-      console.log("at persona Factory");
+      //console.log("at persona Factory");
         return $http({method:'GET', url: 'data/persona.json' })
         .then(function (response) {
           // this callback will be called asynchronously
           // when the response is available
           temp_data = response.data;
-          console.log(temp_data);
+          //console.log(temp_data);
           populate(temp_data);
         }, function (response) {
           // called asynchronously if an error occurs
@@ -37,13 +66,13 @@ angular.module('FamilySleep')
 
     var populate = function(temp_data) {
       profiles = temp_data.data;
-      console.log(profiles);
+      /*console.log("in populate part of the personaFactory");
+      console.log(profiles);*/
     }
 
-    retrieveProfiles();
 
     var getProfile = function (id) {
-      for(var i = 0; i < profiles.length; i++) {
+      for(var i = 0; i < profiles.length; i++) { 
         if(profiles[i].id == id) {
           return profiles[i];
         }
@@ -52,6 +81,14 @@ angular.module('FamilySleep')
 
     var getAllProfiles = function() {
       return profiles;
+    }
+
+    var getAllIDs = function(){
+      var IDArray = new Array(profiles.length);
+      for(var i = 0; i < profiles.length; i++) {
+          IDArray[i] = profiles[i].id;
+      }
+      return IDArray;
     }
 
     var getProfPic = function(id) {
@@ -95,6 +132,20 @@ angular.module('FamilySleep')
       }
     }
 
+    var getAllNames = function(){
+      var nameArray = new Array(profiles.length);
+      for(var i = 0; i < profiles.length; i++) {
+          nameArray[i] = profiles[i].name;
+      }
+      /*console.log("getAllNames Function");
+      console.log(nameArray);*/
+      return nameArray;
+    }
+
+    //calling retrieveProfiles(); from here needs to go somewhere else
+
+    retrieveProfiles();
+    //console.log(profiles);
     // Public API here
     return {
       getProfPic: getProfPic,
@@ -103,7 +154,9 @@ angular.module('FamilySleep')
       getAllProfiles : getAllProfiles,
       getProfile: getProfile,
       retrieveProfiles: retrieveProfiles,
-      getName: getName
+      getName: getName,
+      getAllNames: getAllNames,
+      getAllIDs: getAllIDs
 
     };
   }]);

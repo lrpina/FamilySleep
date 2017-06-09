@@ -11,8 +11,8 @@
 
 angular.module('FamilySleep')
   .controller('SingleweeklyviewCtrl', [
-	'$scope', 'sleepWeeklyDataFactory', 'tractdbdata',  '$rootScope', 'dateFactory', '$routeParams', function (
-		$scope, singleWeeklySleep, dbdata, $rootScope, dateFactory, $routeParams) {
+	'$scope', 'sleepWeeklyDataFactory', 'tractdbdata',  '$rootScope', 'dateFactory', '$routeParams', 'personaFactory', function (
+		$scope, singleWeeklySleep, dbdata, $rootScope, dateFactory, $routeParams, personaFactory) {
 
 	
 	if($routeParams.id=='child1'){
@@ -45,7 +45,6 @@ angular.module('FamilySleep')
 	$rootScope.updateActive = function (item) {
 	  $rootScope.active = item;
 	};
-	//$scope.id = sleepDataFactory.id;
 	console.log("in SingleweeklyviewCtrl");
 
 	$scope.$on('date:updated', function() {

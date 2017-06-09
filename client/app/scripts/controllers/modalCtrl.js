@@ -1,7 +1,7 @@
 'use strict';
 /*** TODO need to add mood selected to the sleep object **/
-angular.module('FamilySleep').controller('ModalCrtl', ['selfReportState', '$uibModal', '$log', '$document', 'tractdbdata',
-  function(selfReportState, $uibModal, $log, $document, tractdbdata){
+angular.module('FamilySleep').controller('ModalCrtl', ['selfReportState', '$uibModal', '$log', '$document', 'tractdbdata', 'personaFactory', 'sleepFamDailyDataFactory', 'dateFactory',
+  function(selfReportState, $uibModal, $log, $document, tractdbdata, personaFactory, sleepFamDailyDataFactory, dateFactory){
   var templateDir = 'views/templates/';
 	var $ctrl = this;
   $ctrl.buttonState = 0;
@@ -29,39 +29,31 @@ angular.module('FamilySleep').controller('ModalCrtl', ['selfReportState', '$uibM
 		 	image:'images/faces/tired.png'
 		}];
   $ctrl.items = moodImages;
-	//var avatars = [];
-  //var avatar = 'images/avatars/momcircle.png';
-	//$ctrl.profile = avatar;
-  //family members
-  /****IMPORTANT I don't know how to add members dynamically**/
-  $ctrl.famMems = ['mom', 'dad', 'child1', 'child2'];
+	
+  
+  //$ctrl.famMems = ['mom', 'dad', 'child1', 'child2'];
+  $ctrl.famMems = personaFactory.getAllNames(); 
+  $ctrl.famIDs = personaFactory.getAllIDs();
 	$ctrl.animationsEnabled = true;
   /**asigning selfReportState factory to states to have access in the viewer*/
   $ctrl.states = selfReportState;
-  //$ctrl.states.child1.state = true;
-  
-  /*console.log("in ModalCrtl");
-  if(!$ctrl.states.mom.state){
-      console.log("in the initial state");
-      console.log ($ctrl.states.mom.state);
-  }
-  $ctrl.states.mom.state = selfReportState.mom.state = true;
-  $ctrl.states.mom.image = selfReportState.mom.image = 'images/faces/tired.png';
-    if(selfReportState.mom.state){
-    console.log ($ctrl.states.mom.image);  
-  }*/
-  //could make an arg for fcn where we take the template that we want to use.
+
+
+  /*var profiles = personaFactory.getAllProfiles();
+  console.log("profiles");
+  console.log(profiles);*/
+
   //this could be that now we can use 
 	$ctrl.open = function (famID) {
 		$log.info("in open of ModalCrtl"); //added this might need to pass log
     console.log(famID);
     var fam = famID;
     $ctrl.buttonState = 0;
-    console.log($ctrl.buttonState);
+    /*console.log($ctrl.buttonState);
     //var temp = $ctrl.states[fam];
     console.log($ctrl.states[famID]);
     console.log("using variable to also accessSelfreportState");
-    console.log(selfReportState[famID]);
+    console.log(selfReportState[famID]);*/
     //var parentElem = parentSelector ? 
       //angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
     //using
@@ -87,7 +79,11 @@ angular.module('FamilySleep').controller('ModalCrtl', ['selfReportState', '$uibM
     modalInstance.result.then(function (selectedItems) {
       $ctrl.selected = selectedItems.selected;
       $ctrl.selectedFam = selectedItems.selectedFam;
+      var dateStr = dateFactory.getDateString();
+      //selfReportState.dateStr = {}
       $ctrl.states[famID].state = selfReportState[famID].state = true;
+      console.log("printing on family member sleep object");
+      console.log(sleepFamDailyDataFactory.famID);
       $ctrl.states[famID].mood = selfReportState[famID].mood = selectedItems.selected.name;
       $ctrl.states[famID].image = selfReportState[famID].image = selectedItems.selected.image;
 

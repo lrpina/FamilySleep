@@ -9,8 +9,8 @@
  */
 angular.module('FamilySleep')
   .controller('FamweeklyviewCtrl', [
-  	'$scope', '$rootScope', 'tractdbdata', 'sleepFamWeeklyDataFactory', 'dateFactory', function(
-  		$scope, $rootScope, dbdata, famWeeklySleep, dateFactory) {
+  	'$scope', '$rootScope', 'tractdbdata', 'sleepFamWeeklyDataFactory', 'dateFactory', 'personaFactory', function(
+  		$scope, $rootScope, dbdata, famWeeklySleep, dateFactory, personaFactory) {
 	$rootScope.menu = [
 		{
 		    title: 'Family Daily View',

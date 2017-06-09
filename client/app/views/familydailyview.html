@@ -9,7 +9,6 @@ There might be other things you can do with
 -->
 <div ng-if="$even" class="fdv-even-column col-xs-4">
 <!--even object -->
-    <div ng-show="member.type=='family'">
         <div>
             <img ng-src={{member.avatar}} class="profile-pics">
             <p class="fdv-names">{{member.name}}</p>
@@ -41,11 +40,9 @@ There might be other things you can do with
                 <button type="button" class="how-sleep-button btn btn-default" ng-click="$ctrl.open(member.name)">How did you sleep?</button>
             </div>
         </div>
-    </div>
 </div>
 <div ng-if="$odd" class="fdv-odd-column col-xs-4">
 <!--odd object -->
-    <div ng-show="member.type=='family'">
         <div>
             <img ng-src={{member.avatar}} class="profile-pics">
             <p class="fdv-names">{{member.name}}</p>
@@ -77,7 +74,6 @@ There might be other things you can do with
                 <button type="button" class="how-sleep-button btn btn-default" ng-click="$ctrl.open(member.name)">How did you sleep?</button>
             </div>
         </div>
-    </div>
 </div>
 
 </div>
@@ -85,13 +81,4 @@ There might be other things you can do with
 <div ng-controller="MoonCtrl" class="col-xs-4"> 
     <img ng-src="{{moonImage}}" alt="moon" id="family_moon">
 </div>
-    <!--<div ng-show="member.type=='moon'">
-        <!--<img ng-src={{member.image}} alt="moon" id="family_moon">
-        <div ng-controller="MoonCtrl" class="col-xs-4"> 
-        <!--this isn't correct. Trying to figure out where to put the moon in the middle
-        <!--<p> THERE IS A DIV COLUMN HERE TO FIT IN THE MOON</p>
-        <p>this is where the moon goes</p> --> <!-- need to figure out to center this
-        <img src="{{moonImage}}" alt="moon" id="family_moon">   
-        </div>
-    </div>-->
 </div>

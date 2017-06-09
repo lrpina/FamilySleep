@@ -1,29 +1,28 @@
 {
 	"data": [{
-		"name": "Marge",
+		"name": "Rob",
 		"targetedHours": 9,
 		"profilePic": "images/avatars/momcircle.png",
-		"relation": "mom",
-		"id": "parent1"
+		"relation": "parent1",
+		"id": "mom"
 	}, {
-		"name": "Homer",
+		"name": "Pat",
 		"targetedHours": 8,
 		"profilePic": "images/avatars/dadcircle.png",
-		"relation": "dad",
-		"id": "parent2"
+		"relation": "parent2",
+		"id": "dad"
 	}, {
-		"name": "Lisa",
+		"name": "JR",
 		"targetedHours": 10,
 		"profilePic": "images/avatars/girlcircle.png",
-		"relation": "girl",
+		"relation": "child1",
 		"id": "child1"
 
 	}, {
-		"name": "Bart",
+		"name": "AJ",
 		"targetedHours": 10,
 		"profilePic": "images/avatars/boycircle.png",
-		"relation": "boy",
+		"relation": "child2",
 		"id": "child2"
-
 	}]
 }

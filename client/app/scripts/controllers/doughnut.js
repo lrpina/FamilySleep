@@ -11,7 +11,7 @@
  NOT as injecting a dependency
  */
 angular.module('FamilySleep')
-  .controller('DoughnutCtrl', ['$scope', 'sleepDataFactory', 'sleepFamDailyDataFactory', 'tractdbdata', function ($scope, sleepDataFactory, famDailySleep, dbdata) {
+  .controller('DoughnutCtrl', ['$scope', function ($scope) {
   	 //sconsole.log("sleep in donut");
   	 //console.log(sleepDataFactory);
   	 //$scope.data = sleepDataFactory.data;

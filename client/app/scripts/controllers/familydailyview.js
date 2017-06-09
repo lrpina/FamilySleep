@@ -8,9 +8,17 @@
  * Controller of the FamilySleep
  */
  angular.module('FamilySleep')
-  .controller('FamilydailyviewCtrl', ['$scope', '$rootScope', 'tractdbdata', 'sleepDataFactory', 'sleepFamDailyDataFactory', 'dateFactory', 'selfReportState', 'personaFactory',
-    function($scope, $rootScope, dbdata, sleepDataFactory, famDailySleep, dateFactory, selfReportState, personaFactory){
-      /*the variable below needs to come from sleepdataFactory, famDailySleep. Need to talk to Clarissa about this*/
+  .controller('FamilydailyviewCtrl', ['$scope', '$rootScope', 'tractdbdata', 'sleepFamDailyDataFactory', 'dateFactory', 'selfReportState', 'personaFactory',
+    function($scope, $rootScope, dbdata, famDailySleep, dateFactory, selfReportState, personaFactory){
+      
+      //personaFactory.retrieveProfiles();
+      //console.log(personaFactory.profiles);
+      /*
+      notes for what to do here. familyInfo needs to be instantiated from sleepFamDailyDataFactory
+      selfReport stuff needs to be pushed into the sleepFamDailyDataFactory and maybe the weekly version.
+      Right now after self-Report is saved to sleepFamilyDailyDataFactory it will be loosed because we can't write to file.
+      throughout all the javascript for the family views I should fake that I have access to mood etc
+      */
       var familyInfo = {
         mom: {
           type: "family",
@@ -78,7 +86,7 @@
       updateData();
     });
 
-    personaFactory.retrieveProfiles();
+    
     
     var updateData = function() {
       //console.log("famDailySleep");
