@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('FamilySleep') // make sure this is set to whatever it is in your client/scripts/app.js
-	.controller('SignupCtrl', function ($scope, $http) { // note the added $http depedency
+	.controller('SignupCtrl', function ($scope, $http, $sanitize) { // note the added $http depedency
 		
 		// Here we're creating some local references
 		// so that we don't have to type $scope every
@@ -16,6 +16,15 @@ angular.module('FamilySleep') // make sure this is set to whatever it is in your
 		// In our signup.html, we'll be using the ng-model
 		// attribute to populate this object.
 		signup.user = user = {};
+		$scope.divHtmlVar = 'Testing: ';
+		signup.addMember = function() {
+			// $scope.divHtmlVar = 'test'; //<addMember></addMember>';
+			
+			$scope.count = 0;
+	      	$scope.divHtmlVar = $scope.divHtmlVar + scope.count;
+		
+			$scope.count++;
+		}
 
 		// This is our method that will post to our server.
 		signup.submit = function () {

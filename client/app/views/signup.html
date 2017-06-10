@@ -1,6 +1,6 @@
 <div class="signup-container" ng-controller="SignupCtrl">
 	<div class="col-md-12">
-		<h3 class="signup-header">Signup as a New User</h3>
+		<h3 class="signup-header">Signup as a New Family!</h3>
 		<hr>
 		<br>
 	</div>
@@ -8,62 +8,146 @@
 	<div class="signup-form">
 		
 		<form class="form-horizontal">
+		<!-- Text input-->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="firstname">Family ID</label>  
+				<div class="col-md-5">
+				<input id="firstname" name="firstname" ng-model="signup.user.firstname" type="text" placeholder="0000" class="form-control input-md">
+					
+				</div>
+			</div>
 
+			<!-- Text input-->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="lastname">Family Last Name</label>  
+				<div class="col-md-5">
+				<input id="lastname" name="lastname" ng-model="signup.user.lastname" type="text" placeholder="Morrison" class="form-control input-md">
+					
+				</div>
+			</div>
+
+			<!-- Text input-->
+			<!-- <div class="form-group">
+				<label class="col-md-4 control-label" for="email">Email</label>  
+				<div class="col-md-5">
+				<input id="email" name="email" ng-model="signup.user.email" type="text" placeholder="me@jcolemorrison.com" class="form-control input-md">
+					
+				</div>
+			</div> -->
+
+			<!-- Password input-->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="password1">Password</label>
+				<div class="col-md-5">
+					<input id="password1" name="password1" ng-model="signup.user.password1" type="password" placeholder="" class="form-control input-md">
+					
+				</div>
+			</div>
+
+			<!-- Password input-->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="password2">Retype Password</label>
+				<div class="col-md-5">
+					<input id="password2" name="password2" ng-model="signup.user.password2" type="password" placeholder="" class="form-control input-md">
+					
+				</div>
+			</div>
+		</form>
+	</div>
+
+
+	<div class="col-md-12" >
+		<h3 class="signup-header">Family Members</h3>
+		<hr>
+		<br>
+		<div ng-bind-html="divHtmlVar">
+		<!-- 	<recorder></recorder>
+
+		</div> -->
+		<div class="add-member" style='height:100%; width: 100%'>
+				<form class="form-horizontal">
+
+				<div class="add-member" style='height:100%; width: 100%'>
+		<form class="form-horizontal">
 
 		<!-- Text input-->
 		<div class="form-group">
-			<label class="col-md-4 control-label" for="firstname">First Name</label>  
+			<label class="col-md-4 control-label" for="firstname">Name</label>  
 			<div class="col-md-5">
-			<input id="firstname" name="firstname" ng-model="signup.user.firstname" type="text" placeholder="Cole" class="form-control input-md">
+			<input id="firstname" name="firstname" ng-model="signup.user.firstname" type="text" placeholder="0000" class="form-control input-md">
 				
 			</div>
 		</div>
 
 		<!-- Text input-->
 		<div class="form-group">
-			<label class="col-md-4 control-label" for="lastname">Last Name</label>  
+			<label class="col-md-4 control-label" for="lastname">Types of Family Member</label>  
 			<div class="col-md-5">
 			<input id="lastname" name="lastname" ng-model="signup.user.lastname" type="text" placeholder="Morrison" class="form-control input-md">
 				
 			</div>
 		</div>
 
-		<!-- Text input-->
 		<div class="form-group">
-			<label class="col-md-4 control-label" for="email">Email</label>  
-			<div class="col-md-5">
-			<input id="email" name="email" ng-model="signup.user.email" type="text" placeholder="me@jcolemorrison.com" class="form-control input-md">
-				
-			</div>
-		</div>
-
-		<!-- Password input-->
-		<div class="form-group">
-			<label class="col-md-4 control-label" for="password1">Password</label>
+			<label class="col-md-4 control-label" for="password1">Profile Picture</label>
 			<div class="col-md-5">
 				<input id="password1" name="password1" ng-model="signup.user.password1" type="password" placeholder="" class="form-control input-md">
 				
 			</div>
 		</div>
+	</form>
+</div>
 
-		<!-- Password input-->
-		<div class="form-group">
-			<label class="col-md-4 control-label" for="password2">Retype Password</label>
-			<div class="col-md-5">
-				<input id="password2" name="password2" ng-model="signup.user.password2" type="password" placeholder="" class="form-control input-md">
-				
-			</div>
+
+
+				<!-- Text input-->
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="firstname">Name</label>  
+					<div class="col-md-5">
+					<input id="firstname" name="firstname" ng-model="signup.user.firstname" type="text" placeholder="0000" class="form-control input-md">
+						
+					</div>
+				</div>
+
+				<!-- Text input-->
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="lastname">Types of Family Member</label>  
+					<div class="col-md-5">
+					<input id="lastname" name="lastname" ng-model="signup.user.lastname" type="text" placeholder="Morrison" class="form-control input-md">
+						
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="password1">Profile Picture</label>
+					<div class="col-md-5">
+						<input id="password1" name="password1" ng-model="signup.user.password1" type="password" placeholder="" class="form-control input-md">
+						
+					</div>
+				</div>
+			</form>
 		</div>
+	</div>
+
+
+
+		<label class="col-md-4 control-label" for="signup"></label>
+		<div class="col-md-5">
+			<button ng-click="signup.addMember()" id="addMember" name="addMember" class="btn btn-success btn-block">Add New Member!</button>
+		</div>
+	
+	</div>
+
 
 		<!-- Button -->
-		<div class="form-group">
-			<label class="col-md-4 control-label" for="signup"></label>
-			<div class="col-md-5">
-				<button ng-click="signup.submit()" id="signup" name="signup" class="btn btn-success btn-block">Signup!</button>
-			</div>
+	<div class="col-md-12">
+			<h3 class="signup-header">Done!</h3>
+		<hr>
+		<br>
+		<label class="col-md-4 control-label" for="signup"></label>
+		<div class="col-md-5">
+			<button ng-click="signup.submit()" id="signup" name="signup" class="btn btn-success btn-block">Signup!</button>
 		</div>
-
-		</form>
 	</div>
 
 </div>
