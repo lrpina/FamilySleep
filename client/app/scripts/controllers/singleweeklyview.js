@@ -124,7 +124,7 @@ angular.module('FamilySleep')
 						  },
 						  tooltipFormat: 'YYYY-MM-DD HH:mm a',
 						  unit: "minute",
-						  unitStepSize: 1,
+						  unitStepSize: 15,
 						},
 						showXLabel: 60
 					  }],
@@ -168,7 +168,7 @@ angular.module('FamilySleep')
 						  },
 						  tooltipFormat: 'YYYY-MM-DD HH:mm a',
 						  unit: "minute",
-						  unitStepSize: 1,
+						  unitStepSize: 15,
 						},
 						showXLabel: 60
 					  }],
