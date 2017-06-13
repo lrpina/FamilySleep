@@ -9,17 +9,23 @@
  */
 angular.module('FamilySleep')
   .controller('EmptybarchartCtrl', function ($scope) {
-  	$scope.color = ['#c2abff'];
-  	$scope.data = [0, 10];
+  	$scope.color = ['#D6C3DB'];
+  	$scope.data = [10];
   	$scope.labels = ['Test'];
   	$scope.options = {
   		scales: {
-    xAxes: [{
-                    display:true
-            }],
-    yAxes: [{
-                    display:true
-            }]
-    }
+        xAxes: [{
+          display:false,
+          ticks: {
+            min: 0,
+            max: 10
+          }
+        }],
+        yAxes: [{
+          display:false
+        }]
+      },
+      responsive:false,
+      maintainAspectRatio: false
   	};
   });

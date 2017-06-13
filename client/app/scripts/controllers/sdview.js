@@ -62,6 +62,7 @@
               stacked: true,
               categoryPercentage: 1,
               barPercentage: 1,
+              barThickness : 1,
               type: 'time',
               gridLines: {
                 display: false, // Set to false here => xAxis labels displayed out of canvas
@@ -69,6 +70,7 @@
               },
               ticks: {
                 display: true,
+                fontColor: "white",
                 fontSize: 10,
                 fontFamily: 'HelveticaNeue, HelveticaNeue, Roboto, ArialRounded',
                 autoSkip: true,
@@ -85,25 +87,29 @@
               showXLabel: 60
             }],
             yAxes: [{
-              stacked: true, //scaleLabel: "<%=value%>",
-              ticks: {
-                fontSize: 12,
-                fontFamily: 'HelveticaNeue, HelveticaNeue, Roboto, ArialRounded'
-              },
-              gridLines: {
-                display: false, // Set to false here => xAxis labels displayed out of canvas
-              },
+              // stacked: true, //scaleLabel: "<%=value%>",
+              // ticks: {
+              //   fontSize: 12,
+              //   fontFamily: 'HelveticaNeue, HelveticaNeue, Roboto, ArialRounded'
+              // },
+              // gridLines: {
+              //   display: false, // Set to false here => xAxis labels displayed out of canvas
+              // },
+              display: false
             }]
           },
           legend: {
-            display: true
+            display: true,
+            labels: {
+              fontColor: "white"
+            }
           }
         };
 
         $scope.data = [
             sleepDataFactory.sleep_data[$scope.id][newDate].minuteData.one, 
             sleepDataFactory.sleep_data[$scope.id][newDate].minuteData.two,
-            sleepDataFactory.sleep_data[$scope.id][newDate].minuteData.three,
+            sleepDataFactory.sleep_data[$scope.id][newDate].minuteData.three
         ];
 
         $scope.labels = sleepDataFactory.sleep_data[$scope.id][newDate].labels;
@@ -112,25 +118,20 @@
             backgroundColor: "#44d2d1",
             borderColor: "#44d2d1",
             pointBackgroundColor: "#44d2d1",
-            pointBorderColor: "#44d2d1",
-            pointHoverBackgroundColor: "#fff",
-            pointHoverBorderColor: "#8CA2AA",
-          }, {
+            pointBorderColor: "#44d2d1"
+          }, 
+          {
             backgroundColor: "#551A8B",
             borderColor: "#551A8B",
             pointBackgroundColor: "#551A8B",
-            pointBorderColor: "#551A8B",
-            pointHoverBackgroundColor: "#fff",
-            pointHoverBorderColor: "#6B8FBD",
+            pointBorderColor: "#551A8B"
           },
           {
             backgroundColor: "#FC3F73",
             borderColor: "#FC3F73",
             pointBackgroundColor: "#FC3F73",
-            pointBorderColor: "#FC3F73",
-            pointHoverBackgroundColor: "#fff",
-            pointHoverBorderColor: "#6B8FBD",
-          },
+            pointBorderColor: "#FC3F73"
+          }
         ];
 
         $scope.series = ["Sleep", "Movement", "Restless"];
