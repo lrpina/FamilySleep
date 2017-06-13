@@ -21,11 +21,17 @@ angular
     'ui.bootstrap',
     'chart.js',
     'angular-toArrayFilter',
-    'ngMaterial'
+    'ngMaterial',
+    'LocalStorageModule',
+    'ngSanitize',
   ])
-  .config(function ($routeProvider, $locationProvider) {
+  .config(function ($routeProvider, $locationProvider, localStorageServiceProvider) {
     //can't get the removing hash to work
     //$locationProvider.html5Mode(true); //escaping hashtags all over the place
+
+    localStorageServiceProvider
+      .setPrefix('familySleep');
+
 
     $routeProvider
       .when('/', {

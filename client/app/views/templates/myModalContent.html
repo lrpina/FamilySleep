@@ -1,14 +1,18 @@
 <div class="modal-header">
-<h3 class="modal-title" id="modal-title">How did you sleep?</h3>
+  <h3 class="modal-title" id="modal-title">How did you sleep?</h3>
 </div>
 <!--<p>{{$ctrl.buttonState}}</p>-->
 <div class="modal-body" id="modal-body">
-    <ul class="list-inline"> <!--IMPROVE LIST STYLE IN CSS-->
-        <li ng-repeat="item in $ctrl.items">
-          <div><img ng-src="{{item.image}}" alt="{{item.name}}" ng-click="$event.preventDefault(); $ctrl.selected.item = item; $ctrl.buttonState=$ctrl.buttonState+1" style="height:90px; width:90px;margin: 0 10px 0 10px;"></div>
-            <div class="mood-name"><a href="#" ng-click="$event.preventDefault(); $ctrl.selected.item = item; $ctrl.buttonState=$ctrl.buttonState+1">{{item.name}}</a></div>
-        </li>
-    </ul>
+  <ul class="list-inline"> <!--IMPROVE LIST STYLE IN CSS-->
+      <li ng-repeat="item in $ctrl.items">
+        <div>
+          <img ng-src="{{item.image}}" alt="{{item.name}}" ng-click="$event.preventDefault(); $ctrl.selected.item = item; $ctrl.buttonState=$ctrl.buttonState+1" style="height:90px; width:90px;margin: 0 10px 0 10px;">
+        </div>
+        <div class="mood-name">
+          <a href="#" ng-click="$event.preventDefault(); $ctrl.selected.item = item; $ctrl.buttonState=$ctrl.buttonState+1">{{item.name}}</a>
+        </div>
+      </li>
+  </ul>
         <!-- Selected: <b>{{$ctrl.selected.item.name }}</b> -->
 
     <div class="source">

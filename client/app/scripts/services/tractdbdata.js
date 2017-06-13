@@ -183,7 +183,7 @@ angular.module('FamilySleep')
           // factory.labels =["Hours Slept", "Hours not Slept"];
           //console.log("inside formatdata -- labels -- ");
           //console.log(factory.sleep_data);
-          // console.log(factory.labels);
+          console.log(temp_data.sleep[0]);
           var sleepData = {
             "pid" : id,
             'fid' : temp_data.sleep[0].logId,
@@ -236,6 +236,29 @@ angular.module('FamilySleep')
             }
             sleepData.labels.push(newDate(temp_data.sleep[0].startTime, i));
           }
+
+          var lengthBefore = sleepData.labels.length;
+          console.log(sleepData.labels.length);
+
+
+
+          var realEndTime = newDate(temp_data.sleep[0].startTime, temp_data.sleep[0].minuteData.length);
+          var targetSleepEndTime = moment(realEndTime).set({'hour': 8, 'minute': 0, 'second': 0});
+          var diffTime = realEndTime.diff(targetSleepEndTime, 'm');
+          console.log('targetSleepEndTime:' + targetSleepEndTime.toString());
+          console.log('realEndTime' + realEndTime.toString());
+          console.log(diffTime);
+          if(diffTime > 0) {
+            sleepData.labels.splice(sleepData.labels.length-diffTime, diffTime);
+          } else {
+            for(var i = 0; i <= diffTime*-1; i++) {
+              sleepData.minuteData.one.push(0);
+              sleepData.minuteData.two.push(0);
+              sleepData.minuteData.three.push(0);
+              sleepData.labels.push(moment(realEndTime).add(i, 'm'));
+            }
+          }
+
           // console.log("done with formatting data before");
           // console.log(factory.sleep_data);
           //console.log(factory.sleep_data[id]);

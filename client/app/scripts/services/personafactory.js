@@ -39,7 +39,7 @@
 
  */
 angular.module('FamilySleep')
-  .factory('personaFactory', ['$http', function ($http) {
+  .factory('personaFactory', ['$http', 'localStorageService', function ($http, localStorageService) {
     // Service logic
     // ...
     //array holding all the profiles, structure is set above
@@ -56,7 +56,25 @@ angular.module('FamilySleep')
           // when the response is available
           temp_data = response.data;
           //console.log(temp_data);
-          populate(temp_data);
+          //populate(temp_data);
+          console.log(temp_data);
+
+          if(localStorageService.isSupported) {
+            console.log('set');
+            var result = localStorageService.set('auth', temp_data);
+            if(result) {
+              console.log('setting worked!-------------------------');
+            }
+            var value = localStorageService.get('auth');
+            if(value != null) {
+              console.log('get worked! -------');
+              console.log(value);
+            }
+          }
+
+
+
+          //populate(temp_data);
         }, function (response) {
           // called asynchronously if an error occurs
           // or server returns response with an error status.

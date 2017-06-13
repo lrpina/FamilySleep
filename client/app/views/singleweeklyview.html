@@ -1,34 +1,44 @@
 <div class="singleweeklyview-container" ng-controller="SingleweeklyviewCtrl">
 
+<!-- Legend -->
+<ul id="swv-legend">
+  <li><div id="swv-legend-sleep"></div></li>
+  <li>Sleep</li>
+  <li><div id="swv-legend-movement"></div></li>
+  <li>Movement</li>
+  <li><div id="swv-legend-restless"></div></li>
+  <li>Restless</li>
+</ul>  
+
 <p>ENTER HERE WEEK RANGE</p>
 <p> {{id}}</p>
 <!--no data when there is not data for that day -->
 <!--<p>No Data</p>-->
-<div class="row" ng-repeat="day in data">
-<p>{{day.date}}</p>
+<div class="swv-row row" ng-repeat="day in data">
+<p class="swv-date">{{day.date}}</p>
 	<div ng-if="day.duration==-1" ng-controller="EmptybarchartCtrl">
 	<!--<p>{{day.duration}}</p>
 			-<p>{{data}}</p>-->
-			<canvas class="chart-horizontal-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-colors="color" height="75px"></canvas>	
+			<canvas class="swv-chart-placement chart chart-horizontal-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-colors="color" height="50" width="800"></canvas>	
 	</div>
 	<div ng-if="day.duration > -1" ng-controller="StackedbarCtrl">
-			<div ng-switch on="$index">
+		<div ng-switch on="$index">
 			<div ng-switch-when="0">
-				<canvas class="chart-bar" chart-data="day.data" chart-labels="day.labels" chart-options="options_first" chart-series="series" chart-colors="colors"  height="75px"></canvas>	
+				<canvas class="swv-chart-placement chart chart-bar" chart-data="day.data" chart-labels="day.labels" chart-options="options_first" chart-series="series" chart-colors="colors"  height="100" width="800"></canvas>	
 				<!--<img ng-src={{day.mood}} class="mood-pics">-->
-				<img ng-src="images/faces/good.png" class="fwv-mood-pics">
+				<img ng-src="images/faces/good.png" class="swv-mood-pics">
 			</div>
 			<div ng-switch-when="6">
-				<canvas class="chart-bar" chart-data="day.data" chart-labels="day.labels" chart-options="options_last" chart-series="series" chart-colors="colors"  height="75px"></canvas>
+				<canvas class="swv-chart-placement chart chart-bar" chart-data="day.data" chart-labels="day.labels" chart-options="options_last" chart-series="series" chart-colors="colors"  height="100" width="800"></canvas>
 				<!--<img ng-src={{day.mood}} class="mood-pics">-->
-				<img ng-src="images/faces/good.png" class="fwv-mood-pics">
+				<img ng-src="images/faces/good.png" class="swv-mood-pics-last">
 			</div>
 			<div ng-switch-default>
-				<canvas class="chart-bar" chart-data="day.data" chart-labels="day.labels" chart-options="options" chart-series="series" chart-colors="colors"  height="75px"></canvas>	
+				<canvas class="swv-chart-placement chart chart-bar" chart-data="day.data" chart-labels="day.labels" chart-options="options" chart-series="series" chart-colors="colors"  height="50" width="800"></canvas>	
 				<!--<img ng-src={{day.mood}} class="mood-pics">-->
-				 <img ng-src="images/faces/good.png" class="fwv-mood-pics">
+				 <img ng-src="images/faces/good.png" class="swv-mood-pics">
 			</div>
-			</div>
+		</div>
 	</div>
 </div>
 </div>

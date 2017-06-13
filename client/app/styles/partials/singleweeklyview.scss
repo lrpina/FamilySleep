@@ -1,0 +1,71 @@
+/*=======================================================================
+** Single Weekly View
+=========================================================================
+*/
+
+.swv-row {
+	margin-bottom: 10px;
+}
+
+.swv-date {
+	margin-bottom: 0;
+}
+
+#swv-legend {
+	margin-bottom: -30px;
+    margin-left: 500px;
+}
+
+#swv-legend li {
+	display:inline-block;
+}
+
+/*
+#swv-legend>li:nth-child(even){
+    margin-right:10px; 
+    font-size: 12px;
+}​
+*/
+
+#swv-legend li:nth-child(2), #swv-legend li:nth-child(4), #swv-legend li:nth-child(6){
+  	margin-right:10px; 
+    font-size: 12px;
+}
+
+/* green */
+#swv-legend-sleep { 
+    background-color: #44d2d1;
+}
+
+/* purple */
+#swv-legend-movement { 
+    background-color: #551A8B;
+}
+
+/* pink */
+#swv-legend-restless { 
+    background-color: #FC3F73;
+}
+
+#swv-legend-sleep, #swv-legend-movement, #swv-legend-restless {
+	width: 40px; 
+	height:15px; 
+	margin-bottom: -3px;
+}
+
+.swv-chart-placement {
+	margin-left: 100px;
+}
+
+.swv-mood-pics {
+	width: 50px;
+  	height: 50px;
+  	margin-top: -60px;
+  	margin-left: 10px;
+}
+
+.swv-mood-pics-last {
+	width: 50px;
+  	height: 50px;
+  	margin-top: -150px;
+}
