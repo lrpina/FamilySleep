@@ -90,8 +90,15 @@
 }
 
 .single-view-button {
-    margin-top: -250px;
+    margin-top: -220px;
     margin-left: 90px;
+}
+
+.single-view-button .btn {
+  background-color: #d6c3db;
+  border-color: #d6c3db;
+  color: black;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 }
 
 .target-hours {
@@ -101,11 +108,11 @@
 }
 
 .mood-pics {
-  position: absolute; 
-  width: 100px; 
+  position: absolute;
+  width: 100px;
   height: 100px;
-  top: 105px; 
-  left: 120px; 
+  top: 105px;
+  left: 120px;
   z-index: 1;
 }
 
@@ -127,16 +134,20 @@
 .fdv-even-column {
   margin-right: 125px;
   margin-bottom: 20px;
-  height: 260px;
+  height: 270px;
 }
 
 .fdv-odd-column {
   margin-left: 160px;
   margin-bottom: 20px;
-  height: 260px;
+  height: 270px;
 }
 
 .hours-slept {
   margin-top: 70px;
   font-size: small;
+}
+
+.mood-report {
+  margin-top: 85px;
 }

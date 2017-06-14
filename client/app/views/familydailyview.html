@@ -22,14 +22,14 @@ There might be other things you can do with
                     <canvas id="doughnut" class="chart-doughnut" chart-data="member.sleep" chart-labels="labels" chart-colors ="colors" chart-options="options">
                     </canvas>
                 </div>
-                 <img ng-src={{$ctrl.states[member.name].image}} class="mood-pics">
-                 <p>Mood reported to be {{$ctrl.states[member.name].mood | uppercase}}</p>
-                 <div class="single-view-button">
+                <img ng-src={{$ctrl.states[member.name].image}} class="mood-pics">
+                <div class="single-view-button">
                     <a ng-href="#!/sdview/{{member.name}}" class="btn btn-primary"> Single Daily View</a><!--want an ng-if here to show only after daily sleep and self-report is available -->
                 </div>
-                 <div>
+                <div>
                     <p class="hours-slept">Hours slept: <br>5</p>
                 </div>
+                <p class="mood-report">Mood reported to be {{$ctrl.states[member.name].mood | uppercase}}</p>
             </div>
             <div ng-if=!$ctrl.states[member.name].state>
                 <div ng-controller="PiechartcontrollerCtrl" class="chart-placement">
@@ -56,14 +56,14 @@ There might be other things you can do with
                     <canvas id="doughnut" class="chart-doughnut" chart-data="member.sleep" chart-labels="labels" chart-colors ="colors" chart-options="options">
                     </canvas>
                 </div>
-                 <img ng-src={{$ctrl.states[member.name].image}} class="mood-pics">
-                 <p> Mood reported to be {{$ctrl.states[member.name].mood | uppercase}}</p>
-                 <div class="single-view-button">
+                <img ng-src={{$ctrl.states[member.name].image}} class="mood-pics">
+                <div class="single-view-button">
                     <a ng-href="#!/sdview/{{member.name}}" class="btn btn-primary"> Single Daily View</a><!--want an ng-if here to show only after daily sleep and self-report is available -->
                 </div>
-                 <div>
+                <div>
                     <p class="hours-slept">Hours slept: <br>5</p>
                 </div>
+                <p class="mood-report"> Mood reported to be {{$ctrl.states[member.name].mood | uppercase}}</p>
             </div>
             <div ng-if=!$ctrl.states[member.name].state>
                 <div ng-controller="PiechartcontrollerCtrl" class="chart-placement">
