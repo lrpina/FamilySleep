@@ -46,12 +46,12 @@
 
 		<label class="col-md-4 control-label" for="signup"></label>
 		<div class="col-md-5">
-			<button ng-click="signup.addMembers()" id="addMembers" name="addMembers" class="btn btn-success btn-block">Add Members!</button>
+			<button ng-click="signup.addMembers()" id="addMembers" name="addMembers" class="signup-buttons btn btn-success btn-block">Add Members!</button>
 		</div>
 
 		<label class="col-md-4 control-label" for="signup"></label>
 		<div class="col-md-5">
-			<button ng-click="signup.cancel()" id="cancel" name="cancel" class="btn btn-success btn-block">Cancel</button>
+			<button ng-click="signup.cancel()" id="cancel" name="cancel" class="signup-buttons btn btn-success btn-block">Cancel</button>
 		</div>
 	</div>
 	</div>
@@ -62,10 +62,10 @@
 		<h3 >Add A New Family Member</h3>
 		<hr>
 		<br>
-		<div class="add-member" style='height:100%; width: 100%'>
+		<div class="add-member">
 				<form class="form-horizontal">
 
-				<div class="add-member" style='height:100%; width: 100%'>
+				<div class="add-member">
 					<form class="form-horizontal">
 
 					<!-- Text input-->
@@ -78,7 +78,7 @@
 
 					<!-- Text input-->
 					<div class="form-group">
-						<label class="col-md-4 control-label" for="type">Types of Family Member</label>  
+						<label class="col-md-4 control-label" for="type">Type of Family Member</label>  
 						<div class="col-md-5">
 						<input id="type" name="type" ng-model="member.type" type="text" placeholder="Dad" class="form-control input-md">			
 						</div>
@@ -86,10 +86,10 @@
 
 					<div class="form-group">
 						<label class="col-md-4 control-label" for="profilePic">Profile Picture</label>
-						<ul class="list-inline"> <!--IMPROVE LIST STYLE IN CSS-->
+						<ul class="avatar-area list-inline"> <!--IMPROVE LIST STYLE IN CSS-->
 				      <li ng-repeat="item in profilePicItems">
 				        <div>
-				          <img ng-src="{{item.path}}" alt="{{item.name}}" ng-click="$event.preventDefault(); member.profilePic = item.path;" style="height:90px; width:90px;margin: 0 10px 0 10px;">
+				          <img class="signup-avatars" ng-src="{{item.path}}" alt="{{item.name}}" ng-click="$event.preventDefault(); member.profilePic = item.path;">
 				        </div>
 				       <!--  <div class="mood-name">
 				          <a href="#" ng-click="$event.preventDefault(); $ctrl.selected.item = item; $ctrl.buttonState=$ctrl.buttonState+1">{{item.name}}</a>
@@ -109,17 +109,17 @@
 
 				<label class="col-md-4 control-label" for="signup"></label>
 				<div class="col-md-5">
-					<button ng-click="signup.addNewMember()" id="addMember" name="addMember" class="btn btn-success btn-block">Add New Member!</button>
+					<button ng-click="signup.addNewMember()" id="addMember" name="addMember" class="signup-buttons btn btn-success btn-block">Add New Member!</button>
 				</div>
 
 				<label class="col-md-4 control-label" for="signup"></label>
 				<div class="col-md-5">
-					<button ng-click="signup.cancel()" id="addMember" name="addMember" class="btn btn-success btn-block">Cancel</button>
+					<button ng-click="signup.cancel()" id="addMember" name="addMember" class="signup-buttons btn btn-success btn-block">Cancel</button>
 				</div>
 
 				<label class="col-md-4 control-label" for="signup"></label>
-				<div class="col-md-5">
-					<button ng-click="signup.submit()" id="submit" name="submit" class="btn btn-success btn-block">Done!</button>
+				<div class="col-md-5" style="margin-bottom:50px;">
+					<button ng-click="signup.submit()" id="submit" name="submit" class="signup-buttons btn btn-success btn-block">Done!</button>
 				</div>
 
 			</div>	
