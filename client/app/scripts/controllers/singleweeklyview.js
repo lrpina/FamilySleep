@@ -101,6 +101,14 @@ angular.module('FamilySleep')
 				};
 
 				$scope.options_first = {
+					layout: {
+			            padding: {
+			                left: 0,
+			                right: 0,
+			                top: 18,
+			                bottom: 0
+			            }
+			        },
 					scales: {
 					  xAxes: [{
 						stacked: true,
@@ -149,6 +157,14 @@ angular.module('FamilySleep')
 				};
 
 				$scope.options_last = {
+					layout: {
+			            padding: {
+			                left: 0,
+			                right: 0,
+			                top: 0,
+			                bottom: 25
+			            }
+			        },
 					scales: {
 					  xAxes: [{
 						stacked: true,

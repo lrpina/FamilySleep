@@ -12,7 +12,8 @@
 }
 
 #swv-legend {
-	margin-bottom: -30px;
+	margin-bottom: 30px;
+    margin-top: -30px;
     margin-left: 500px;
 }
 
@@ -55,17 +56,29 @@
 
 .swv-chart-placement {
 	margin-left: 100px;
+    margin-top: -40px;
+}
+
+.swv-empty-chart-placement {
+	margin-left: 100px;
+    margin-top: -30px;
+}
+
+.swv-chart-placement-last {
+	margin-left: 100px;
+    margin-top: -30px;
 }
 
 .swv-mood-pics {
-	width: 50px;
-  	height: 50px;
-  	margin-top: -60px;
-  	margin-left: 10px;
+	width: 40px;
+  	height: 40px;
+  	margin-top: -55px;
+  	margin-left: 920px;
 }
 
 .swv-mood-pics-last {
-	width: 50px;
-  	height: 50px;
-  	margin-top: -150px;
+	width: 40px;
+  	height: 40px;
+  	margin-top: -180px;
+  	margin-left: 920px;
 }
