@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('FamilySleep') // make sure this is set to whatever it is in your client/scripts/app.js
-	.controller('SignupCtrl', ['localStorageService', '$scope', '$http', '$sanitize', '$location', 
-	function (localStorage, $scope, $http, $sanitize, $location) { // note the added $http depedency
+	.controller('SignupCtrl', ['localStorageService', '$scope', '$http', '$sanitize', '$location', 'personaFactory',
+	function (localStorageService, $scope, $http, $sanitize, $location, personaFactory) { // note the added $http depedency
 		
 		// Here we're creating some local references
 		// so that we don't have to type $scope every
@@ -83,15 +83,20 @@ angular.module('FamilySleep') // make sure this is set to whatever it is in your
 
 			member.pid = 'm' + count;
 			count++;
+			console.log("inadd New Member")
 			console.log(member);
 			var newMember = angular.copy(member);
 			members.push(newMember);
+			personaFactory.setProfile(newMember);
+			console.log("members")
+			console.log(members);
+			console.log("user family");
+			console.log(user);
 			member.name = "";
 			member.type = "";
 			member.profilePic = "";
 			member.fitbitId = "";
 			member.pid = "";
-			console.log(members);
 		}
 
 		signup.addMembers = function() {
@@ -110,7 +115,12 @@ angular.module('FamilySleep') // make sure this is set to whatever it is in your
 				alert('Your passwords must match.');
 				return false;
 			}
+			console.log("IN add member")
 			console.log(user);
+			var result = localStorageService.set('FamilyInfo', user);
+            if(result) {
+              console.log('writing to local storage family Infoworked!-------------------------');
+            }
 			$scope.isAddMemberForm = true;
 		}
 
@@ -130,9 +140,14 @@ angular.module('FamilySleep') // make sure this is set to whatever it is in your
 			// aren't you glad you're not typing out
 			// $scope.signup.user.firstname everytime now??
 			signup.addNewMember();
-			var json = JSON.stringify($scope.signup);
-
-			console.log(json); 
+			//console.log("in SignupCtrl where $scope.signup");
+			//console.log($scope.signup);
+			//var json = JSON.stringify($scope.signup);
+			//console.log("turned json into stringify");
+			//console.log(json);
+			//console.log("members in submit function");
+			//console.log(members);
+			//personaFactory.setProfiles(members);
 			signup.cancel();
 			changeView();
 			//WRITING TO SERVER
