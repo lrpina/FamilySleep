@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('FamilySleep') // make sure this is set to whatever it is in your client/scripts/app.js
-	.controller('SignupCtrl', function ($scope, $http, $sanitize) { // note the added $http depedency
+	.controller('SignupCtrl', ['localStorageService', '$scope', '$http', '$sanitize', '$location', 
+	function (localStorage, $scope, $http, $sanitize, $location) { // note the added $http depedency
 		
 		// Here we're creating some local references
 		// so that we don't have to type $scope every
@@ -19,21 +20,58 @@ angular.module('FamilySleep') // make sure this is set to whatever it is in your
 		$scope.signup.user = user = {};
 		$scope.signup.user.members = members = [];
 		//$scope.members = [];
-		$scope.isAddMemberForm = false; 
+		$scope.isAddMemberForm = false;
 		$scope.profilePicItems = [
-			{name:'pic1',
+			{name:'p1',
 			path:'images/avatars/boycircle.png'},
-			{name:'pic1',
+			{name:'p2',
 			path:'images/avatars/dadcircle.png'},
-			{name:'pic1',
+			{name:'p3',
 			path:'images/avatars/girlcircle.png'},
-			{name:'pic1',
+			{name:'p4',
+			path:'images/avatars/momcircle.png'},
+			{name:'p5',
 			path:'images/avatars/momcircle.png'}, 
-		]
+			{name:'p6',
+			path:'images/avatars/d1.png'},
+			{name:'p7',
+			path:'images/avatars/d2.png'}, 
+			{name:'p8',
+			path:'images/avatars/d3.png'},
+			{name:'p9',
+			path:'images/avatars/d4.png'}, 
+			{name:'p10',
+			path:'images/avatars/f1.png'},
+			{name:'p11',
+			path:'images/avatars/f2.png'},
+			{name:'p12',
+			path:'images/avatars/f3.png'},
+			{name:'p10',
+			path:'images/avatars/f4.png'},
+			{name:'p11',
+			path:'images/avatars/m1.png'},
+			{name:'p12',
+			path:'images/avatars/m2.png'},
+			{name:'p13',
+			path:'images/avatars/m3.png'},
+			{name:'p14',
+			path:'images/avatars/m5.png'},
+			{name:'p15',
+			path:'images/avatars/mo1.png'},
+			{name:'p16',
+			path:'images/avatars/mo2.png'},
+			{name:'p17',
+			path:'images/avatars/mo3.png'},
+			{name:'p19',
+			path:'images/avatars/mo4.png'}
+		];
 
 		// In our signup.html, we'll be using the ng-model
 		// attribute to populate this object.
-
+		function changeView(){
+			var view = '/familydailyview';
+			$location.path(view);
+		}
 		signup.addNewMember = function() {
 			if (
 				!member.name ||
@@ -98,7 +136,9 @@ angular.module('FamilySleep') // make sure this is set to whatever it is in your
 
 			console.log(json); 
 			signup.cancel();
-
+			changeView();
+			//WRITING TO SERVER
+			/*
 			// Make the request to the server ... which doesn't exist just yet
 			var request = $http.post('/signup', user);
 
@@ -109,8 +149,8 @@ angular.module('FamilySleep') // make sure this is set to whatever it is in your
 
 			request.error(function (data) {
 				 console.log(data.msg);
-			});
+			});*/
 
 		};
 		
-	});
+	}]);

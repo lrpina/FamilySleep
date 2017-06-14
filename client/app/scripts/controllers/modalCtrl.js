@@ -7,37 +7,38 @@ angular.module('FamilySleep').controller('ModalCrtl', ['selfReportState', '$uibM
   $ctrl.buttonState = 0;
 
 	var moodImages = [
-		{ 	name:'good',
-			image:'images/faces/good.png'
-		}, 
-		{	name:'happy',
+		{	name:'Happy',
 			image:'images/faces/happy.png'
 		},
-		{	name:'nightmare',
-			image: 'images/faces/nightmare.png'
+		{	name:'Sleepy',
+			image: 'images/faces/sleepy.png'
 		},
-		{	name:'sneaky',
-			image: 'images/faces/sneaky.png'
-		},
-		{	name:'tired',
+		{	name:'Tired',
 		 	image:'images/faces/tired.png'
 		},
-		{	name:'tired_more',
-		 	image:'images/faces/tired_more.png'
+		{	name:'Rested',
+		 	image:'images/faces/rested.png'
 		},
-		{	name:'tired',
-		 	image:'images/faces/tired.png'
-		}];
+		{	name:'In Pain',
+		 	image:'images/faces/pain.png'
+		},
+    { name:'OK',
+      image:'images/faces/ok.png'
+    },
+    { name:'Had a nightmare',
+      image: 'images/faces/nightmare.png'
+    }];
   $ctrl.items = moodImages;
 	
   
   //$ctrl.famMems = ['mom', 'dad', 'child1', 'child2'];
-  $ctrl.famMems = personaFactory.getAllNames(); 
+  $ctrl.famMems = personaFactory.getAllNames();
+  //console.log($ctrl.famMems);
   $ctrl.famIDs = personaFactory.getAllIDs();
 	$ctrl.animationsEnabled = true;
   /**asigning selfReportState factory to states to have access in the viewer*/
   $ctrl.states = selfReportState;
-
+  $ctrl.famID;
 
   /*var profiles = personaFactory.getAllProfiles();
   console.log("profiles");
@@ -48,15 +49,14 @@ angular.module('FamilySleep').controller('ModalCrtl', ['selfReportState', '$uibM
 		$log.info("in open of ModalCrtl"); //added this might need to pass log
     console.log(famID);
     var fam = famID;
+    $ctrl.famID = fam;
     $ctrl.buttonState = 0;
-    /*console.log($ctrl.buttonState);
-    //var temp = $ctrl.states[fam];
-    console.log($ctrl.states[famID]);
-    console.log("using variable to also accessSelfreportState");
-    console.log(selfReportState[famID]);*/
-    //var parentElem = parentSelector ? 
-      //angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
-    //using
+    for (var i = 0; i < $ctrl.famIDs.length; i++) {
+      if ($ctrl.famIDs[i] == $ctrl.famID) {
+        $ctrl.famMems[i] = 'MYSELF';
+        break;
+      }
+    }
     var modalInstance = $uibModal.open({
       animation: $ctrl.animationsEnabled,
       ariaLabelledBy: 'modal-title',
@@ -73,6 +73,9 @@ angular.module('FamilySleep').controller('ModalCrtl', ['selfReportState', '$uibM
         },
         famMems: function(){ //I don't understand what this does
           return $ctrl.famMems;
+        },
+        famID: function(){
+          return $ctrl.famID;
         }
       }
     });
@@ -105,19 +108,20 @@ angular.module('FamilySleep').controller('ModalCrtl', ['selfReportState', '$uibM
 // Please note that $uibModalInstance represents a modal window (instance) dependency.
 // It is not the same as the $uibModal service used above.
 
-angular.module('FamilySleep').controller('ModalInstanceCtrl', function ($uibModalInstance, items, famMems, $log) {
+angular.module('FamilySleep').controller('ModalInstanceCtrl', function ($uibModalInstance, items, famMems, $log, famID) {
   var $ctrl = this;
   $ctrl.items = items;
+  $ctrl.famID = famID;
   //creating an object
-  $ctrl.selected = {
+  /*$ctrl.selected = {
     item: $ctrl.items[0]
-  };
+  };*/
 
   $ctrl.famMems = famMems;
   //creating an object
-  $ctrl.selectedFam = {
+  /*$ctrl.selectedFam = {
     item: $ctrl.famMems[0]
-  };
+  };*/
 
   $ctrl.ok = function () {
     $uibModalInstance.close({selected: $ctrl.selected.item, selectedFam: $ctrl.selectedFam.item});

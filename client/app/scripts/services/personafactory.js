@@ -56,8 +56,8 @@ angular.module('FamilySleep')
           // when the response is available
           temp_data = response.data;
           //console.log(temp_data);
-          //populate(temp_data);
-          console.log(temp_data);
+          populate(temp_data);
+          //console.log(temp_data);
 
           if(localStorageService.isSupported) {
             console.log('set');
@@ -68,6 +68,7 @@ angular.module('FamilySleep')
             var value = localStorageService.get('auth');
             if(value != null) {
               console.log('get worked! -------');
+              console.log("printing temp_data");
               console.log(value);
             }
           }
@@ -85,7 +86,7 @@ angular.module('FamilySleep')
     var populate = function(temp_data) {
       profiles = temp_data.data;
       /*console.log("in populate part of the personaFactory");
-      console.log(profiles);*/
+      console.log(profiles);*/  
     }
 
 
@@ -153,10 +154,11 @@ angular.module('FamilySleep')
     var getAllNames = function(){
       var nameArray = new Array(profiles.length);
       for(var i = 0; i < profiles.length; i++) {
+          //console.log(profiles[i].name);
           nameArray[i] = profiles[i].name;
       }
-      /*console.log("getAllNames Function");
-      console.log(nameArray);*/
+      //console.log("getAllNames Function");
+      //console.log(nameArray);
       return nameArray;
     }
 

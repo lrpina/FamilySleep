@@ -138,23 +138,5 @@
       }
     }
     updateData();
-    $scope.col = 0;
-    $scope.row = 0;
-    $scope.addCol = function(){
-      $scope.col++;
-      console.log("in addCol");
-      console.log($scope.col);
-    };
-
-    $scope.addRow = function(){
-      $scope.row = 1;
-    };
-
-    $scope.removeCol = function(){
-      $scope.col=0;
-      $scope.row = 0;
-      console.log("in removeCol");
-      console.log($scope.col);
-    }
   
   }]);
