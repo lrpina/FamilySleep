@@ -26,6 +26,12 @@ angular.module('FamilySleep')
         }]
       },
       responsive:false,
-      maintainAspectRatio: false
+      maintainAspectRatio: false,
+      hover: { //to turn off hover
+            mode: null
+          },
+          tooltips:{ //to turn off hover
+            enabled: false
+          },
   	};
   });
