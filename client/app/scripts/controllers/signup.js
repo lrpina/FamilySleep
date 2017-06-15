@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('FamilySleep') // make sure this is set to whatever it is in your client/scripts/app.js
-	.controller('SignupCtrl', ['localStorageService', '$scope', '$http', '$sanitize', '$location', 'personaFactory',
-	function (localStorageService, $scope, $http, $sanitize, $location, personaFactory) { // note the added $http depedency
+	.controller('SignupCtrl', ['localStorageService', '$scope', '$http', '$sanitize', '$location', 'personaFactory', 'selfReportState',
+	function (localStorageService, $scope, $http, $sanitize, $location, personaFactory, selfReportState) { // note the added $http depedency
 		
 		// Here we're creating some local references
 		// so that we don't have to type $scope every
@@ -88,10 +88,11 @@ angular.module('FamilySleep') // make sure this is set to whatever it is in your
 			var newMember = angular.copy(member);
 			members.push(newMember);
 			personaFactory.setProfile(newMember);
+			selfReportState.initializeSingle(newMember.pid);
 			console.log("members")
 			console.log(members);
-			console.log("user family");
-			console.log(user);
+			//console.log("user family");
+			//console.log(user);
 			member.name = "";
 			member.type = "";
 			member.profilePic = "";
@@ -133,6 +134,18 @@ angular.module('FamilySleep') // make sure this is set to whatever it is in your
 			$scope.members = [];
 		}
 
+		signup.cancelFromMember = function(){
+			user.famId = '';
+			user.lastname = '';
+			user.password1 = '';
+			user.password2 = '';
+			$scope.isAddMemberForm = false;
+			$scope.members = [];
+			//need to clear things.
+			selfReportState.clearAll();
+			personaFactory.clearAll();
+		}
+
 		// This is our method that will post to our server.
 		signup.submit = function () {
 			
@@ -147,8 +160,13 @@ angular.module('FamilySleep') // make sure this is set to whatever it is in your
 			//console.log(json);
 			//console.log("members in submit function");
 			//console.log(members);
+			var profiles = personaFactory.getAllProfiles();
+			var result = localStorageService.set('FamilyProfiles', profiles);
+            if(result) {
+              console.log('wrote profiles to localStorageService!-------------------------');
+            }
 			//personaFactory.setProfiles(members);
-			signup.cancel();
+			//signup.cancel();
 			changeView();
 			//WRITING TO SERVER
 			/*
