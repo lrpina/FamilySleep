@@ -1,29 +1,15 @@
 
-
-<!--<canvas id="doughnut" class="chart chart-doughnut"
-  chart-data="data" chart-labels="labels">
-</canvas>-->	
-
 <div class="singleview-container" ng-controller="AboutCtrl">
 
-<div class="col-xs-4">
-<div class="row">
-    <!--hard coding profile but can import it from the controller as well-->
-    <img src="images/avatars/momcircle.PNG" alt="momcircle" style="position: relative; top: 0px; left: 10px; width:60px; height:60px">
-	<!--<div vega spec="spec" style="position: relative; z-index: 2">-->
-    <canvas id="doughnut" class="chart-doughnut" chart-data="data" chart-labels="labels" chart-options="options">
-    </canvas>
-    <div ng-controller="ModalCrtl as $ctrl" class="mom">
-        <!--inserts code for the modal popup window-->
-        <button type="button" class="btn btn-default" ng-click="$ctrl.open()" ng-hide="$ctrl.selected" style="position: absolute; top: 150px; left: 45px; z-index: 1">How did you sleep?</button>
-        <!--if I have the below it messes with position of the button, will need to figure out how to make all this relative-->
-        <img ng-src={{$ctrl.selected.image}} ng-show="$ctrl.selected" ng-click="$ctrl.open()" style="position: absolute; top: 100px; left: 45px; z-index: 1"> 
-        <!--this is where the profile pic is coming from the controller of the modal-->
-        <!--<img ng-src={{$ctrl.profile}} style="position: absolute; top: 30px; left: 0px; height: 60px; width: 60px">-->
-       </div>
-	</div>
-    <!-- ideally this is where I have the same directive for the avatar-->
-    <!--<button type="button" class="btn btn-default"-->
-    <a href="/signup"> Single Daily View</a>
-    <p>This is the about view.</p>
+<h3> For any issues please contact Laura Pina at lpina_at_cs.uw.edu
+<h3> I am very grateful to have had the following students contribute. They were indispensible to building this sytem</h3>
+<h3> This system was built in collaboration with: </h3>
+<ul>
+    <li><a ng-href="https://www.linkedin.com/in/sang-wha-sien">Sang-Wha Sien</a></li>
+    <li><a ng-href="https://www.linkedin.com/in/diana-oviedo-72398b14/">Diana Oviedo</a></li>
+    <li><a ng-href="https://www.linkedin.com/in/clarissa-song-b8099584/">Clarissa Song</a></li>
+    <li><a ng-href="https://www.yuanzhuangux.com">Yuan Zhuang</a></li>
+    <li><a ng-href="https://www.taoxili.net">Taoxi (Tessa) Li</a></li>
+    <li><a ng-href="https://linkedin.com/in/ada-s-kim/"> Ada S. Kim</a></li>
+</ul>
 </div>
