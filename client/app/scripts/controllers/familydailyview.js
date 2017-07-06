@@ -19,44 +19,68 @@
       Right now after self-Report is saved to sleepFamilyDailyDataFactory it will be loosed because we can't write to file.
       throughout all the javascript for the family views I should fake that I have access to mood etc
       */
-      var familyInfo = {
+      $scope.moods = selfReportState.getAllMoods();
+      $scope.family = personaFactory.getAllProfiles();
+
+      /*console.log("In family-daily-view printing moods");
+      console.log(moods);*/
+      console.log("printing all keys in famMembers object");
+      var keys = Object.keys( $scope.family); //returns array of mids/pids e.g. ["m1", "m2"]
+      console.log(keys);
+      for (var i = keys.length - 1; i >= 0; i--) {
+        var key = keys[i];
+         $scope.family[key]['mood'] = null;
+         $scope.family[key]['image'] = $scope.moods[key]['image'];
+         $scope.family[key]['state'] = $scope.moods[key]['state'];
+      }
+      /*angular.forEach(famMembers, function(obj){
+        console.log("printing ojb in iteration");
+        console.log(obj);
+       
+        console(moods[key][mood]);
+        //smember['mood'] = 
+        /*famMembers[key]['sleep'] = null;
+        famMembers[key]['image'] = moods[key]['image'];
+        faMembers[key]['state'] = moods[key]['state'];
+      });*/
+      /*var familyInfo = {
         mom: {
           type: "family",
           sleep: null,
-          mood: selfReportState.mom.mood,
-          image: selfReportState.mom.image,
+          mood: moods.mom.mood,
+          image: moods.mom.image,
           name: "mom",
-          pid: "f1m1",
-          avatar: "images/avatars/momcircle.png"
+          pid: "m1",
+          profilePic: "images/avatars/momcircle.png"
         },
         dad: {
           type: "family",
           sleep: null,
-          mood: selfReportState.dad.mood,
-          image: selfReportState.dad.image,
+          mood: moods.dad.mood,
+          image: moods.dad.image,
           name: "dad",
-          pid: "f1m2",
-          avatar: "images/avatars/dadcircle.png"
+          pid: "m2",
+          profilePic: "images/avatars/dadcircle.png"
         },
         girl: {
           type: "family",
           sleep: null,
-          mood: selfReportState.child1.mood,
-          image: selfReportState.child1.image,
+          mood: moods.child1.mood,
+          image: moods.child1.image,
           name: "child1",
-          pid: "f1m3",
-          avatar: "images/avatars/girlcircle.png"
+          pid: "m3",
+          profilePic: "images/avatars/girlcircle.png"
         },
         boy: {
           type: "family",
           sleep: null,
-          pid: "f1m4",
-          mood: selfReportState.child2.mood,
-          image: selfReportState.child2.image,
+          pid: "m4",
+          mood: moods.child2.mood,
+          image: moods.child2.image,
           name: "child2",
-          avatar: "images/avatars/boycircle.png"
+          profilePic: "images/avatars/boycircle.png"
         }
-      };
+      };*/
       /***old member of familyInfo
       moon: {
           type: "moon",
@@ -89,13 +113,14 @@
     
     
     var updateData = function() {
-      //console.log("famDailySleep");
+      console.log("at the beginning of updateData");
+      console.log("famDailySleep");
       //console.log("in updateData");
       var newDate = dateFactory.getDateString();
       
       console.log(newDate);
       if(dateFactory.getWeekDateString() != []) {
-        var promise = dbdata.get_fam_daily_sleep_data(['mom','dad','girl','boy'], newDate);
+        var promise = dbdata.get_fam_daily_sleep_data(keys, newDate);
 
         promise.then(function(response) {
           /*$scope.data = [famDailySleep.sleep_data['mom'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['mom'][newDate].duration/1000/60/60)];
@@ -106,9 +131,10 @@
           $scope.data_boy = [famDailySleep.sleep_data['boy'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['boy'][newDate].duration/1000/60/60)];*/
           
           // if there is no data, sleep will be undefined.
-
-          for(var fam in familyInfo) {
-              familyInfo[fam].sleep = [famDailySleep.sleep_data[fam][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data[fam][newDate].duration/1000/60/60)];
+          console.log("in promise");
+          console.log(famDailySleep);
+          for(var fam in $scope.family) {
+              $scope.family[fam].sleep = [famDailySleep.sleep_data[fam][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data[fam][newDate].duration/1000/60/60)];
               //console.log("fam member sleep");
               //console.log(familyInfo[fam].sleep);
           }
@@ -122,8 +148,8 @@
           $scope.data_girl = [famDailySleep.sleep_data['girl'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['girl'][newDate].duration/1000/60/60)];
           $scope.data_boy = [famDailySleep.sleep_data['boy'][newDate].duration/1000/60/60, (24-famDailySleep.sleep_data['boy'][newDate].duration/1000/60/60)];*/
           
-          $scope.family = familyInfo;
-          console.log($scope.family);
+          //$scope.family = familyInfo;
+          //console.log($scope.family);
           
           $scope.labels = ['hours slept','hours awake'];
            /*define colors here*/

@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('FamilySleep') // make sure this is set to whatever it is in your client/scripts/app.js
-	.controller('SignupCtrl', ['localStorageService', '$scope', '$http', '$sanitize', '$location', 
-	function (localStorage, $scope, $http, $sanitize, $location) { // note the added $http depedency
+	.controller('SignupCtrl', ['localStorageService', '$scope', '$http', '$sanitize', '$location', 'personaFactory', 'selfReportState',
+	function (localStorageService, $scope, $http, $sanitize, $location, personaFactory, selfReportState) { // note the added $http depedency
 		
 		// Here we're creating some local references
 		// so that we don't have to type $scope every
@@ -18,9 +18,9 @@ angular.module('FamilySleep') // make sure this is set to whatever it is in your
 		$scope.member = member;
 		$scope.signup = signup = {};
 		$scope.signup.user = user = {};
-		$scope.signup.user.members = members = [];
+		$scope.signup.user.members = members = []; //might want to make this an object
 		//$scope.members = [];
-		$scope.isAddMemberForm = false;
+		$scope.isAddMemberForm = true; //change it back to false
 		$scope.profilePicItems = [
 			{name:'p1',
 			path:'images/avatars/momcircle.png'},
@@ -64,6 +64,9 @@ angular.module('FamilySleep') // make sure this is set to whatever it is in your
 			path:'images/avatars/m5.png'}
 		];
 
+		$scope.famTypes = ["Father", "Mother", "Daughter", "Son", "Grandfather", "GrandMother", ""];
+		$scope.fitbits = ["asdxas", "asdfxz", "asdfserter"];
+
 		// In our signup.html, we'll be using the ng-model
 		// attribute to populate this object.
 		function changeView(){
@@ -80,18 +83,23 @@ angular.module('FamilySleep') // make sure this is set to whatever it is in your
 				alert('Please fill out all form fields.');
 				return false;
 			}
-
 			member.pid = 'm' + count;
 			count++;
-			console.log(member);
+			//console.log("inadd New Member")
+			//console.log(member);
 			var newMember = angular.copy(member);
 			members.push(newMember);
+			personaFactory.setProfile(newMember);
+			selfReportState.initializeSingle(newMember.pid);
+			//console.log("inadd New Member == members")
+			//console.log(members);
+			//console.log("user family");
+			//console.log(user);
 			member.name = "";
 			member.type = "";
 			member.profilePic = "";
 			member.fitbitId = "";
 			member.pid = "";
-			console.log(members);
 		}
 
 		signup.addMembers = function() {
@@ -110,7 +118,14 @@ angular.module('FamilySleep') // make sure this is set to whatever it is in your
 				alert('Your passwords must match.');
 				return false;
 			}
+			console.log("Adding FamID :: IN add member")
 			console.log(user);
+			//DON'T NEED to use localStorage any longer
+			/*
+			var result = localStorageService.set('FamilyInfo', user);
+            if(result) {
+              console.log('writing to local storage family Infoworked!-------------------------');
+            }*/
 			$scope.isAddMemberForm = true;
 		}
 
@@ -123,6 +138,18 @@ angular.module('FamilySleep') // make sure this is set to whatever it is in your
 			$scope.members = [];
 		}
 
+		signup.cancelFromMember = function(){
+			user.famId = '';
+			user.lastname = '';
+			user.password1 = '';
+			user.password2 = '';
+			$scope.isAddMemberForm = false;
+			$scope.members = [];
+			//need to clear things.
+			selfReportState.clearAll();
+			personaFactory.clearAll();
+		}
+
 		// This is our method that will post to our server.
 		signup.submit = function () {
 			
@@ -130,10 +157,26 @@ angular.module('FamilySleep') // make sure this is set to whatever it is in your
 			// aren't you glad you're not typing out
 			// $scope.signup.user.firstname everytime now??
 			signup.addNewMember();
-			var json = JSON.stringify($scope.signup);
+			//console.log("in SignupCtrl where $scope.signup");
+			//console.log($scope.signup);
+			//var json = JSON.stringify($scope.signup);
+			//console.log("turned json into stringify");
+			//console.log(json);
+			//console.log("members in submit function");
+			//console.log(members);
+			console.log("testing all personas were added");
+			var profiles = personaFactory.getAllProfiles();
+			console.log(profiles);
 
-			console.log(json); 
-			signup.cancel();
+			/*DON'T NEED this anymore
+			var result = localStorageService.set('FamilyProfiles', profiles);
+            if(result) {
+              console.log('wrote profiles to localStorageService!-------------------------');
+            }
+            */
+
+			//personaFactory.setProfiles(members);
+			//signup.cancel();
 			changeView();
 			//WRITING TO SERVER
 			/*

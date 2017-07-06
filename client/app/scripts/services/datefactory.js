@@ -28,9 +28,9 @@ angular.module('FamilySleep')
         date_week.push(newDate);  
       }
       
-      console.log(date_week);
-      console.log('in dateFactory');
-      console.log(date.format());
+      //console.log(date_week);
+      //console.log('in dateFactory');
+      //console.log(date.format());
       $rootScope.$broadcast('date:updated');
     };
 
