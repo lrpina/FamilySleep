@@ -45,7 +45,7 @@ angular.module('FamilySleep')
         var promise = dbdata.get_fam_weekly_sleep_data(['mom','dad','girl','boy'], $scope.dateWeekStr);
         promise.then(function(response) {
         	console.log('in family weekly view');
-          //console.log(famWeeklySleep.sleep_data);
+          console.log(famWeeklySleep.sleep_data);
           $scope.famWeekData = famWeeklySleep.sleep_data;
           //console.log(famWeekData);
           for (var fam in $scope.famWeekData){

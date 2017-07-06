@@ -138,8 +138,8 @@ angular.module('FamilySleep')
     var setProfile = function (data){
       var id = data.pid;
       profiles[id] = data;
-      console.log("in set single profile");
-      console.log(profiles);
+      /*console.log("in set single profile");
+      console.log(profiles);*/
     }
 
     var populate = function(temp_data) {
@@ -276,7 +276,7 @@ angular.module('FamilySleep')
   }
     //calling retrieveProfiles(); from here needs to go somewhere else
 
-    retrieveProfiles();
+    //retrieveProfiles();
     //console.log(old_profiles);
     // Public API here
     return {

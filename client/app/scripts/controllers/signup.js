@@ -18,9 +18,9 @@ angular.module('FamilySleep') // make sure this is set to whatever it is in your
 		$scope.member = member;
 		$scope.signup = signup = {};
 		$scope.signup.user = user = {};
-		$scope.signup.user.members = members = [];
+		$scope.signup.user.members = members = []; //might want to make this an object
 		//$scope.members = [];
-		$scope.isAddMemberForm = false;
+		$scope.isAddMemberForm = true; //change it back to false
 		$scope.profilePicItems = [
 			{name:'p1',
 			path:'images/avatars/momcircle.png'},
@@ -64,6 +64,9 @@ angular.module('FamilySleep') // make sure this is set to whatever it is in your
 			path:'images/avatars/m5.png'}
 		];
 
+		$scope.famTypes = ["Father", "Mother", "Daughter", "Son", "Grandfather", "GrandMother", ""];
+		$scope.fitbits = ["asdxas", "asdfxz", "asdfserter"];
+
 		// In our signup.html, we'll be using the ng-model
 		// attribute to populate this object.
 		function changeView(){
@@ -80,17 +83,16 @@ angular.module('FamilySleep') // make sure this is set to whatever it is in your
 				alert('Please fill out all form fields.');
 				return false;
 			}
-
 			member.pid = 'm' + count;
 			count++;
-			console.log("inadd New Member")
-			console.log(member);
+			//console.log("inadd New Member")
+			//console.log(member);
 			var newMember = angular.copy(member);
 			members.push(newMember);
 			personaFactory.setProfile(newMember);
 			selfReportState.initializeSingle(newMember.pid);
-			console.log("members")
-			console.log(members);
+			//console.log("inadd New Member == members")
+			//console.log(members);
 			//console.log("user family");
 			//console.log(user);
 			member.name = "";
@@ -116,12 +118,14 @@ angular.module('FamilySleep') // make sure this is set to whatever it is in your
 				alert('Your passwords must match.');
 				return false;
 			}
-			console.log("IN add member")
+			console.log("Adding FamID :: IN add member")
 			console.log(user);
+			//DON'T NEED to use localStorage any longer
+			/*
 			var result = localStorageService.set('FamilyInfo', user);
             if(result) {
               console.log('writing to local storage family Infoworked!-------------------------');
-            }
+            }*/
 			$scope.isAddMemberForm = true;
 		}
 
@@ -160,11 +164,17 @@ angular.module('FamilySleep') // make sure this is set to whatever it is in your
 			//console.log(json);
 			//console.log("members in submit function");
 			//console.log(members);
+			console.log("testing all personas were added");
 			var profiles = personaFactory.getAllProfiles();
+			console.log(profiles);
+
+			/*DON'T NEED this anymore
 			var result = localStorageService.set('FamilyProfiles', profiles);
             if(result) {
               console.log('wrote profiles to localStorageService!-------------------------');
             }
+            */
+
 			//personaFactory.setProfiles(members);
 			//signup.cancel();
 			changeView();
